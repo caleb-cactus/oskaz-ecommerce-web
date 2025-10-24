@@ -25,8 +25,8 @@ const GetStarted = () => {
     message: ""
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

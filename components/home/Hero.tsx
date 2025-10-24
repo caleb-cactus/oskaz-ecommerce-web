@@ -13,8 +13,8 @@ const Hero = () => {
   const [isInView, setIsInView] = useState(false);
   const [particles, setParticles] = useState<{ width: number; height: number; top: number; left: number; delay: number; duration: number }[]>([]);
   const [orbs, setOrbs] = useState<{ top: string; left: string; height: string; width: string; colorClass: string }[]>([]);
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
   const sectionRef = useRef(null);
   const router = useRouter();
 

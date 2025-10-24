@@ -47,8 +47,8 @@ const TopPicks = () => {
   const [isInView, setIsInView] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

@@ -67,8 +67,8 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
   const [itemsPerPage] = useState(9);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
 
   useEffect(() => setMounted(true), []);
 

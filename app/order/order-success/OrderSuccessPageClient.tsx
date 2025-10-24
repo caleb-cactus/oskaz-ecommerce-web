@@ -13,8 +13,8 @@ export default function OrderSuccessPageClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const orderId = searchParams.get("orderId");
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
 
   return (
     <div

@@ -35,8 +35,8 @@ export default function AboutPage() {
   const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
   const [copiedAddress, setCopiedAddress] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
   
   // Create refs for each section for individual animations
   const heroRef = useRef<HTMLDivElement>(null);

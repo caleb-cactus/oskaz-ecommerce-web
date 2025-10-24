@@ -52,8 +52,9 @@ export default function RootLayout({
       <body className={`${inter.variable} antialiased font-sans`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="system"
           enableSystem
+          storageKey="oskaz-theme"
           disableTransitionOnChange
         >
            <ToastProvider>

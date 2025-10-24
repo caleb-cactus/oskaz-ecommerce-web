@@ -33,8 +33,8 @@ const ProductsHeader: React.FC<ProductsHeaderProps> = ({
   filtersOpen,
 }) => {
   const [mounted, setMounted] = useState(false);
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
 
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;

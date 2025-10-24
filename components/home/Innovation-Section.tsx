@@ -27,8 +27,8 @@ const InnovationSection = () => {
   const [preloadMode, setPreloadMode] = useState<"none" | "metadata" | "auto">("none");
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
   const [hasVideoError, setHasVideoError] = useState(false);
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
   const sectionRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 

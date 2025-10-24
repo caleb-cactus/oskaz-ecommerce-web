@@ -13,8 +13,8 @@ const ProductsShowcase = () => {
   const [mounted, setMounted] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const [activeCategory, setActiveCategory] = useState("all");
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

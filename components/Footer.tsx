@@ -28,8 +28,8 @@ const Footer = () => {
   const [mounted, setMounted] = useState(false);
   const [email, setEmail] = useState("");
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
 
   useEffect(() => {
     setMounted(true);

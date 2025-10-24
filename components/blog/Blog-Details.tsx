@@ -27,8 +27,8 @@ interface BlogDetailsProps {
 const BlogDetails = ({ blogId }: BlogDetailsProps) => {
   const [mounted, setMounted] = useState(false);
   const [isInView, setIsInView] = useState(false);
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

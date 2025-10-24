@@ -32,8 +32,8 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const { theme } = useTheme();
-  const isDarkMode = theme === "dark";
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
 
   const { state, setIsOpen } = useCart();
   const { user } = useUser();
