@@ -12,6 +12,7 @@ import { CartProvider } from "@/context/CartContext";
 import { DropdownOverlayProvider } from "@/context/DropdownOverlayContext";
 import { ToastProvider } from "@/components/ui/toast";
 import MarketingBar from "@/components/MarketingBar";
+import GithubPopup from "@/components/utilities/GithubPopup";
 //import FlashlightEffect from "@/components/FlashlightEffect";
 
 const inter = Inter({
@@ -65,6 +66,7 @@ export default function RootLayout({
               <DropdownOverlayProvider>
                 <Navbar />
                 <DropdownOverlay />
+                <GithubPopup />
                 <div className="">{children}</div>
               </DropdownOverlayProvider>
             </CartProvider>
