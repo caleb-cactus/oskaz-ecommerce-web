@@ -18,14 +18,16 @@ export default function MarketingBar() {
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <Link
-                href="/services"
+              {/* Trigger Github popup instead of navigating */}
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new Event("open-github-popup"))}
                 className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-2 text-sm font-medium text-white hover:from-blue-700 hover:to-indigo-700 transition-colors"
                 aria-label="Explore tailored software solutions"
               >
                 Explore Solutions
                 <ArrowRight className="h-4 w-4" />
-              </Link>
+              </button>
             </div>
           </div>
         </div>
