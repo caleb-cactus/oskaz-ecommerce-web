@@ -11,11 +11,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Github, ExternalLink, Sparkles, MessageCircle } from "lucide-react";
+import Image from "next/image";
 
 const CALEB_URL = "https://github.com/caleb-cactus";
 const KIDUS_URL = "https://github.com/kidusabdula";
 const CALEB_TG = "https://t.me/zatmelomaniac";
 const KIDUS_TG = "https://t.me/kidusabdula";
+const CALEB_AVATAR = "https://github.com/caleb-cactus.png?size=96";
+const KIDUS_AVATAR = "https://github.com/kidusabdula.png?size=96";
 
 export default function GithubPopup() {
   const [open, setOpen] = useState(false);
@@ -38,11 +41,10 @@ export default function GithubPopup() {
       <DialogContent
         showCloseButton
         className={cn(
--          "relative overflow-hidden border border-white/10 bg-background/80 backdrop-blur-xl",
-+          "overflow-hidden border border-white/10 bg-background/80 backdrop-blur-xl",
-           "shadow-2xl",
-           "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95"
-         )}
+          "overflow-hidden border border-white/10 bg-background/80 backdrop-blur-xl",
+          "shadow-2xl",
+          "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95"
+        )}
       >
         {/* Decorative gradient beams */}
         <div className="pointer-events-none absolute -top-32 -right-24 h-64 w-64 rounded-full bg-gradient-to-br from-violet-500/20 via-fuchsia-500/20 to-rose-500/20 blur-3xl" />
@@ -65,6 +67,7 @@ export default function GithubPopup() {
             handle="@caleb-cactus"
             githubUrl={CALEB_URL}
             telegramUrl={CALEB_TG}
+            avatarUrl={CALEB_AVATAR}
             accent="from-indigo-500 to-purple-500"
           />
           <ProfileCard
@@ -72,6 +75,7 @@ export default function GithubPopup() {
             handle="@kidusabdula"
             githubUrl={KIDUS_URL}
             telegramUrl={KIDUS_TG}
+            avatarUrl={KIDUS_AVATAR}
             accent="from-emerald-500 to-teal-500"
           />
         </div>
@@ -83,13 +87,13 @@ export default function GithubPopup() {
           </Button>
           <div className="flex items-center gap-2">
             <Button variant="outline" asChild>
-              <a href={KIDUS_TG} target="_blank" rel="noopener noreferrer">
-                Message Kidus <MessageCircle className="ml-1 size-4" />
+              <a href={CALEB_TG} target="_blank" rel="noopener noreferrer">
+                Message Caleb <MessageCircle className="ml-1 size-4" />
               </a>
             </Button>
             <Button variant="outline" asChild>
-              <a href={CALEB_TG} target="_blank" rel="noopener noreferrer">
-                Message Caleb <MessageCircle className="ml-1 size-4" />
+              <a href={KIDUS_TG} target="_blank" rel="noopener noreferrer">
+                Message Kidus <MessageCircle className="ml-1 size-4" />
               </a>
             </Button>
           </div>
@@ -104,14 +108,18 @@ function ProfileCard({
   handle,
   githubUrl,
   telegramUrl,
+  avatarUrl,
   accent,
 }: {
   name: string;
   handle: string;
   githubUrl: string;
   telegramUrl: string;
+  avatarUrl: string;
   accent: string; // tailwind gradient classes
 }) {
+  const [imgError, setImgError] = useState(false);
+
   return (
     <div
       className={cn(
@@ -124,15 +132,32 @@ function ProfileCard({
       )}
     >
       <div className="flex items-center gap-3">
-        <div
-          className={cn(
-            "flex size-12 items-center justify-center rounded-full text-white shadow-sm",
-            "bg-gradient-to-r",
-            accent
-          )}
-        >
-          <Github className="size-6" />
-        </div>
+        {imgError ? (
+          <div
+            className={cn(
+              "flex size-16 items-center justify-center rounded-full text-white shadow-sm",
+              "bg-gradient-to-r",
+              accent
+            )}
+          >
+            <Github className="size-8" />
+          </div>
+        ) : (
+          <div className={cn("size-16 rounded-full p-[2px] bg-gradient-to-r", accent)}>
+            <div className="h-full w-full overflow-hidden rounded-full bg-background">
+              <Image
+                src={avatarUrl}
+                alt={`${name} avatar`}
+                width={64}
+                height={64}
+                className="h-full w-full object-cover"
+                onError={() => setImgError(true)}
+                priority
+              />
+            </div>
+          </div>
+        )}
+
         <div className="min-w-0">
           <div className="flex items-center gap-2">
             <p className="truncate text-sm font-semibold">{name}</p>
