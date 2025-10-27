@@ -78,10 +78,10 @@ export default function ProductDetailPage() {
     }
   };
 
-  const formatPrice = (price: number, currency: string) =>
+  const formatPrice = (price: number) =>
     new Intl.NumberFormat("en-US", {
       style: "currency",
-      currency,
+      currency: "ETB",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(price);
@@ -251,7 +251,7 @@ const handleBuyNow = (product: Product) => {
 
           <div className="flex items-baseline gap-2">
             <span className="text-3xl font-bold text-primary">
-              {formatPrice(product.price, product.currency)}
+              {formatPrice(product.price)}
             </span>
             {product.min_order_qty > 1 && (
               <span className="text-sm text-muted-foreground">

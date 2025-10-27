@@ -135,7 +135,7 @@ export async function POST(request: NextRequest) {
       const orderItems = items.map((it: SalesOrderItem) => ({
         item_code: it.item_code,
         item_name: it.item_name,
-        warehouse: "Stores - OD",
+        warehouse: "Stores - OI",
         description: it.description || "",
         qty: it.quantity || 1,
         rate: it.price || 0,

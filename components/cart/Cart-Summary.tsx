@@ -16,16 +16,15 @@ interface CartSummaryProps {
 
 const CartSummary: React.FC<CartSummaryProps> = ({
   onCheckout,
-  currency
 }) => {
   const { state } = useCart();
   const { theme } = useTheme();
   const isDarkMode = theme === 'dark';
   
-  const formatPrice = (price: number, cur: string) => {
+  const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: cur,
+      currency: "ETB",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(price);
@@ -44,7 +43,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
       <CardContent className="space-y-4">
         <div className="flex justify-between">
           <span className="text-muted-foreground">Subtotal ({state.totalItems} items)</span>
-          <span>{formatPrice(state.totalPrice, currency)}</span>
+          <span>{formatPrice(state.totalPrice)}</span>
         </div>
         
         <div className="flex justify-between">
@@ -56,7 +55,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
         
         <div className="flex justify-between font-medium">
           <span>Total</span>
-          <span className="text-lg">{formatPrice(state.totalPrice, currency)}</span>
+          <span className="text-lg">{formatPrice(state.totalPrice)}</span>
         </div>
         
         <Button 

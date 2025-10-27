@@ -98,10 +98,12 @@ const TopPicks = () => {
   }, []);
 
   // Helper function to format price
-  const formatPrice = (price: number, currency: string) => {
+  const formatPrice = (price: number) => {
+    // Use USD as default currency if currency is null or invalid
+    
     return new Intl.NumberFormat("en-US", {
       style: "currency",
-      currency,
+      currency: "ETB",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(price);
@@ -138,13 +140,13 @@ const TopPicks = () => {
   const transformProduct = (product: Product, index: number) => {
     const badges = ["Editor's Choice", "Best Value", "Premium Choice"];
     const originalPrice = product.price * 1.2; // Calculate a 20% higher original price
-
+  
     return {
       id: product.name,
       name: product.item_name,
       category: product.item_group,
-      price: formatPrice(product.price, product.currency),
-      originalPrice: formatPrice(originalPrice, product.currency),
+      price: formatPrice(product.price), // Provide default
+      originalPrice: formatPrice(originalPrice), // Provide default
       rating: 4.5 + index * 0.1, // Vary ratings slightly
       reviews: 100 + index * 30, // Vary review counts
       badge: badges[index % badges.length],

@@ -38,10 +38,10 @@ const CartItemComponent: React.FC<CartItemProps> = ({ item }) => {
     }
   };
   
-  const formatPrice = (price: number, currency: string) => {
+  const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency,
+      currency: "ETB",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(price);
@@ -96,10 +96,10 @@ const CartItemComponent: React.FC<CartItemProps> = ({ item }) => {
               </div>
               <div className="text-right mt-2 sm:mt-0">
                 <div className="font-semibold text-sm">
-                  {formatPrice(item.price, item.currency)}
+                  {formatPrice(item.price)}
                 </div>
                 <div className="text-xs text-muted-foreground">
-                  {formatPrice(item.price * item.quantity, item.currency)} total
+                  {formatPrice(item.price * item.quantity)} total
                 </div>
               </div>
             </div>

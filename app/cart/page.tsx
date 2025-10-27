@@ -19,7 +19,7 @@ export default function CartPage() {
   const isDarkMode = theme === 'dark';
   const router = useRouter();
   
-  const currency = state.items.length > 0 ? state.items[0].currency : 'ETB';
+  const currency = 'ETB';
   
   const handleCheckout = () => {
     console.log('Proceeding to checkout');

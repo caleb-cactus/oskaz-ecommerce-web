@@ -28,10 +28,9 @@ export default function OrderPage() {
   const { theme } = useTheme();
   const isDarkMode = theme === 'dark';
 
-  const currency = state.items.length > 0 ? state.items[0].currency : "ETB";
 
-  const formatPrice = (price: number, currency: string) =>
-    new Intl.NumberFormat("en-US", { style: "currency", currency, minimumFractionDigits: 0 }).format(price);
+  const formatPrice = (price: number) =>
+    new Intl.NumberFormat("en-US", { style: "currency", currency: "ETB", minimumFractionDigits: 0 }).format(price);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -216,7 +215,7 @@ export default function OrderPage() {
                 <Badge variant="secondary">Secure</Badge>
               </div>
               <Button onClick={handleSubmit} disabled={isSubmitting} className="w-full py-4 font-bold rounded-xl transition">
-                {isSubmitting ? "Processing..." : `Place Order - ${formatPrice(state.totalPrice, currency)}`}
+                {isSubmitting ? "Processing..." : `Place Order - ${formatPrice(state.totalPrice)}`}
               </Button>
             </CardContent>
           </Card>
@@ -244,13 +243,13 @@ export default function OrderPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="truncate">{item.name}</h4>
-                    <p className="text-sm text-muted-foreground">{formatPrice(item.price, currency)} × {item.quantity}</p>
+                    <p className="text-sm text-muted-foreground">{formatPrice(item.price)} × {item.quantity}</p>
                   </div>
-                  <p className="font-bold">{formatPrice(item.price * item.quantity, currency)}</p>
+                  <p className="font-bold">{formatPrice(item.price * item.quantity)}</p>
                 </div>
               ))}
               <Separator />
-              <div className="flex justify-between"><span>Subtotal</span><span>{formatPrice(state.totalPrice, currency)}</span></div>
+              <div className="flex justify-between"><span>Subtotal</span><span>{formatPrice(state.totalPrice)}</span></div>
               <div className="flex justify-between"><span>Delivery Fee</span><span className="text-green-600">Free</span></div>
               <div className="flex justify-between"><span>Tax</span><span>Included</span></div>
             </CardContent>

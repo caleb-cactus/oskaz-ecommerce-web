@@ -202,14 +202,16 @@ const handleBuyNow = (product: Product) => {
     }
   };
 
-  const formatPrice = (price: number, currency: string) =>
-    new Intl.NumberFormat("en-US", {
+  const formatPrice = (price: number) => {
+    // Use USD as default currency if currency is null or invalid
+    
+    return new Intl.NumberFormat("en-US", {
       style: "currency",
-      currency,
+      currency: "ETB",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(price);
-
+  };
   const getStockStatus = (stock: number) => {
     if (stock > 10)
       return { status: "In Stock", color: "bg-green-100 text-green-800" };
@@ -344,7 +346,7 @@ const handleBuyNow = (product: Product) => {
                       <div>
                         <div className="flex items-center justify-between mb-3">
                           <span className="text-lg font-bold text-primary">
-                            {formatPrice(product.price, product.currency)}
+                            {formatPrice(product.price)}
                           </span>
                           {product.min_order_qty > 1 && (
                             <span className="text-xs text-muted-foreground">
@@ -485,7 +487,7 @@ const handleBuyNow = (product: Product) => {
                         <div className="flex items-center justify-between">
                           <div>
                             <span className="text-lg font-bold text-primary">
-                              {formatPrice(product.price, product.currency)}
+                              {formatPrice(product.price)}
                             </span>
                             {product.min_order_qty > 1 && (
                               <span className="text-xs text-muted-foreground ml-2">

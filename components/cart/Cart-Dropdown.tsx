@@ -18,17 +18,15 @@ const CartDropdown: React.FC = () => {
   const isDarkMode = theme === 'dark';
   const dropdownRef = useRef<HTMLDivElement>(null);
   
-  const formatPrice = (price: number, currency: string) => {
+  const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency,
+      currency: "ETB",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(price);
   };
-  
-  const currency = state.items.length > 0 ? state.items[0].currency : 'ETB';
-  
+    
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -116,7 +114,7 @@ const CartDropdown: React.FC = () => {
                   <div className="flex justify-between">
                     <span className="font-medium">Total</span>
                     <span className="font-bold text-lg">
-                      {formatPrice(state.totalPrice, currency)}
+                      {formatPrice(state.totalPrice)}
                     </span>
                   </div>
                   

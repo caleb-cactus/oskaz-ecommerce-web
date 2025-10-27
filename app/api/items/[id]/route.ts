@@ -26,6 +26,59 @@ function formatImageUrl(imagePath: string | null): string | null {
   return `/api/files/${encodedFileName}`;
 }
 
+// Helper function to get valuation rate for an item
+async function getItemValuationRate(itemCode: string): Promise<{ valuation_rate: number | null; currency: string | null }> {
+  try {
+    // Try to get valuation rate from Bin (current stock valuation)
+    const binResult = await frappeClient.db.getDocList('Bin', {
+      filters: [['item_code', '=', itemCode]],
+      fields: ['valuation_rate'],
+      limit: 1
+    });
+    
+    if (binResult.length > 0 && binResult[0].valuation_rate) {
+      return {
+        valuation_rate: binResult[0].valuation_rate,
+        currency: 'USD' // Default currency for valuation rate
+      };
+    }
+    
+    // If no valuation rate in Bin, try to get from latest Stock Ledger Entry
+    const sleResult = await frappeClient.db.getDocList('Stock Ledger Entry', {
+      filters: [['item_code', '=', itemCode]],
+      fields: ['valuation_rate'],
+      orderBy: { field: 'posting_date', order: 'desc' },
+      limit: 1
+    });
+    
+    if (sleResult.length > 0 && sleResult[0].valuation_rate) {
+      return {
+        valuation_rate: sleResult[0].valuation_rate,
+        currency: 'USD' // Default currency for valuation rate
+      };
+    }
+    
+    // If no valuation rate found, fall back to Item Price
+    const priceResult = await frappeClient.db.getDocList('Item Price', {
+      filters: [['item_code', '=', itemCode]],
+      fields: ['price_list_rate', 'currency'],
+      limit: 1
+    });
+    
+    if (priceResult.length > 0) {
+      return {
+        valuation_rate: priceResult[0].price_list_rate,
+        currency: priceResult[0].currency
+      };
+    }
+    
+    return { valuation_rate: null, currency: null };
+  } catch (error) {
+    console.error(`Error fetching valuation rate for item ${itemCode}:`, error);
+    return { valuation_rate: null, currency: null };
+  }
+}
+
 // GET - Fetch a single item with detailed information
 export async function GET(
   request: NextRequest,
@@ -54,18 +107,8 @@ export async function GET(
       const item = items[0];
 
       try {
-        // Get item price
-        let itemPrice = null;
-        try {
-          const priceResult = await frappeClient.db.getDocList('Item Price', {
-            filters: [['item_code', '=', item.item_code]],
-            fields: ['price_list_rate', 'currency'],
-            limit: 1
-          });
-          itemPrice = priceResult.length > 0 ? priceResult[0] : null;
-        } catch (error) {
-          console.error(`Error fetching price for item ${item.name}:`, error);
-        }
+        // Get valuation rate instead of price
+        const valuationData = await getItemValuationRate(item.item_code);
 
         // Get stock information
         let stockInfo = null;
@@ -153,10 +196,20 @@ export async function GET(
             limit: 4
           });
           
-          relatedItems = relatedResult.map(relatedItem => ({
-            ...relatedItem,
-            image: formatImageUrl(relatedItem.image)
-          }));
+          // Get valuation rates for related items
+          const relatedItemsWithValuation = await Promise.all(
+            relatedResult.map(async (relatedItem) => {
+              const relatedValuationData = await getItemValuationRate(relatedItem.item_code);
+              return {
+                ...relatedItem,
+                image: formatImageUrl(relatedItem.image),
+                price: relatedValuationData.valuation_rate,
+                currency: relatedValuationData.currency
+              };
+            })
+          );
+          
+          relatedItems = relatedItemsWithValuation;
         } catch (error) {
           console.error(`Error fetching related items for ${item.name}:`, error);
         }
@@ -165,8 +218,8 @@ export async function GET(
           item: {
             ...item,
             image: formatImageUrl(item.image),
-            price: itemPrice ? itemPrice.price_list_rate : null,
-            currency: itemPrice ? itemPrice.currency : null,
+            price: valuationData.valuation_rate, // Use valuation rate as price
+            currency: valuationData.currency,
             stock: stockInfo ? stockInfo.actual_qty : 0,
             warehouse: stockInfo ? stockInfo.warehouse : null,
             weight_per_unit: itemWeight,
