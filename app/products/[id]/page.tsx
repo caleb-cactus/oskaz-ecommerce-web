@@ -78,8 +78,6 @@ export default function ProductDetailPage() {
     }
   };
 
-  const formatPrice = (_price: number) => "Hidden";
-
   const getStockStatus = (stock: number) => {
     if (stock > 10)
       return { status: "In Stock", color: "bg-green-100 text-green-800" };
@@ -104,26 +102,23 @@ export default function ProductDetailPage() {
       weight_uom: product.weight_uom,
     });
   };
-  
 
-
-const handleBuyNow = (product: Product) => {
-  addItem({
-    id: product.name,
-    name: product.item_name,
-    item_code: product.item_code,
-    price: product.price,
-    currency: product.currency,
-    image: product.image,
-    stock: product.stock,
-    min_order_qty: product.min_order_qty,
-    item_group: product.item_group,
-    weight_per_unit: product.weight_per_unit,
-    weight_uom: product.weight_uom,
-  });
-  window.location.href = '/cart';
-};
-
+  const handleBuyNow = (product: Product) => {
+    addItem({
+      id: product.name,
+      name: product.item_name,
+      item_code: product.item_code,
+      price: product.price,
+      currency: product.currency,
+      image: product.image,
+      stock: product.stock,
+      min_order_qty: product.min_order_qty,
+      item_group: product.item_group,
+      weight_per_unit: product.weight_per_unit,
+      weight_uom: product.weight_uom,
+    });
+    window.location.href = "/cart";
+  };
 
   if (loading) {
     return (
@@ -150,7 +145,8 @@ const handleBuyNow = (product: Product) => {
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
           <p className="text-muted-foreground mb-6">
-            The product you&apos;re looking for doesn&apos;t exist or has been removed.
+            The product you&apos;re looking for doesn&apos;t exist or has been
+            removed.
           </p>
           <Button onClick={() => router.back()}>
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -165,7 +161,10 @@ const handleBuyNow = (product: Product) => {
     <div className="container mx-auto px-4 py-8 pt-48">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-        <button onClick={() => router.push("/products")} className="hover:text-foreground">
+        <button
+          onClick={() => router.push("/products")}
+          className="hover:text-foreground"
+        >
           Products
         </button>
         <span>/</span>
@@ -197,7 +196,7 @@ const handleBuyNow = (product: Product) => {
               </div>
             )}
           </div>
-          
+
           {/* Thumbnail Images */}
           <div className="flex gap-2 overflow-x-auto">
             {[product.image].filter(Boolean).map((image, index) => (
@@ -244,9 +243,6 @@ const handleBuyNow = (product: Product) => {
           </div>
 
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-bold text-primary">
-              {formatPrice(product.price)}
-            </span>
             {product.min_order_qty > 1 && (
               <span className="text-sm text-muted-foreground">
                 Min. Qty: {product.min_order_qty}

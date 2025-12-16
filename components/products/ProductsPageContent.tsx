@@ -5,7 +5,9 @@ import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import ProductsHeader from "@/components/products/Products-Header";
 import ProductsSidebar from "@/components/products/Products-Sidebar";
-import ProductsGrid, { type Product } from "@/components/products/Products-Grid";
+import ProductsGrid, {
+  type Product,
+} from "@/components/products/Products-Grid";
 import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 
 export function ProductsPageContent() {
@@ -18,7 +20,7 @@ export function ProductsPageContent() {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   const [categories, setCategories] = useState<Record<string, boolean>>({});
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000000]);
+  // const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000000]);
   const [features, setFeatures] = useState({
     inStock: true,
     onSale: false,
@@ -42,7 +44,7 @@ export function ProductsPageContent() {
     .map(([category]) => category);
 
   const handleClearAllFilters = () => {
-    setPriceRange([0, 1000000]);
+    // setPriceRange([0, 1000000]);
     setCategories({});
     setFeatures({
       inStock: true,
@@ -60,7 +62,7 @@ export function ProductsPageContent() {
 
   const handleApplyFilters = () => {
     console.log("Applying filters:", {
-      priceRange,
+      // priceRange,
       categories,
       features,
       brands,
@@ -122,13 +124,16 @@ export function ProductsPageContent() {
         {/* Mobile: Collapsible Filters (triggered from header) */}
         {!isDesktop && (
           <div className="lg:hidden mt-2 mb-6">
-            <Collapsible open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
+            <Collapsible
+              open={mobileFiltersOpen}
+              onOpenChange={setMobileFiltersOpen}
+            >
               <CollapsibleContent className="mt-4">
                 <ProductsSidebar
                   categories={categories}
                   setCategories={setCategories}
-                  priceRange={priceRange}
-                  setPriceRange={setPriceRange}
+                  // priceRange={priceRange}
+                  // setPriceRange={setPriceRange}
                   features={features}
                   setFeatures={setFeatures}
                   brands={brands}
@@ -151,8 +156,8 @@ export function ProductsPageContent() {
               <ProductsSidebar
                 categories={categories}
                 setCategories={setCategories}
-                priceRange={priceRange}
-                setPriceRange={setPriceRange}
+                // priceRange={priceRange}
+                // setPriceRange={setPriceRange}
                 features={features}
                 setFeatures={setFeatures}
                 brands={brands}
@@ -172,7 +177,7 @@ export function ProductsPageContent() {
               sortBy={sortBy}
               searchQuery={searchQuery}
               selectedCategories={selectedCategories}
-              priceRange={priceRange}
+              // priceRange={priceRange}
               inStockOnly={features.inStock}
               onProductClick={handleProductClick}
             />

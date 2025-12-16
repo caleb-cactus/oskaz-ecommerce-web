@@ -35,12 +35,12 @@ export type Product = {
   tags: string[];
   modified?: string;
   weight_uom?: string;
-  stock_uom?: string; 
+  stock_uom?: string;
   item_group_details?: {
     parent_item_group: string;
     is_group: number;
   };
-  related_items?: Product[]; 
+  related_items?: Product[];
 };
 
 interface ProductsGridProps {
@@ -48,7 +48,7 @@ interface ProductsGridProps {
   sortBy: string;
   searchQuery: string;
   selectedCategories: string[];
-  priceRange: [number, number];
+  // priceRange: [number, number];
   inStockOnly: boolean;
   onProductClick?: (product: Product) => void;
 }
@@ -58,7 +58,7 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
   sortBy,
   searchQuery,
   selectedCategories,
-  priceRange,
+  // priceRange,
   inStockOnly,
   onProductClick,
 }) => {
@@ -101,38 +101,38 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
   };
 
   const { addItem } = useCart();
-const handleAddToCart = (product: Product) => {
-  addItem({
-    id: product.name,
-    name: product.item_name,
-    item_code: product.item_code,
-    price: product.price,
-    currency: product.currency,
-    image: product.image,
-    stock: product.stock,
-    min_order_qty: product.min_order_qty,
-    item_group: product.item_group,
-    weight_per_unit: product.weight_per_unit,
-    weight_uom: product.weight_uom,
-  });
-};
+  const handleAddToCart = (product: Product) => {
+    addItem({
+      id: product.name,
+      name: product.item_name,
+      item_code: product.item_code,
+      price: product.price,
+      currency: product.currency,
+      image: product.image,
+      stock: product.stock,
+      min_order_qty: product.min_order_qty,
+      item_group: product.item_group,
+      weight_per_unit: product.weight_per_unit,
+      weight_uom: product.weight_uom,
+    });
+  };
 
-const handleBuyNow = (product: Product) => {
-  addItem({
-    id: product.name,
-    name: product.item_name,
-    item_code: product.item_code,
-    price: product.price,
-    currency: product.currency,
-    image: product.image,
-    stock: product.stock,
-    min_order_qty: product.min_order_qty,
-    item_group: product.item_group,
-    weight_per_unit: product.weight_per_unit,
-    weight_uom: product.weight_uom,
-  });
-  window.location.href = '/cart';
-};
+  const handleBuyNow = (product: Product) => {
+    addItem({
+      id: product.name,
+      name: product.item_name,
+      item_code: product.item_code,
+      price: product.price,
+      currency: product.currency,
+      image: product.image,
+      stock: product.stock,
+      min_order_qty: product.min_order_qty,
+      item_group: product.item_group,
+      weight_per_unit: product.weight_per_unit,
+      weight_uom: product.weight_uom,
+    });
+    window.location.href = "/cart";
+  };
 
   const filteredProducts = React.useMemo(() => {
     let filtered = [...products];
@@ -151,20 +151,20 @@ const handleBuyNow = (product: Product) => {
       );
     }
 
-    filtered = filtered.filter((product) => {
-      const price = product.price || 0;
-      return price >= priceRange[0] && price <= priceRange[1];
-    });
+    // filtered = filtered.filter((product) => {
+    //   const price = product.price || 0;
+    //   return price >= priceRange[0] && price <= priceRange[1];
+    // });
 
     if (inStockOnly) {
       filtered = filtered.filter((product) => product.stock > 0);
     }
 
     switch (sortBy) {
-      case "price-low":
-        return filtered.sort((a, b) => (a.price || 0) - (b.price || 0));
-      case "price-high":
-        return filtered.sort((a, b) => (b.price || 0) - (a.price || 0));
+      // case "price-low":
+      //   return filtered.sort((a, b) => (a.price || 0) - (b.price || 0));
+      // case "price-high":
+      //   return filtered.sort((a, b) => (b.price || 0) - (a.price || 0));
       case "name":
         return filtered.sort((a, b) => a.item_name.localeCompare(b.item_name));
       case "newest":
@@ -176,7 +176,7 @@ const handleBuyNow = (product: Product) => {
       default:
         return filtered;
     }
-  }, [products, sortBy, searchQuery, selectedCategories, priceRange, inStockOnly]);
+  }, [products, sortBy, searchQuery, selectedCategories, inStockOnly]);
 
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -202,7 +202,6 @@ const handleBuyNow = (product: Product) => {
     }
   };
 
-  const formatPrice = (_price: number) => "Hidden";
   const getStockStatus = (stock: number) => {
     if (stock > 10)
       return { status: "In Stock", color: "bg-green-100 text-green-800" };
@@ -308,8 +307,7 @@ const handleBuyNow = (product: Product) => {
                           className="text-sm text-muted-foreground mb-3 line-clamp-2"
                           dangerouslySetInnerHTML={{
                             __html:
-                              product.description ||
-                              "No description available",
+                              product.description || "No description available",
                           }}
                         />
 
@@ -336,9 +334,9 @@ const handleBuyNow = (product: Product) => {
                       {/* Bottom */}
                       <div>
                         <div className="flex items-center justify-between mb-3">
-                          <span className="text-lg font-bold text-primary">
+                          {/* <span className="text-lg font-bold text-primary">
                             {formatPrice(product.price)}
-                          </span>
+                          </span> */}
                           {product.min_order_qty > 1 && (
                             <span className="text-xs text-muted-foreground">
                               Min. {product.min_order_qty}
@@ -455,8 +453,7 @@ const handleBuyNow = (product: Product) => {
                           className="text-sm text-muted-foreground mb-4"
                           dangerouslySetInnerHTML={{
                             __html:
-                              product.description ||
-                              "No description available",
+                              product.description || "No description available",
                           }}
                         />
 
@@ -477,9 +474,9 @@ const handleBuyNow = (product: Product) => {
 
                         <div className="flex items-center justify-between">
                           <div>
-                            <span className="text-lg font-bold text-primary">
+                            {/* <span className="text-lg font-bold text-primary">
                               {formatPrice(product.price)}
-                            </span>
+                            </span> */}
                             {product.min_order_qty > 1 && (
                               <span className="text-xs text-muted-foreground ml-2">
                                 Min. Qty: {product.min_order_qty}

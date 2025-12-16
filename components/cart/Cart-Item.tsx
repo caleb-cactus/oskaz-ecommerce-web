@@ -1,16 +1,16 @@
 // components/Cart-Item.tsx
 "use client";
 
-import React from 'react';
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent } from '@/components/ui/card';
-import { Minus, Plus, Trash2, Package, Zap, Shield, Globe } from 'lucide-react';
-import { useTheme } from 'next-themes';
-import { cn } from '@/lib/utils';
-import { CartItem } from '@/types/cart';
-import { useCart } from '@/context/CartContext';
+import React from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { Minus, Plus, Trash2, Package, Zap, Shield, Globe } from "lucide-react";
+import { useTheme } from "next-themes";
+import { cn } from "@/lib/utils";
+import { CartItem } from "@/types/cart";
+import { useCart } from "@/context/CartContext";
 
 interface CartItemProps {
   item: CartItem;
@@ -19,8 +19,8 @@ interface CartItemProps {
 const CartItemComponent: React.FC<CartItemProps> = ({ item }) => {
   const { updateQuantity, removeItem } = useCart();
   const { theme } = useTheme();
-  const isDarkMode = theme === 'dark';
-  
+  const isDarkMode = theme === "dark";
+
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case "Smart Boards":
@@ -37,24 +37,24 @@ const CartItemComponent: React.FC<CartItemProps> = ({ item }) => {
         return <Package className="h-5 w-5" />;
     }
   };
-  
-  const formatPrice = (_price: number) => "Hidden";
-  
+
   const handleQuantityChange = (newQuantity: number) => {
     // Ensure quantity is at least the minimum order quantity
     const validQuantity = Math.max(newQuantity, item.min_order_qty);
     updateQuantity(item.id, validQuantity);
   };
-  
+
   const handleRemove = () => {
     removeItem(item.id);
   };
-  
+
   return (
-    <Card className={cn(
-      "overflow-hidden transition-all duration-200",
-      isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
-    )}>
+    <Card
+      className={cn(
+        "overflow-hidden transition-all duration-200",
+        isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+      )}
+    >
       <CardContent className="p-0">
         <div className="flex flex-col sm:flex-row">
           {/* Product Image */}
@@ -77,26 +77,20 @@ const CartItemComponent: React.FC<CartItemProps> = ({ item }) => {
               </div>
             )}
           </div>
-          
+
           {/* Product Details */}
           <div className="flex-1 p-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2">
               <div>
-                <h3 className="font-medium text-sm line-clamp-1">{item.name}</h3>
+                <h3 className="font-medium text-sm line-clamp-1">
+                  {item.name}
+                </h3>
                 <Badge variant="outline" className="text-xs mt-1">
                   {item.item_group}
                 </Badge>
               </div>
-              <div className="text-right mt-2 sm:mt-0">
-                <div className="font-semibold text-sm">
-                  {formatPrice(item.price)}
-                </div>
-                <div className="text-xs text-muted-foreground">
-                  {formatPrice(item.price * item.quantity)} total
-                </div>
-              </div>
             </div>
-            
+
             {/* Quantity Controls */}
             <div className="flex items-center justify-between mt-3">
               <div className="flex items-center">
@@ -122,7 +116,7 @@ const CartItemComponent: React.FC<CartItemProps> = ({ item }) => {
                   <Plus className="h-3 w-3" />
                 </Button>
               </div>
-              
+
               <Button
                 variant="ghost"
                 size="icon"
@@ -132,7 +126,7 @@ const CartItemComponent: React.FC<CartItemProps> = ({ item }) => {
                 <Trash2 className="h-3 w-3" />
               </Button>
             </div>
-            
+
             {/* Stock Warning */}
             {item.quantity >= item.stock && (
               <div className="text-xs text-destructive mt-2">

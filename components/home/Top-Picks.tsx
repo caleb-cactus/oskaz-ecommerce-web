@@ -381,20 +381,7 @@ const TopPicks = () => {
 
                 {/* Price and CTA */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-4">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-3xl font-bold text-primary">
-                      {product.price}
-                    </span>
-                    <span className="text-lg text-muted-foreground line-through">
-                      {product.originalPrice}
-                    </span>
-                    <Badge
-                      variant="secondary"
-                      className="text-green-600 dark:text-green-400"
-                    >
-                      Hidden
-                    </Badge>
-                  </div>
+                  {/* Price display removed */}
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">

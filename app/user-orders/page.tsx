@@ -4,13 +4,26 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Package, Calendar, User, ArrowLeft, RefreshCw, FileText } from "lucide-react";
+import {
+  Package,
+  Calendar,
+  User,
+  ArrowLeft,
+  RefreshCw,
+  FileText,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/components/ui/toast";
-import { useTheme } from 'next-themes';
+import { useTheme } from "next-themes";
 
 interface SalesOrder {
   name: string;
@@ -38,7 +51,7 @@ export default function OrdersPage() {
   const router = useRouter();
   const { addToast } = useToast();
   const { theme } = useTheme();
-  const isDarkMode = theme === 'dark';
+  const isDarkMode = theme === "dark";
   const [orders, setOrders] = useState<SalesOrder[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -52,7 +65,9 @@ export default function OrdersPage() {
 
       if (!userEmail) throw new Error("User email not found");
 
-      const response = await fetch(`/api/sales-orders?email=${encodeURIComponent(userEmail)}`);
+      const response = await fetch(
+        `/api/sales-orders?email=${encodeURIComponent(userEmail)}`
+      );
       const data = await response.json();
 
       if (data.success) setOrders(data.data.salesOrders || []);
@@ -61,7 +76,8 @@ export default function OrdersPage() {
       console.error(error);
       addToast({
         title: "Failed to load orders",
-        description: error instanceof Error ? error.message : "Please try again",
+        description:
+          error instanceof Error ? error.message : "Please try again",
       });
     } finally {
       setLoading(false);
@@ -80,10 +96,12 @@ export default function OrdersPage() {
     fetchOrders();
   };
 
-  const formatPrice = (_price: number, _currency: string) => "Hidden";
-
   const formatDate = (dateString: string) =>
-    new Date(dateString).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
 
   const getStatusColor = (status: string) => {
     switch (status?.toLowerCase()) {
@@ -104,15 +122,19 @@ export default function OrdersPage() {
 
   if (!isSignedIn) {
     return (
-      <div className={cn(
-        "min-h-screen pt-24",
-        isDarkMode ? "bg-background" : "bg-gray-50"
-      )}>
+      <div
+        className={cn(
+          "min-h-screen pt-24",
+          isDarkMode ? "bg-background" : "bg-gray-50"
+        )}
+      >
         <div className="container mx-auto px-4 py-8">
-          <Card className={cn(
-            "max-w-md mx-auto text-center py-16 border shadow-xl rounded-xl",
-            isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
-          )}>
+          <Card
+            className={cn(
+              "max-w-md mx-auto text-center py-16 border shadow-xl rounded-xl",
+              isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+            )}
+          >
             <CardContent className="space-y-6">
               <div className="mx-auto w-20 h-20 rounded-full bg-muted flex items-center justify-center mb-4">
                 <User className="h-10 w-10 text-muted-foreground" />
@@ -135,10 +157,12 @@ export default function OrdersPage() {
   }
 
   return (
-    <div className={cn(
-      "min-h-screen pt-24",
-      isDarkMode ? "bg-background" : "bg-gray-50"
-    )}>
+    <div
+      className={cn(
+        "min-h-screen pt-24",
+        isDarkMode ? "bg-background" : "bg-gray-50"
+      )}
+    >
       <div className="container mx-auto px-4 py-8 space-y-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -163,33 +187,40 @@ export default function OrdersPage() {
             variant="outline"
             className="flex items-center gap-2 w-full sm:w-auto"
           >
-            <RefreshCw className={`h-4 w-4 ${refreshing ? "animate-spin" : ""}`} />
+            <RefreshCw
+              className={`h-4 w-4 ${refreshing ? "animate-spin" : ""}`}
+            />
             Refresh
           </Button>
         </div>
 
         {loading ? (
-          <Card className={cn(
-            "shadow-xl border rounded-xl",
-            isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
-          )}>
+          <Card
+            className={cn(
+              "shadow-xl border rounded-xl",
+              isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+            )}
+          >
             <CardContent className="p-12 text-center flex justify-center items-center gap-3">
               <RefreshCw className="h-6 w-6 animate-spin text-primary" />
               <span className="text-lg">Loading your orders...</span>
             </CardContent>
           </Card>
         ) : orders.length === 0 ? (
-          <Card className={cn(
-            "max-w-2xl mx-auto border shadow-xl rounded-xl",
-            isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
-          )}>
+          <Card
+            className={cn(
+              "max-w-2xl mx-auto border shadow-xl rounded-xl",
+              isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+            )}
+          >
             <CardContent className="p-12 text-center space-y-6">
               <div className="mx-auto w-20 h-20 rounded-full bg-muted flex items-center justify-center mb-4">
                 <Package className="h-10 w-10 text-muted-foreground" />
               </div>
               <h3 className="text-2xl font-bold">No Orders Yet</h3>
               <p className="text-muted-foreground text-lg">
-                You haven&apos;t placed any orders yet. Start shopping to see your order history here.
+                You haven&apos;t placed any orders yet. Start shopping to see
+                your order history here.
               </p>
               <div className="flex justify-center gap-4">
                 <Button
@@ -215,13 +246,17 @@ export default function OrdersPage() {
                 key={order.name}
                 className={cn(
                   "shadow-xl border rounded-xl hover:shadow-2xl transition-all duration-300",
-                  isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+                  isDarkMode
+                    ? "bg-card border-border"
+                    : "bg-white border-gray-200"
                 )}
               >
-              <CardHeader className={cn(
-                  "border-b",
-                  isDarkMode ? "border-border" : "border-gray-200"
-                )}>
+                <CardHeader
+                  className={cn(
+                    "border-b",
+                    isDarkMode ? "border-border" : "border-gray-200"
+                  )}
+                >
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                     <div>
                       <CardTitle className="flex items-center gap-3 text-xl">
@@ -242,12 +277,17 @@ export default function OrdersPage() {
                       </CardDescription>
                     </div>
                     <div className="text-left md:text-right">
-                      <Badge className={cn("text-sm font-semibold", getStatusColor(order.status))}>
+                      <Badge
+                        className={cn(
+                          "text-sm font-semibold",
+                          getStatusColor(order.status)
+                        )}
+                      >
                         {order.status || "Processing"}
                       </Badge>
-                      <p className="text-2xl font-bold mt-2">
+                      {/* <p className="text-2xl font-bold mt-2">
                         {formatPrice(order.grand_total, order.currency)}
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                 </CardHeader>
@@ -257,9 +297,14 @@ export default function OrdersPage() {
                       <h4 className="font-semibold mb-3">Items Ordered</h4>
                       <div className="space-y-2">
                         {order.items?.slice(0, 3).map((item, index) => (
-                          <div key={index} className="flex justify-between text-sm text-muted-foreground">
-                            <span>{item.item_name || item.item_code} × {item.qty}</span>
-                            <span className="font-medium">{formatPrice(item.amount, order.currency)}</span>
+                          <div
+                            key={index}
+                            className="flex justify-between text-sm text-muted-foreground"
+                          >
+                            <span>
+                              {item.item_name || item.item_code} × {item.qty}
+                            </span>
+                            {/* <span className="font-medium">{formatPrice(item.amount, order.currency)}</span> */}
                           </div>
                         ))}
                         {order.items?.length > 3 && (
@@ -274,7 +319,9 @@ export default function OrdersPage() {
                       <div className="space-y-3">
                         <div className="flex justify-between text-sm">
                           <span>Billing Progress</span>
-                          <span className="font-medium">{order.per_billed || 0}%</span>
+                          <span className="font-medium">
+                            {order.per_billed || 0}%
+                          </span>
                         </div>
                         <div className="w-full bg-muted rounded-full h-2">
                           <div
@@ -284,7 +331,9 @@ export default function OrdersPage() {
                         </div>
                         <div className="flex justify-between text-sm">
                           <span>Delivery Progress</span>
-                          <span className="font-medium">{order.per_delivered || 0}%</span>
+                          <span className="font-medium">
+                            {order.per_delivered || 0}%
+                          </span>
                         </div>
                         <div className="w-full bg-muted rounded-full h-2">
                           <div
@@ -303,7 +352,11 @@ export default function OrdersPage() {
                     <Button
                       variant="outline"
                       size="sm"
-                      onClick={() => router.push(`/order/order-success?orderId=${order.name}`)}
+                      onClick={() =>
+                        router.push(
+                          `/order/order-success?orderId=${order.name}`
+                        )
+                      }
                     >
                       View Details
                     </Button>
