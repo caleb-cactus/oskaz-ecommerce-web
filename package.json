@@ -26,7 +26,7 @@
     "framer-motion": "^12.23.22",
     "frappe-js-sdk": "^1.11.0",
     "lucide-react": "^0.515.0",
-    "next": "^15.5.4",
+    "next": "16.0.10",
     "next-themes": "^0.4.6",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
