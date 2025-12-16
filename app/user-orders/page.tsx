@@ -80,8 +80,7 @@ export default function OrdersPage() {
     fetchOrders();
   };
 
-  const formatPrice = (price: number, currency: string) =>
-    new Intl.NumberFormat("en-US", { style: "currency", currency: currency || "ETB", minimumFractionDigits: 0 }).format(price);
+  const formatPrice = (_price: number, _currency: string) => "Hidden";
 
   const formatDate = (dateString: string) =>
     new Date(dateString).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });

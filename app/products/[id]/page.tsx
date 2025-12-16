@@ -78,13 +78,7 @@ export default function ProductDetailPage() {
     }
   };
 
-  const formatPrice = (price: number) =>
-    new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "ETB",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
+  const formatPrice = (_price: number) => "Hidden";
 
   const getStockStatus = (stock: number) => {
     if (stock > 10)

@@ -55,8 +55,8 @@ const ProductsShowcase = () => {
       id: 1,
       name: "Smart Kiosk Pro",
       category: "kiosk",
-      price: "ETB 2,499",
-      originalPrice: "ETB 2,999",
+      price: "Hidden",
+      originalPrice: "Hidden",
       rating: 4.8,
       reviews: 124,
       badge: "Best Seller",
@@ -66,8 +66,8 @@ const ProductsShowcase = () => {
       id: 2,
       name: "Power Station Elite",
       category: "power",
-      price: "ETB 1,899",
-      originalPrice: "ETB 2,299",
+      price: "Hidden",
+      originalPrice: "Hidden",
       rating: 4.9,
       reviews: 89,
       badge: "New",
@@ -77,8 +77,8 @@ const ProductsShowcase = () => {
       id: 3,
       name: "Digital Display Max",
       category: "display",
-      price: "ETB 3,299",
-      originalPrice: "ETB 3,999",
+      price: "Hidden",
+      originalPrice: "Hidden",
       rating: 4.7,
       reviews: 156,
       badge: "Popular",
@@ -88,8 +88,8 @@ const ProductsShowcase = () => {
       id: 4,
       name: "Interactive Terminal",
       category: "kiosk",
-      price: "ETB 1,799",
-      originalPrice: "ETB 2,199",
+      price: "Hidden",
+      originalPrice: "Hidden",
       rating: 4.6,
       reviews: 67,
       badge: "Sale",
@@ -253,16 +253,13 @@ const ProductsShowcase = () => {
                     </span>
                   </div>
                   
-                  {/* Price */}
+                  {/* Price (hidden) */}
                   <div className="flex items-center justify-between mb-3">
                     <div>
-                      <span className="text-lg font-bold text-primary">{product.price}</span>
-                      <span className="text-sm text-muted-foreground line-through ml-2">
-                        {product.originalPrice}
-                      </span>
+                      <span className="text-lg font-bold text-primary">Hidden</span>
                     </div>
                     <div className="text-xs text-green-600 dark:text-green-400 font-medium">
-                      Save {Math.round((1 - parseInt(product.price.replace('$', '')) / parseInt(product.originalPrice.replace('$', ''))) * 100)}%
+                      {/* Price hidden */}
                     </div>
                   </div>
                   

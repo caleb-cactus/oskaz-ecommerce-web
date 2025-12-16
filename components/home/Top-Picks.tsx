@@ -11,28 +11,12 @@ import {
   ShoppingCart,
   Star,
   Zap,
-  Shield,
-  Globe,
-  CheckCircle,
-  Package,
-} from "lucide-react";
-import { useTheme } from "next-themes";
-import { cn } from "@/lib/utils";
-
-// Define the Product type based on your ERPNext data
-type Product = {
-  name: string;
-  item_code: string;
-  item_name: string;
-  item_group: string;
-  description: string;
-  image: string;
-  price: number;
-  currency: string;
-  stock: number;
-  warehouse: string;
-  weight_per_unit: number;
-  min_order_qty: number;
+                    <Badge
+                      variant="secondary"
+                      className="text-green-600 dark:text-green-400"
+                    >
+                      Hidden
+                    </Badge>
   tags: string[];
   modified?: string;
   weight_uom?: string;
@@ -74,40 +58,15 @@ const TopPicks = () => {
         observer.unobserve(current);
       }
     };
-  }, []);
-
-  // Fetch products from TV Wall category
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch("/api/items?item_group=TV Wall&limit=3");
-        const data = await response.json();
-
-        if (data.success) {
-          setProducts(data.data.items);
-        }
-      } catch (error) {
-        console.error("Error fetching TV Wall products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
+                    <Badge
+                      variant="secondary"
+                      className="text-green-600 dark:text-green-400"
+                    >
+                      Hidden
+                    </Badge>
 
   // Helper function to format price
-  const formatPrice = (price: number) => {
-    // Use USD as default currency if currency is null or invalid
-    
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "ETB",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
+  const formatPrice = (_price: number) => "Hidden";
 
   // Helper function to get category icon
   const getCategoryIcon = (category: string) => {
@@ -428,21 +387,7 @@ const TopPicks = () => {
                       variant="secondary"
                       className="text-green-600 dark:text-green-400"
                     >
-                      {(() => {
-                        const priceNum = parseFloat(
-                          product.price.replace(/[^\d.]/g, "")
-                        );
-                        const originalPriceNum = parseFloat(
-                          product.originalPrice.replace(/[^\d.]/g, "")
-                        );
-                        const discount =
-                          !isNaN(priceNum) && !isNaN(originalPriceNum)
-                            ? Math.round(
-                                (1 - priceNum / originalPriceNum) * 100
-                              )
-                            : 0;
-                        return discount > 0 ? `Save ${discount}%` : "Best Deal";
-                      })()}
+                      Hidden
                     </Badge>
                   </div>
                 </div>

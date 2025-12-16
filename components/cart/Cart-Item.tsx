@@ -38,14 +38,7 @@ const CartItemComponent: React.FC<CartItemProps> = ({ item }) => {
     }
   };
   
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: "ETB",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
+  const formatPrice = (_price: number) => "Hidden";
   
   const handleQuantityChange = (newQuantity: number) => {
     // Ensure quantity is at least the minimum order quantity

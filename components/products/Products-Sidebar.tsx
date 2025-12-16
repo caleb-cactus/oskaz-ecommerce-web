@@ -198,8 +198,8 @@ const ProductsSidebar: React.FC<ProductsSidebarProps> = ({
               className="mt-6"
             />
             <div className="flex justify-between mt-2 text-sm text-muted-foreground">
-              <span>ETB {priceRange[0].toLocaleString()}</span>
-              <span>ETB {priceRange[1].toLocaleString()}</span>
+              <span>Hidden</span>
+              <span>Hidden</span>
             </div>
           </div>
         </CollapsibleContent>

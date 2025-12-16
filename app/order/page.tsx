@@ -29,8 +29,7 @@ export default function OrderPage() {
   const isDarkMode = theme === 'dark';
 
 
-  const formatPrice = (price: number) =>
-    new Intl.NumberFormat("en-US", { style: "currency", currency: "ETB", minimumFractionDigits: 0 }).format(price);
+  const formatPrice = (_price: number) => "Hidden";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

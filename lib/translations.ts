@@ -67,8 +67,8 @@ export const translations = {
         subtitle: "Premium Interactive Solutions",
         productName: "Dahua 86 inch Smart Board",
         description: "Interactive 4K display with multi touch capabilities, perfect for classrooms and meeting rooms.",
-        price: "From $2,499",
-        originalPrice: "$3,299",
+        price: "Hidden",
+        originalPrice: "Hidden",
         cta: "Shop Smart Boards"
       },
       
@@ -169,7 +169,7 @@ export const translations = {
         subtitle: "Empowering businesses with cutting edge technology imports",
         featuredProduct: "Smart Interactive Boards",
         productDescription: "Transform your classroom or meeting room with interactive 4K displays",
-        price: "From $2,499",
+        price: "Hidden",
         tag: "Competitive Pricing",
         cta: "Explore Solutions"
       },
@@ -188,39 +188,39 @@ export const translations = {
         smartBoard: {
           name: "Dahua 86 inch Smart Interactive Board",
           category: "Interactive Tools",
-          price: "$2,499",
-          originalPrice: "$2,999",
+          price: "Hidden",
+          originalPrice: "Hidden",
           description: "Professional interactive display with 4K resolution, multi touch capabilities, and built in collaboration software. Perfect for modern classrooms and meeting rooms."
         },
         digitalSignage: {
           name: "Professional Digital Signage Display 55\"",
           category: "Digital Displays", 
-          price: "$899",
-          originalPrice: "$1,199",
+          price: "Hidden",
+          originalPrice: "Hidden",
           description: "High brightness commercial display with 24/7 operation capability, remote management, and stunning visual clarity for impactful digital signage."
         },
         upsSystem: {
           name: "Enterprise UPS Backup System 3000VA",
           category: "Power Solutions",
-          price: "$1,299", 
+          price: "Hidden",
           description: "Reliable uninterruptible power supply with advanced battery management, surge protection, and remote monitoring for critical business operations."
         },
         kiosk: {
           name: "Self Service Information Kiosk",
           category: "Kiosk Systems",
-          price: "$1,899",
+          price: "Hidden",
           description: "Interactive touchscreen kiosk with durable construction, customizable interface, and integrated payment processing for enhanced customer service."
         },
         powerDistribution: {
           name: "Industrial Power Distribution Unit",
           category: "Power Solutions", 
-          price: "$599",
+          price: "Hidden",
           description: "Professional grade power distribution with multiple outlets, surge protection, and monitoring capabilities for data centers and industrial applications."
         },
         presentationSystem: {
           name: "Wireless Presentation System",
           category: "Interactive Tools",
-          price: "$399",
+          price: "Hidden",
           description: "Seamless wireless screen sharing solution supporting multiple devices, 4K resolution, and easy setup for modern meeting rooms and classrooms."
         }
       },
@@ -311,8 +311,8 @@ export const translations = {
         subtitle: "ፕሪሚየም ኢንተራክቲቭ መፍትሄዎች",
         productName: "ዳሁዋ 86 ኢንች ስማርት ቦርድ",
         description: "ለክፍሎች እና ለስብሰባ ክፍሎች ፍጹም የሆነ ኢንተራክቲቭ 4K ማሳያ ከብዙ ንክኪ ችሎታዎች ጋር",
-        price: "ከ $2,499 ጀምሮ",
-        originalPrice: "$3,299",
+        price: "Hidden",
+        originalPrice: "Hidden",
         cta: "ስማርት ቦርዶችን ይግዙ"
       },
       
@@ -432,39 +432,39 @@ export const translations = {
         smartBoard: {
           name: "ዳሁዋ 86 ኢንች ስማርት ኢንተራክቲቭ ቦርድ",
           category: "ኢንተራክቲቭ መሳሪያዎች",
-          price: "$2,499",
-          originalPrice: "$2,999",
+          price: "Hidden",
+          originalPrice: "Hidden",
           description: "ከ4K ጥራት፣ ብዙ ንክኪ ችሎታዎች እና የተገነባ የትብብር ሶፍትዌር ጋር ሙያዊ ኢንተራክቲቭ ማሳያ ለዘመናዊ ክፍሎች እና ስብሰባ ክፍሎች ፍጹም"
         },
         digitalSignage: {
           name: "ሙያዊ ዲጂታል ምልክት ማሳያ 55\"",
           category: "ዪጂታል ማሳያዎች",
-          price: "$899",
-          originalPrice: "$1,199",
+          price: "Hidden",
+          originalPrice: "Hidden",
           description: "ከ24/7 የስራ ችሎታ፣ የርቀት አስተዳደር እና ለተጽዕኖ ፈጣሪ ዲጂታል ምልክቶች አስደናቂ የእይታ ግልጽነት ጋር ከፍተኛ ብሩህነት የንግድ ማሳያ"
         },
         upsSystem: {
           name: "የኢንተርፕራይዝ UPS መጠባበቂያ ሲስተም 3000VA",
           category: "የኃይል መፍትሄዎች",
-          price: "$1,299",
+          price: "Hidden",
           description: "ለወሳኝ የንግድ ስራዎች የላቀ የባትሪ አስተዳደር፣ የመውጫ ጥበቃ እና የርቀት ክትትል ጋር አስተማማኝ ያልተቋረጠ የኃይል አቅርቦት"
         },
         kiosk: {
           name: "የራስ አገልግሎት መረጃ ኪዮስክ",
           category: "ኪዮስክ ሲስተሞች", 
-          price: "$1,899",
+          price: "Hidden",
           description: "ለተሻሻለ የደንበኛ አገልግሎት ዘላቂ ግንባታ፣ ሊበጅ የሚችል በይነገጽ እና የተዋሃደ የክፍያ ሂደት ጋር ኢንተራክቲቭ ንክኪ ማሳያ ኪዮስክ"
         },
         powerDistribution: {
           name: "የኢንዱስትሪ የኃይል ማከፋፈያ ክፍል",
           category: "የኃይል መፍትሄዎች",
-          price: "$599",
+          price: "Hidden",
           description: "ለዳታ ማዕከላት እና ኢንዱስትሪያል አፕሊኬሽኖች ብዙ መውጫዎች፣ የመውጫ ጥበቃ እና የክትትል ችሎታዎች ጋር ሙያዊ ደረጃ የኃይል ማከፋፈያ"
         },
         presentationSystem: {
           name: "ሽቦ አልባ አቀራረብ ሲስተም",
           category: "ኢንተራክቲቭ መሳሪያዎች",
-          price: "$399", 
+          price: "Hidden",
           description: "ለዘመናዊ ስብሰባ ክፍሎች እና ክፍሎች ብዙ መሳሪያዎችን፣ 4K ጥራትን እና ቀላል ማዋቀርን የሚደግፍ ቀላል ሽቦ አልባ ማሳያ መጋራት መፍትሄ"
         }
       },

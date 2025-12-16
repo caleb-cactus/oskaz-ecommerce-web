@@ -21,14 +21,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({
   const { theme } = useTheme();
   const isDarkMode = theme === 'dark';
   
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: "ETB",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
+  const formatPrice = (_price: number) => "Hidden";
   
   //const currency = state.items.length > 0 ? state.items[0].currency : 'ETB';
   

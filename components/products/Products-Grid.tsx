@@ -202,16 +202,7 @@ const handleBuyNow = (product: Product) => {
     }
   };
 
-  const formatPrice = (price: number) => {
-    // Use USD as default currency if currency is null or invalid
-    
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "ETB",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
+  const formatPrice = (_price: number) => "Hidden";
   const getStockStatus = (stock: number) => {
     if (stock > 10)
       return { status: "In Stock", color: "bg-green-100 text-green-800" };

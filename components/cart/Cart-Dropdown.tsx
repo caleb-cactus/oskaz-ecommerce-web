@@ -18,14 +18,7 @@ const CartDropdown: React.FC = () => {
   const isDarkMode = theme === 'dark';
   const dropdownRef = useRef<HTMLDivElement>(null);
   
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: "ETB",
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
+  const formatPrice = (_price: number) => "Hidden";
     
   // Close dropdown when clicking outside
   useEffect(() => {
