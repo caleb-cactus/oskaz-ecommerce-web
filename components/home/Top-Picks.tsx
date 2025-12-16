@@ -11,12 +11,23 @@ import {
   ShoppingCart,
   Star,
   Zap,
-                    <Badge
-                      variant="secondary"
-                      className="text-green-600 dark:text-green-400"
-                    >
-                      Hidden
-                    </Badge>
+  Package,
+  Shield,
+  Globe,
+  CheckCircle,
+} from "lucide-react";
+import { useTheme } from "next-themes";
+import { cn } from "@/lib/utils";
+
+type Product = {
+  name: string;
+  item_name: string;
+  item_group: string;
+  price: number;
+  description?: string;
+  image: string;
+  stock: number;
+  item_code: string;
   tags: string[];
   modified?: string;
   weight_uom?: string;
@@ -29,8 +40,8 @@ import {
 const TopPicks = () => {
   const [mounted, setMounted] = useState(false);
   const [isInView, setIsInView] = useState(false);
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [products] = useState<Product[]>([]);
+  const [loading] = useState(false);
   const { resolvedTheme } = useTheme();
   const isDarkMode = resolvedTheme === "dark";
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -58,15 +69,10 @@ const TopPicks = () => {
         observer.unobserve(current);
       }
     };
-                    <Badge
-                      variant="secondary"
-                      className="text-green-600 dark:text-green-400"
-                    >
-                      Hidden
-                    </Badge>
+  }, []);
 
   // Helper function to format price
-  const formatPrice = (_price: number) => "Hidden";
+  const formatPrice = () => "Hidden";
 
   // Helper function to get category icon
   const getCategoryIcon = (category: string) => {
@@ -98,14 +104,13 @@ const TopPicks = () => {
   // Transform product data to match the expected format
   const transformProduct = (product: Product, index: number) => {
     const badges = ["Editor's Choice", "Best Value", "Premium Choice"];
-    const originalPrice = product.price * 1.2; // Calculate a 20% higher original price
-  
+
     return {
       id: product.name,
       name: product.item_name,
       category: product.item_group,
-      price: formatPrice(product.price), // Provide default
-      originalPrice: formatPrice(originalPrice), // Provide default
+      price: formatPrice(), // Provide default
+      originalPrice: formatPrice(), // Provide default
       rating: 4.5 + index * 0.1, // Vary ratings slightly
       reviews: 100 + index * 30, // Vary review counts
       badge: badges[index % badges.length],
