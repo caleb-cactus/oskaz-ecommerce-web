@@ -356,8 +356,12 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
                         </div>
                         <Button
                           size="sm"
-                          className="w-full rounded-full cursor-pointer"
-                          variant={product.stock > 0 ? "default" : "outline"}
+                          className={cn(
+                            "w-full rounded-full cursor-pointer transition-all duration-300",
+                            isDarkMode
+                              ? "bg-secondary hover:bg-secondary/80 text-secondary-foreground"
+                              : "bg-neutral-900 hover:bg-neutral-800 text-white"
+                          )}
                           disabled={product.stock <= 0}
                           onClick={(e) => {
                             e.stopPropagation();
@@ -366,7 +370,6 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
                         >
                           <ShoppingCart className="mr-2 h-4 w-4" />
                           {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
-                          <ArrowRight className="ml-2 h-3 w-3 transition-transform group-hover:translate-x-1" />
                         </Button>
 
                         <Button
