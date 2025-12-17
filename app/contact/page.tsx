@@ -177,7 +177,7 @@ export default function ContactPage() {
     {
       name: "Partnerships",
       email: "partnerships@oskaz.com",
-      phone: "+251 911 123 458",
+      phone: "+251 911 204 731",
       description: "For business partnerships and collaborations",
     },
   ];
