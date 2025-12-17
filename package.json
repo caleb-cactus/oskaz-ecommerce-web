@@ -1,6 +1,6 @@
 {
-  "name": "template",
-  "version": "0.1.0",
+  "name": "oskaz-ecommerce-web",
+  "version": "1.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
