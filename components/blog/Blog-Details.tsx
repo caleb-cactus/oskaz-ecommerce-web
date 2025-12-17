@@ -6,16 +6,16 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { 
-  Calendar, 
-  Eye, 
-  Clock, 
-  User, 
-  ArrowLeft, 
+import {
+  Calendar,
+  Eye,
+  Clock,
+  User,
+  ArrowLeft,
   Facebook,
   Twitter,
   Linkedin,
-  Mail
+  Mail,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
@@ -60,7 +60,8 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
   // Blog post data based on ID
   const blogPost = {
     1: {
-      title: "Oskaz Import Signs Agreement with Mizan Tepi University for Smart Board Delivery",
+      title:
+        "Oskaz Import Signs Agreement with Mizan Tepi University for Smart Board Delivery",
       date: "01 July 2024",
       author: "Oskaz Team",
       category: "Education",
@@ -85,7 +86,7 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
         <p>The successful implementation of this project serves as a model for other educational institutions looking to enhance their technological infrastructure. It demonstrates the potential of public-private partnerships in driving educational innovation and improving learning outcomes.</p>
         
         <p>For more information about Oskaz Import's educational technology solutions, please contact our team or visit our website to explore our range of products and services designed specifically for educational institutions.</p>
-      `
+      `,
     },
     2: {
       title: "Smart Meeting and Conference Room Solutions",
@@ -134,10 +135,11 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
         <p>Customization options allow for tailored solutions to meet specific educational needs and environments. This flexibility ensures that the technology can be adapted to suit different teaching styles, classroom configurations, and institutional requirements.</p>
         
         <p>Overall, these technologies enhance the educational experience by making learning more engaging, accessible, and efficient. They represent a significant investment in the future of education, preparing students for success in an increasingly digital world.</p>
-      `
+      `,
     },
     3: {
-      title: "Oskaz Import has officially signed an agreement with HD Focus Company",
+      title:
+        "Oskaz Import has officially signed an agreement with HD Focus Company",
       date: "10 October 2024",
       author: "Business Team",
       category: "Partnership",
@@ -166,15 +168,15 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
         <p>The official signing ceremony was attended by senior executives from both companies, who expressed their enthusiasm for the partnership and their commitment to its success. The event marked the beginning of what promises to be a fruitful collaboration that will benefit not only the companies involved but also the broader business community in the Horn of Africa.</p>
         
         <p>For more information about this partnership and the products and services offered by Oskaz Import and HD Focus Company, please contact our team or visit our websites. We look forward to serving you with our enhanced capabilities and expanded offerings.</p>
-      `
-    }
+      `,
+    },
   };
 
   const post = blogPost[blogId as keyof typeof blogPost];
   const relatedPosts = Object.keys(blogPost)
-    .filter(id => parseInt(id) !== blogId)
+    .filter((id) => parseInt(id) !== blogId)
     .slice(0, 2)
-    .map(id => blogPost[Number(id) as keyof typeof blogPost]);
+    .map((id) => blogPost[Number(id) as keyof typeof blogPost]);
 
   if (!post) {
     return (
@@ -192,32 +194,41 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
   const getCategoryColor = (category: string) => {
     switch (category) {
       case "Education":
-        return "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300";
+        return "bg-primary/20 text-primary dark:bg-primary/10 dark:text-primary";
       case "Technology":
-        return "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300";
+        return "bg-secondary text-secondary-foreground dark:bg-secondary/30 dark:text-secondary-foreground";
       case "Partnership":
-        return "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300";
+        return "bg-primary/10 text-primary dark:bg-primary/5 dark:text-primary";
       default:
-        return "bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300";
+        return "bg-muted text-muted-foreground dark:bg-muted/30 dark:text-muted-foreground";
     }
   };
 
   const shareOnSocial = (platform: string) => {
-    const url = typeof window !== 'undefined' ? window.location.href : '';
+    const url = typeof window !== "undefined" ? window.location.href : "";
     const text = post.title;
-    
+
     switch (platform) {
-      case 'facebook':
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+      case "facebook":
+        window.open(
+          `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+          "_blank"
+        );
         break;
-      case 'twitter':
-        window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+      case "twitter":
+        window.open(
+          `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
+          "_blank"
+        );
         break;
-      case 'linkedin':
-        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+      case "linkedin":
+        window.open(
+          `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
+          "_blank"
+        );
         break;
-      case 'email':
-        window.open(`mailto:?subject=${text}&body=${url}`, '_blank');
+      case "email":
+        window.open(`mailto:?subject=${text}&body=${url}`, "_blank");
         break;
     }
   };
@@ -225,16 +236,21 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
   return (
     <div ref={sectionRef} className="min-h-screen pt-20 md:pt-18">
       {/* Blog Header */}
-      <div className={cn(
-        "border-b py-6",
-        isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
-      )}>
+      <div
+        className={cn(
+          "border-b py-6",
+          isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+        )}
+      >
         <div className="container mx-auto px-4">
-          <Link href="/blog" className="inline-flex items-center text-muted-foreground hover:text-foreground mb-2 md:mb-4">
+          <Link
+            href="/blog"
+            className="inline-flex items-center text-muted-foreground hover:text-foreground mb-2 md:mb-4"
+          >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Blog
           </Link>
-          
+
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4">
             <div>
               <div className="flex items-center gap-2 mb-2 md:mb-3">
@@ -254,7 +270,7 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
                 {post.title}
               </h1>
             </div>
-            
+
             <div className="flex items-center gap-2 md:gap-4">
               <div className="flex items-center text-sm text-muted-foreground">
                 <User className="w-3 h-3 mr-1" />
@@ -274,32 +290,31 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2">
-            <div className={cn(
-              "prose prose-lg max-w-none",
-              isDarkMode && "prose-invert"
-            )}>
+            <div
+              className={cn(
+                "prose prose-lg max-w-none",
+                isDarkMode && "prose-invert"
+              )}
+            >
               {/* Blog Image */}
               <div className="relative h-48 sm:h-64 md:h-96 mb-8 rounded-lg overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center">
+                <div className="w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
                   <div className="text-center space-y-2">
-                    <div className="mx-auto w-20 h-20 rounded-full bg-gradient-to-br from-primary to-purple-500 flex items-center justify-center">
-                      <Calendar className="w-10 h-10 text-white" />
+                    <div className="mx-auto w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                      <Calendar className="w-10 h-10 text-primary" />
                     </div>
                     <p className="text-sm text-muted-foreground">Blog Image</p>
                   </div>
                 </div>
               </div>
-              
+
               {/* Blog Content */}
-              <div 
-                className={cn(
-                  "space-y-6",
-                  isInView && "animate-fade-in"
-                )}
+              <div
+                className={cn("space-y-6", isInView && "animate-fade-in")}
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             </div>
-            
+
             {/* Share Section */}
             <div className="mt-12 pt-8 border-t">
               <h3 className="text-xl font-bold mb-4">Share this article</h3>
@@ -307,7 +322,7 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => shareOnSocial('facebook')}
+                  onClick={() => shareOnSocial("facebook")}
                   className="rounded-full"
                 >
                   <Facebook className="w-4 h-4 mr-2" />
@@ -316,7 +331,7 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => shareOnSocial('twitter')}
+                  onClick={() => shareOnSocial("twitter")}
                   className="rounded-full"
                 >
                   <Twitter className="w-4 h-4 mr-2" />
@@ -325,7 +340,7 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => shareOnSocial('linkedin')}
+                  onClick={() => shareOnSocial("linkedin")}
                   className="rounded-full"
                 >
                   <Linkedin className="w-4 h-4 mr-2" />
@@ -334,7 +349,7 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => shareOnSocial('email')}
+                  onClick={() => shareOnSocial("email")}
                   className="rounded-full"
                 >
                   <Mail className="w-4 h-4 mr-2" />
@@ -343,44 +358,71 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
               </div>
             </div>
           </div>
-          
+
           {/* Sidebar */}
           <div className="lg:col-span-1">
             {/* Author Card */}
-            <Card className={cn(
-              "mb-6",
-              isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
-            )}>
+            <Card
+              className={cn(
+                "mb-6",
+                isDarkMode
+                  ? "bg-card border-border"
+                  : "bg-white border-gray-200"
+              )}
+            >
               <CardHeader>
-                <CardTitle className="text-base sm:text-lg">About the Author</CardTitle>
+                <CardTitle className="text-base sm:text-lg">
+                  About the Author
+                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 p-4 sm:p-6">
                 <div className="flex items-center space-x-4">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-purple-500 flex items-center justify-center">
-                    <User className="w-8 h-8 text-white" />
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                    <User className="w-8 h-8 text-primary" />
                   </div>
                   <div>
                     <h4 className="font-semibold">{post.author}</h4>
-                    <p className="text-sm text-muted-foreground">Content Creator</p>
+                    <p className="text-sm text-muted-foreground">
+                      Content Creator
+                    </p>
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Passionate about technology and innovation, sharing insights and updates from Oskaz Import&#39;s journey.
+                  Passionate about technology and innovation, sharing insights
+                  and updates from Oskaz Import&#39;s journey.
                 </p>
               </CardContent>
             </Card>
-            
+
             {/* Related Posts */}
-            <Card className={cn(
-              isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
-            )}>
+            <Card
+              className={cn(
+                isDarkMode
+                  ? "bg-card border-border"
+                  : "bg-white border-gray-200"
+              )}
+            >
               <CardHeader>
-                <CardTitle className="text-base sm:text-lg">Related Posts</CardTitle>
+                <CardTitle className="text-base sm:text-lg">
+                  Related Posts
+                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 p-4 sm:p-6">
                 {relatedPosts.map((relatedPost, index) => (
-                  <div key={index} className="pb-4 border-b last:border-0 last:pb-0">
-                    <Link href={`/blog/${Number(Object.keys(blogPost).find(key => blogPost[Number(key) as keyof typeof blogPost] === relatedPost))}`} className="block group">
+                  <div
+                    key={index}
+                    className="pb-4 border-b last:border-0 last:pb-0"
+                  >
+                    <Link
+                      href={`/blog/${Number(
+                        Object.keys(blogPost).find(
+                          (key) =>
+                            blogPost[Number(key) as keyof typeof blogPost] ===
+                            relatedPost
+                        )
+                      )}`}
+                      className="block group"
+                    >
                       <h3 className="font-medium group-hover:text-primary transition-colors line-clamp-2 mb-1">
                         {relatedPost.title}
                       </h3>

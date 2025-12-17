@@ -204,10 +204,21 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
 
   const getStockStatus = (stock: number) => {
     if (stock > 10)
-      return { status: "In Stock", color: "bg-green-100 text-green-800" };
+      return {
+        status: "In Stock",
+        color:
+          "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
+      };
     if (stock > 0)
-      return { status: "Low Stock", color: "bg-yellow-100 text-yellow-800" };
-    return { status: "Out of Stock", color: "bg-red-100 text-red-800" };
+      return {
+        status: "Low Stock",
+        color:
+          "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
+      };
+    return {
+      status: "Out of Stock",
+      color: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
+    };
   };
 
   if (!mounted) return null;
@@ -258,9 +269,9 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
                           className="transition-transform duration-300 group-hover:scale-110"
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center">
+                        <div className="w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
                           <div className="text-center space-y-2">
-                            <div className="mx-auto w-16 h-16 rounded-full bg-gradient-to-br from-primary to-purple-500 flex items-center justify-center text-white">
+                            <div className="mx-auto w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center text-primary">
                               {getCategoryIcon(product.item_group)}
                             </div>
                             <p className="text-xs text-muted-foreground">
@@ -402,9 +413,9 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
                             style={{ objectFit: "cover" }}
                           />
                         ) : (
-                          <div className="w-full h-full bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center">
+                          <div className="w-full h-full bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
                             <div className="text-center space-y-2">
-                              <div className="mx-auto w-12 h-12 rounded-full bg-gradient-to-br from-primary to-purple-500 flex items-center justify-center text-white">
+                              <div className="mx-auto w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center text-primary">
                                 {getCategoryIcon(product.item_group)}
                               </div>
                               <p className="text-xs text-muted-foreground">

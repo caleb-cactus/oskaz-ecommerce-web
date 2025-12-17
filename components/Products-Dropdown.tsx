@@ -26,14 +26,14 @@ const ProductsDropdown = () => {
     setMounted(true);
     const fetchCategories = async () => {
       try {
-        const response = await fetch('/api/items/categories');
+        const response = await fetch("/api/items/categories");
         const data = await response.json();
-        
+
         if (data.success && data.data.categories) {
           setCategories(data.data.categories);
         }
       } catch (error) {
-        console.error('Error fetching categories:', error);
+        console.error("Error fetching categories:", error);
       } finally {
         setLoading(false);
       }
@@ -51,38 +51,40 @@ const ProductsDropdown = () => {
   // Group categories into sections for the dropdown
   const groupedCategories = React.useMemo(() => {
     if (categories.length === 0) return [];
-    
+
     // Define category groups based on your product types
-    const displaySystems = categories.filter(cat => 
-      ['Smart Boards', 'Digital Signage', 'TV Wall', 'Smart Kiosk'].includes(cat.name)
+    const displaySystems = categories.filter((cat) =>
+      ["Smart Boards", "Digital Signage", "TV Wall", "Smart Kiosk"].includes(
+        cat.name
+      )
     );
-    
-    const powerSolutions = categories.filter(cat => 
-      ['UPS', 'Smart Podium'].includes(cat.name)
+
+    const powerSolutions = categories.filter((cat) =>
+      ["UPS", "Smart Podium"].includes(cat.name)
     );
-    
-    const computing = categories.filter(cat => 
-      ['Computers', 'Others', 'Best Sellers'].includes(cat.name)
+
+    const computing = categories.filter((cat) =>
+      ["Computers", "Others", "Best Sellers"].includes(cat.name)
     );
-    
+
     return [
       {
         title: "Display Systems",
         icon: <Tv className="h-5 w-5 text-primary" />,
-        items: displaySystems.map(cat => ({ name: cat.name, badge: null })),
-        color: "from-blue-500/10 to-transparent",
+        items: displaySystems.map((cat) => ({ name: cat.name, badge: null })),
+        color: "from-primary/10 to-transparent",
       },
       {
         title: "Power Solutions",
         icon: <Cpu className="h-5 w-5 text-primary" />,
-        items: powerSolutions.map(cat => ({ name: cat.name, badge: null })),
-        color: "from-green-500/10 to-transparent",
+        items: powerSolutions.map((cat) => ({ name: cat.name, badge: null })),
+        color: "from-secondary/20 to-transparent",
       },
       {
         title: "Computing",
         icon: <Monitor className="h-5 w-5 text-primary" />,
-        items: computing.map(cat => ({ name: cat.name, badge: null })),
-        color: "from-purple-500/10 to-transparent",
+        items: computing.map((cat) => ({ name: cat.name, badge: null })),
+        color: "from-primary/5 to-transparent",
       },
     ];
   }, [categories]);
@@ -146,39 +148,38 @@ const ProductsDropdown = () => {
       {/* Mega Menu rendered via portal to avoid navbar clipping */}
       {mounted &&
         createPortal(
-          (
-            <AnimatePresence>
-              {isOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ type: "spring", stiffness: 250, damping: 20 }}
-                  className="fixed left-1/2 -translate-x-1/2 top-[6rem] w-[800px] max-w-[90vw] rounded-2xl shadow-xl border border-border bg-card z-[1001] overflow-hidden"
-                  onMouseEnter={() => {
-                    clearCloseTimer();
-                    setIsOpen(true);
-                  }}
-                  onMouseLeave={() => scheduleClose(140)}
-                  ref={menuRef}
-                >
-                  {/* Header */}
-                  <div className="bg-gradient-to-r from-primary/5 to-secondary/5 p-4 border-b border-border">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-lg font-semibold">Our Products</h3>
-                      <Link href="/products">
-                        <Button variant="ghost" size="sm" className="text-xs">
-                          View All Products
-                          <ArrowRight className="ml-1 h-3 w-3" />
-                        </Button>
-                      </Link>
-                    </div>
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 8 }}
+                transition={{ type: "spring", stiffness: 250, damping: 20 }}
+                className="fixed left-1/2 -translate-x-1/2 top-[6rem] w-[800px] max-w-[90vw] rounded-2xl shadow-xl border border-border bg-card z-[1001] overflow-hidden"
+                onMouseEnter={() => {
+                  clearCloseTimer();
+                  setIsOpen(true);
+                }}
+                onMouseLeave={() => scheduleClose(140)}
+                ref={menuRef}
+              >
+                {/* Header */}
+                <div className="bg-gradient-to-r from-primary/5 to-secondary/5 p-4 border-b border-border">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-semibold">Our Products</h3>
+                    <Link href="/products">
+                      <Button variant="ghost" size="sm" className="text-xs">
+                        View All Products
+                        <ArrowRight className="ml-1 h-3 w-3" />
+                      </Button>
+                    </Link>
                   </div>
+                </div>
 
-                  {/* Categories */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
-                    {loading ? (
-                      // Loading skeleton
+                {/* Categories */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
+                  {loading
+                    ? // Loading skeleton
                       Array.from({ length: 3 }).map((_, i) => (
                         <div key={i} className="space-y-3">
                           <div className="flex items-center gap-2 pb-2 border-b border-border/50">
@@ -194,11 +195,12 @@ const ProductsDropdown = () => {
                           </ul>
                         </div>
                       ))
-                    ) : (
-                      groupedCategories.map((category, i) => (
+                    : groupedCategories.map((category, i) => (
                         <div key={i} className="space-y-3">
                           <div className="flex items-center gap-2 pb-2 border-b border-border/50">
-                            <div className={`p-1.5 rounded-md bg-gradient-to-br ${category.color}`}>
+                            <div
+                              className={`p-1.5 rounded-md bg-gradient-to-br ${category.color}`}
+                            >
                               {category.icon}
                             </div>
                             <h4 className="text-sm font-semibold text-foreground">
@@ -209,13 +211,18 @@ const ProductsDropdown = () => {
                             {category.items.map((item, j) => (
                               <li key={j}>
                                 <Link
-                                  href={`/products?category=${encodeURIComponent(item.name)}`}
+                                  href={`/products?category=${encodeURIComponent(
+                                    item.name
+                                  )}`}
                                   className="group flex items-center justify-between rounded-md p-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-200"
                                 >
                                   <span>{item.name}</span>
                                   <div className="flex items-center gap-1">
                                     {item.badge && (
-                                      <Badge variant="secondary" className="text-xs">
+                                      <Badge
+                                        variant="secondary"
+                                        className="text-xs"
+                                      >
                                         {item.badge}
                                       </Badge>
                                     )}
@@ -226,27 +233,25 @@ const ProductsDropdown = () => {
                             ))}
                           </ul>
                         </div>
-                      ))
-                    )}
-                  </div>
+                      ))}
+                </div>
 
-                  {/* Footer */}
-                  <div className="bg-muted/30 p-4 border-t border-border">
-                    <div className="flex items-center justify-between">
-                      <p className="text-xs text-muted-foreground">
-                        Looking for something specific?
-                      </p>
-                      <Link href="/contact">
-                        <Button variant="ghost" size="sm" className="text-xs">
-                          Contact Support
-                        </Button>
-                      </Link>
-                    </div>
+                {/* Footer */}
+                <div className="bg-muted/30 p-4 border-t border-border">
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs text-muted-foreground">
+                      Looking for something specific?
+                    </p>
+                    <Link href="/contact">
+                      <Button variant="ghost" size="sm" className="text-xs">
+                        Contact Support
+                      </Button>
+                    </Link>
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          ),
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
           document.body
         )}
     </div>

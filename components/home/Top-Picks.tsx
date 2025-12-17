@@ -153,7 +153,7 @@ const TopPicks = () => {
           "relative py-20 md:py-28 overflow-hidden transition-colors duration-500",
           isDarkMode
             ? "bg-background"
-            : "bg-gradient-to-br from-slate-50 to-blue-50/30"
+            : "bg-gradient-to-br from-background to-secondary/30"
         )}
       >
         <div className="container mx-auto px-4 relative z-10">
@@ -226,7 +226,7 @@ const TopPicks = () => {
           "relative py-20 md:py-28 overflow-hidden transition-colors duration-500",
           isDarkMode
             ? "bg-background"
-            : "bg-gradient-to-br from-slate-50 to-blue-50/30"
+            : "bg-gradient-to-br from-background to-secondary/30"
         )}
       >
         <div className="container mx-auto px-4 relative z-10">
@@ -263,7 +263,7 @@ const TopPicks = () => {
         "relative py-20 md:py-28 overflow-hidden transition-colors duration-500",
         isDarkMode
           ? "bg-background"
-          : "bg-gradient-to-br from-slate-50 to-blue-50/30"
+          : "bg-gradient-to-br from-background to-secondary/30"
       )}
     >
       {/* Background Elements */}
@@ -272,13 +272,13 @@ const TopPicks = () => {
         <div
           className={cn(
             "absolute top-1/4 -left-40 h-80 w-80 rounded-full opacity-20 blur-3xl",
-            isDarkMode ? "bg-indigo-500" : "bg-indigo-400"
+            isDarkMode ? "bg-primary/20" : "bg-primary/10"
           )}
         ></div>
         <div
           className={cn(
             "absolute bottom-1/4 -right-40 h-96 w-96 rounded-full opacity-20 blur-3xl",
-            isDarkMode ? "bg-pink-500" : "bg-pink-400"
+            isDarkMode ? "bg-secondary/20" : "bg-secondary/10"
           )}
         ></div>
 
@@ -441,9 +441,9 @@ const TopPicks = () => {
                           className="object-contain"
                         />
                       ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center">
+                        <div className="w-full h-full bg-gradient-to-br from-primary/10 to-secondary/20 flex items-center justify-center">
                           <div className="text-center space-y-4">
-                            <div className="mx-auto w-24 h-24 rounded-full bg-gradient-to-br from-primary to-purple-500 flex items-center justify-center">
+                            <div className="mx-auto w-24 h-24 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                               {product.icon}
                             </div>
                             <div className="space-y-2">

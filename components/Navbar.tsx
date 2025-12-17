@@ -9,6 +9,7 @@ import {
   X,
   Package,
 } from "lucide-react";
+import Image from "next/image";
 import { ThemeDropdown } from "./utilities/theme-dropdown";
 import { LanguageDropdown } from "./utilities/language-dropdown";
 import { Button } from "@/components/ui/button";
@@ -31,23 +32,12 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+
   const { resolvedTheme } = useTheme();
   const isDarkMode = resolvedTheme === "dark";
 
   const { state, setIsOpen } = useCart();
   const { user } = useUser();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const totalHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPosition = window.scrollY;
-      setScrollProgress((scrollPosition / totalHeight) * 100);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <>
@@ -58,30 +48,20 @@ const Navbar = () => {
             isDarkMode ? "dark:bg-card" : "bg-card"
           }`}
         >
-          {/* Scroll Progress Overlay */}
-          <div
-            className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-transparent via-primary/70 to-transparent pointer-events-none"
-            style={{
-              width: `${scrollProgress}%`,
-              opacity: scrollProgress > 0 ? (isDarkMode ? 0.35 : 1) : 0,
-            }}
-          />
-
           {/* LEFT: LOGO */}
           <div className="flex-shrink-0 relative z-10">
             <Link href="/" className="flex items-center group">
-              <div className="text-3xl font-semibold text-foreground tracking-wide flex items-center transition-all duration-500 ease-out group-hover:scale-110 group-hover:text-primary">
-                <span className="text-5xl font-black mr-1 leading-none transform transition-all duration-700 ease-out group-hover:rotate-12 group-hover:scale-125">
-                  ኦ
-                </span>
-                <span className="font-bold tracking-wider transition-all duration-500 ease-out group-hover:tracking-widest">
-                  SKAZ
-                </span>
-                <span className="text-sm ml-1">®</span>
+              <div className="relative h-12 w-auto aspect-[3/1] transition-transform duration-500 group-hover:scale-105">
+                <Image
+                  src="/logo.png"
+                  alt="Oskaz Logo"
+                  fill
+                  className="object-contain object-left"
+                  priority
+                />
               </div>
             </Link>
           </div>
-
           {/* CENTER: MAIN MENU */}
           <div className="hidden lg:flex items-center justify-center gap-10 relative z-10">
             <Link
@@ -110,7 +90,6 @@ const Navbar = () => {
               Contact Us
             </Link>
           </div>
-
           {/* RIGHT: SEARCH BAR & UTILITIES */}
           <div className="flex items-center space-x-4 relative z-10">
             <div className="flex-1 max-w-md hidden md:block">

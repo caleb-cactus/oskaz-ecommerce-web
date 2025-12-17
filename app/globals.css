@@ -6,7 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-heading);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -161,16 +162,46 @@
     scrollbar-gutter: stable;
   }
 
-  /* Inter Typography Classes - Matching Nomad Goods */
+  /* Custom Gold Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: theme("colors.secondary.DEFAULT");
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    background: oklch(0.1 0.02 80);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: theme("colors.primary.DEFAULT");
+    border-radius: 5px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: oklch(0.8 0.16 75);
+  }
+
+  /* Selection Color */
+  ::selection {
+    background-color: theme("colors.primary.DEFAULT");
+    color: theme("colors.primary.foreground");
+  }
+
+  /* Typography with New Fonts */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    @apply font-sans;
+    @apply font-heading font-medium;
     letter-spacing: -0.02em;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
   h1 {
