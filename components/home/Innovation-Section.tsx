@@ -24,7 +24,9 @@ const InnovationSection = () => {
   const [mounted, setMounted] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [preloadMode, setPreloadMode] = useState<"none" | "metadata" | "auto">("none");
+  const [preloadMode, setPreloadMode] = useState<"none" | "metadata" | "auto">(
+    "none"
+  );
   const [videoSrc, setVideoSrc] = useState<string | null>(null);
   const [hasVideoError, setHasVideoError] = useState(false);
   const { resolvedTheme } = useTheme();
@@ -33,7 +35,9 @@ const InnovationSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   type NavigatorConnection = { effectiveType?: string; saveData?: boolean };
-  type NavigatorWithConnection = Navigator & { connection?: NavigatorConnection };
+  type NavigatorWithConnection = Navigator & {
+    connection?: NavigatorConnection;
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -115,8 +119,16 @@ const InnovationSection = () => {
   ];
 
   const stats = [
-    { number: "99.9%", label: "Uptime Guarantee", icon: <Shield className="h-4 w-4" /> },
-    { number: "50+", label: "Countries Served", icon: <Globe className="h-4 w-4" /> },
+    {
+      number: "99.9%",
+      label: "Uptime Guarantee",
+      icon: <Shield className="h-4 w-4" />,
+    },
+    {
+      number: "50+",
+      label: "Countries Served",
+      icon: <Globe className="h-4 w-4" />,
+    },
     { number: "24/7", label: "Support", icon: <Target className="h-4 w-4" /> },
   ];
 
@@ -185,7 +197,7 @@ const InnovationSection = () => {
                     } catch {}
                   }}
                 />
-                
+
                 {/* Fallback background in case video doesn't load */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-purple-500/15 to-blue-500/15 flex items-center justify-center">
                   <div className="text-center space-y-6 relative z-10">
@@ -245,16 +257,22 @@ const InnovationSection = () => {
                       <Rocket className="h-5 w-5 text-primary/60" />
                     </div>
                     <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-                      Experience cutting-edge technology firsthand at our state-of-the-art facility in Addis Ababa. See how we&apos;re shaping the future of digital solutions.
+                      Experience cutting-edge technology firsthand at our
+                      state-of-the-art facility in Addis Ababa. See how
+                      we&apos;re shaping the future of digital solutions.
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                       <div className="flex items-center space-x-3 p-2 rounded-lg bg-primary/5">
                         <Phone className="h-4 w-4 text-primary" />
-                        <span className="text-sm font-medium">+251 911 123 456</span>
+                        <span className="text-sm font-medium">
+                          +251 911 204 731
+                        </span>
                       </div>
                       <div className="flex items-center space-x-3 p-2 rounded-lg bg-primary/5">
                         <Mail className="h-4 w-4 text-primary" />
-                        <span className="text-sm font-medium">innovation@oskaz.com</span>
+                        <span className="text-sm font-medium">
+                          innovation@oskaz.com
+                        </span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
@@ -301,7 +319,10 @@ const InnovationSection = () => {
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed max-w-lg font-medium">
-                Experience the future of technology with our cutting-edge solutions that adapt and evolve with your needs. Our commitment to innovation drives us to create products that transform businesses.
+                Experience the future of technology with our cutting-edge
+                solutions that adapt and evolve with your needs. Our commitment
+                to innovation drives us to create products that transform
+                businesses.
               </p>
 
               {/* CTA Buttons moved here */}

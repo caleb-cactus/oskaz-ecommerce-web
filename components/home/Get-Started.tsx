@@ -109,8 +109,8 @@ const GetStarted = () => {
     {
       icon: <Phone className="h-5 w-5" />,
       label: "Phone",
-      value: "+251 911 123 456",
-      href: "tel:+251911123456",
+      value: "+251 911 204 731",
+      href: "tel:+251911204731",
     },
     {
       icon: <MapPin className="h-5 w-5" />,
