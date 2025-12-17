@@ -44,98 +44,109 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+
+  /* Oskaz Light Mode (White & Gold) */
+  --background: oklch(1 0 0); /* Pure White */
+  --foreground: oklch(0.15 0.02 80); /* Warm Deep Grey */
+
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.15 0.02 80);
+
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
+  --popover-foreground: oklch(0.15 0.02 80);
+
+  /* Primary Gold - The Core Brand Color */
+  --primary: oklch(0.74 0.16 75); /* Rich Gold */
+  --primary-foreground: oklch(0 0 0); /* Black text */
+
+  /* Secondary - Subtle Champagne/Sand */
+  --secondary: oklch(0.96 0.03 85);
+  --secondary-foreground: oklch(0.2 0.04 80);
+
+  --muted: oklch(0.96 0.03 85);
+  --muted-foreground: oklch(0.55 0.04 80);
+
+  --accent: oklch(0.95 0.05 75); /* Pale Gold */
+  --accent-foreground: oklch(0.2 0.05 75);
+
+  --destructive: oklch(0.6 0.18 30); /* Warm Red/Brick */
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+
+  --border: oklch(0.92 0.02 85); /* Warm Grey border */
+  --input: oklch(0.92 0.02 85);
+  --ring: oklch(0.74 0.16 75); /* Gold Ring */
+
+  /* Charts - Gold/Earth Spectrum */
+  --chart-1: oklch(0.74 0.16 75); /* Gold */
+  --chart-2: oklch(0.65 0.14 60); /* Bronze */
+  --chart-3: oklch(0.5 0.1 50); /* Dark Bronze */
+  --chart-4: oklch(0.85 0.15 85); /* Yellow Gold */
+  --chart-5: oklch(0.6 0.05 80); /* Metallic Grey */
+
+  --sidebar: oklch(0.99 0.01 85);
+  --sidebar-foreground: oklch(0.15 0.02 80);
+  --sidebar-primary: oklch(0.74 0.16 75);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.96 0.03 85);
+  --sidebar-accent-foreground: oklch(0.2 0.04 80);
+  --sidebar-border: oklch(0.92 0.02 85);
+  --sidebar-ring: oklch(0.74 0.16 75);
 }
 
 .dark {
-  /* Pure Black (#000000) - True black background */
-  --background: oklch(0 0 0);
-  
-  /* Soft Warm White (#F8F6F3) - High contrast, warm text */
-  --foreground: oklch(0.96 0.01 60);
-  
-  /* Very Dark Gray (#0A0A0A) - Elevated surfaces with minimal lightness */
-  --card: oklch(0.04 0 0);
-  --card-foreground: oklch(0.96 0.01 60);
-  
-  /* Dark Gray (#050505) - Modals and overlays */
-  --popover: oklch(0.02 0 0);
-  --popover-foreground: oklch(0.96 0.01 60);
-  
-  /* Modern Teal (#2DD4BF) - Primary accent for modern feel */
-  --primary: oklch(0.75 0.12 180);
-  --primary-foreground: oklch(0.06 0.02 240);
-  
-  /* Muted Blue-Gray (#252A3A) - Secondary elements */
-  --secondary: oklch(0.16 0.02 240);
-  --secondary-foreground: oklch(0.96 0.01 60);
-  
-  /* Subtle Gray-Blue (#2A2F42) - Muted backgrounds */
-  --muted: oklch(0.18 0.02 240);
-  --muted-foreground: oklch(0.70 0.01 240);
-  
-  /* Soft Purple (#8B5CF6) - Accent elements for modern touch */
-  --accent: oklch(0.65 0.15 280);
-  --accent-foreground: oklch(0.96 0.01 60);
-  
-  /* Warm Red (#EF4444) - Error states */
-  --destructive: oklch(0.62 0.20 25);
-  --destructive-foreground: oklch(0.96 0.01 60);
-  
-  /* Subtle borders with modern blue tint */
-  --border: oklch(0.25 0.02 240);
-  --input: oklch(0.20 0.02 240);
-  
-  /* Teal ring for focus states */
-  --ring: oklch(0.75 0.12 180);
-  
-  /* Modern chart colors */
-  --chart-1: oklch(0.75 0.12 180); /* Teal */
-  --chart-2: oklch(0.65 0.15 280); /* Purple */
-  --chart-3: oklch(0.70 0.15 120); /* Green */
-  --chart-4: oklch(0.68 0.18 60);  /* Orange */
-  --chart-5: oklch(0.65 0.20 340); /* Pink */
-  
-  /* Sidebar with consistent modern theme */
-  --sidebar: oklch(0.09 0.02 240);
-  --sidebar-foreground: oklch(0.96 0.01 60);
-  --sidebar-primary: oklch(0.75 0.12 180);
-  --sidebar-primary-foreground: oklch(0.06 0.02 240);
-  --sidebar-accent: oklch(0.16 0.02 240);
-  --sidebar-accent-foreground: oklch(0.96 0.01 60);
-  --sidebar-border: oklch(0.25 0.02 240);
-  --sidebar-ring: oklch(0.75 0.12 180);
+  /* Oskaz Dark Mode (Black & Gold) - NO BLUE */
+
+  /* Deep Rich Black (Warm, not cold) */
+  --background: oklch(0.05 0.01 80);
+
+  /* Platinum White for contrast */
+  --foreground: oklch(0.95 0.02 85);
+
+  /* Elevated Dark Surfaces - Dark Bronze/Charcoal */
+  --card: oklch(0.1 0.02 80);
+  --card-foreground: oklch(0.95 0.02 85);
+
+  --popover: oklch(0.08 0.02 80);
+  --popover-foreground: oklch(0.95 0.02 85);
+
+  /* The Same Rich Gold - Glowing in Dark Mode */
+  --primary: oklch(0.74 0.16 75);
+  --primary-foreground: oklch(0.1 0.02 80); /* Dark text on gold */
+
+  /* Dark Metallic Secondary */
+  --secondary: oklch(0.18 0.04 75);
+  --secondary-foreground: oklch(0.95 0.02 85);
+
+  --muted: oklch(0.18 0.04 75);
+  --muted-foreground: oklch(0.7 0.04 80);
+
+  --accent: oklch(0.25 0.08 75); /* Dark Gold Accent */
+  --accent-foreground: oklch(0.95 0.02 85);
+
+  --destructive: oklch(0.6 0.18 30);
+  --destructive-foreground: oklch(0.95 0.02 85);
+
+  /* Borders - Subtle Gold Hint */
+  --border: oklch(0.2 0.03 75);
+  --input: oklch(0.2 0.03 75);
+
+  --ring: oklch(0.74 0.16 75);
+
+  /* Chart Colors adapted for dark mode */
+  --chart-1: oklch(0.74 0.16 75);
+  --chart-2: oklch(0.65 0.14 60);
+  --chart-3: oklch(0.5 0.1 50);
+  --chart-4: oklch(0.85 0.15 85);
+  --chart-5: oklch(0.6 0.05 80);
+
+  --sidebar: oklch(0.08 0.02 80);
+  --sidebar-foreground: oklch(0.95 0.02 85);
+  --sidebar-primary: oklch(0.74 0.16 75);
+  --sidebar-primary-foreground: oklch(0.1 0.02 80);
+  --sidebar-accent: oklch(0.18 0.04 75);
+  --sidebar-accent-foreground: oklch(0.95 0.02 85);
+  --sidebar-border: oklch(0.2 0.03 75);
+  --sidebar-ring: oklch(0.74 0.16 75);
 }
 
 @layer base {
@@ -149,67 +160,73 @@
     overflow-x: auto;
     scrollbar-gutter: stable;
   }
-  
+
   /* Inter Typography Classes - Matching Nomad Goods */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-sans;
     letter-spacing: -0.02em;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
-  
+
   h1 {
     @apply text-4xl font-bold leading-tight;
   }
-  
+
   h2 {
     @apply text-3xl font-semibold leading-tight;
   }
-  
+
   h3 {
     @apply text-2xl font-semibold leading-snug;
   }
-  
+
   h4 {
     @apply text-xl font-medium leading-snug;
   }
-  
+
   h5 {
     @apply text-lg font-medium leading-normal;
   }
-  
+
   h6 {
     @apply text-base font-medium leading-normal;
   }
-  
+
   p {
     @apply text-base font-normal leading-relaxed;
   }
-  
+
   /* Nomad-style UI Elements */
   .text-hero {
     @apply text-5xl font-bold leading-none;
     letter-spacing: -0.03em;
   }
-  
+
   .text-display {
     @apply text-3xl font-bold leading-tight;
     letter-spacing: -0.02em;
   }
-  
+
   .text-ui {
     @apply text-sm font-medium leading-normal;
   }
-  
+
   .text-caption {
     @apply text-xs font-normal leading-normal;
   }
-  
+
   /* Button Typography */
-  button, .btn {
+  button,
+  .btn {
     @apply font-medium;
     letter-spacing: -0.01em;
   }
-  
+
   /* Navigation Typography */
   nav {
     @apply font-medium;
@@ -217,57 +234,76 @@
   }
 }
 
-/* Modern Dark Mode Aesthetic Enhancements */
+/* Modern Dark Mode Aesthetic Enhancements - REFACED FOR OSKAZ GOLD */
 .dark .gradient-modern-dark {
-  background: linear-gradient(135deg, oklch(0.06 0.02 240) 0%, oklch(0.09 0.02 240) 50%, oklch(0.12 0.03 240) 100%);
+  /* Warm Black gradient */
+  background: linear-gradient(
+    135deg,
+    oklch(0.05 0.01 80) 0%,
+    oklch(0.08 0.02 80) 50%,
+    oklch(0.12 0.03 80) 100%
+  );
 }
 
 .dark .gradient-modern-subtle {
-  background: linear-gradient(135deg, oklch(0.09 0.02 240) 0%, oklch(0.16 0.02 240) 100%);
+  background: linear-gradient(
+    135deg,
+    oklch(0.1 0.02 80) 0%,
+    oklch(0.15 0.03 80) 100%
+  );
 }
 
 .dark .card-modern {
-  background: oklch(0.12 0.03 240);
-  border: 1px solid oklch(0.25 0.02 240);
-  box-shadow: 0 4px 20px oklch(0.06 0.02 240 / 50%), 0 0 0 1px oklch(0.75 0.12 180 / 5%);
+  background: oklch(0.1 0.02 80);
+  border: 1px solid oklch(0.2 0.03 75);
+  box-shadow: 0 4px 20px oklch(0 0 0 / 50%), 0 0 0 1px oklch(0.74 0.16 75 / 5%);
   transition: all 0.3s ease;
 }
 
 .dark .card-modern:hover {
-  border-color: oklch(0.75 0.12 180 / 30%);
-  box-shadow: 0 8px 30px oklch(0.06 0.02 240 / 60%), 0 0 0 1px oklch(0.75 0.12 180 / 15%);
+  border-color: oklch(0.74 0.16 75 / 30%); /* Gold Border on Hover */
+  box-shadow: 0 8px 30px oklch(0 0 0 / 60%), 0 0 0 1px oklch(0.74 0.16 75 / 15%);
   transform: translateY(-2px);
 }
 
 .dark .btn-modern {
-  background: linear-gradient(135deg, oklch(0.75 0.12 180) 0%, oklch(0.65 0.15 280) 100%);
-  color: oklch(0.06 0.02 240);
-  border: 1px solid oklch(0.75 0.12 180);
+  /* Gold Gradient Button */
+  background: linear-gradient(
+    135deg,
+    oklch(0.74 0.16 75) 0%,
+    oklch(0.7 0.15 70) 100%
+  );
+  color: oklch(0.05 0.01 80);
+  border: 1px solid oklch(0.74 0.16 75);
   transition: all 0.3s ease;
 }
 
 .dark .btn-modern:hover {
-  background: linear-gradient(135deg, oklch(0.80 0.12 180) 0%, oklch(0.70 0.15 280) 100%);
-  border-color: oklch(0.80 0.12 180);
-  box-shadow: 0 4px 15px oklch(0.75 0.12 180 / 40%);
+  background: linear-gradient(
+    135deg,
+    oklch(0.78 0.16 75) 0%,
+    oklch(0.72 0.15 70) 100%
+  );
+  border-color: oklch(0.78 0.16 75);
+  box-shadow: 0 4px 15px oklch(0.74 0.16 75 / 40%); /* Gold Glow */
   transform: translateY(-1px);
 }
 
 .dark .border-modern {
-  border-color: oklch(0.25 0.02 240);
+  border-color: oklch(0.2 0.03 75);
 }
 
 .dark .border-modern-bright {
-  border-color: oklch(0.75 0.12 180 / 50%);
+  border-color: oklch(0.74 0.16 75 / 50%);
 }
 
 .dark .text-modern-glow {
-  color: oklch(0.75 0.12 180);
-  text-shadow: 0 0 10px oklch(0.75 0.12 180 / 30%);
+  color: oklch(0.74 0.16 75);
+  text-shadow: 0 0 10px oklch(0.74 0.16 75 / 30%);
 }
 
 .dark .bg-modern-overlay {
-  background: oklch(0.09 0.02 240 / 90%);
+  background: oklch(0.05 0.01 80 / 90%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -283,117 +319,120 @@
     --card-foreground: #242424;
     --popover: #ffffff;
     --popover-foreground: #242424;
-    --primary: #111827;
-    --primary-foreground: #f9fafb;
-    --secondary: #f3f4f6;
+    --primary: #c5a035; /* Fallback Gold */
+    --primary-foreground: #000000;
+    --secondary: #f6f3ea;
     --secondary-foreground: #111827;
     --muted: #f3f4f6;
     --muted-foreground: #6b7280;
-    --accent: #f3f4f6;
+    --accent: #f6f3ea;
     --accent-foreground: #111827;
     --destructive: #ef4444;
     --destructive-foreground: #ffffff;
     --border: #e5e7eb;
     --input: #e5e7eb;
-    --ring: #d1d5db;
-    --chart-1: #3b82f6;
-    --chart-2: #10b981;
-    --chart-3: #f59e0b;
-    --chart-4: #8b5cf6;
-    --chart-5: #ec4899;
+    --ring: #c5a035;
+    --chart-1: #c5a035;
+    --chart-2: #8a7024;
+    --chart-3: #5c4b18;
+    --chart-4: #e6c55c;
+    --chart-5: #a3a3a3;
     --sidebar: #ffffff;
     --sidebar-foreground: #1f2937;
-    --sidebar-primary: #111827;
-    --sidebar-primary-foreground: #f9fafb;
-    --sidebar-accent: #f3f4f6;
+    --sidebar-primary: #c5a035;
+    --sidebar-primary-foreground: #000000;
+    --sidebar-accent: #f6f3ea;
     --sidebar-accent-foreground: #111827;
     --sidebar-border: #e5e7eb;
-    --sidebar-ring: #d1d5db;
+    --sidebar-ring: #c5a035;
   }
 
   .dark {
     /* Dark theme fallbacks */
-    --background: #000000;
+    --background: #121110;
     --foreground: #f8f6f3;
-    --card: #0a0a0a;
+    --card: #1c1a18;
     --card-foreground: #f8f6f3;
-    --popover: #050505;
+    --popover: #1c1a18;
     --popover-foreground: #f8f6f3;
-    --primary: #2dd4bf;
-    --primary-foreground: #0f172a;
-    --secondary: #252a3a;
+    --primary: #d4af37; /* Fallback Metallic Gold */
+    --primary-foreground: #000000;
+    --secondary: #2a2620;
     --secondary-foreground: #f8f6f3;
-    --muted: #2a2f42;
-    --muted-foreground: #b8c1d4;
-    --accent: #8b5cf6;
+    --muted: #2a2620;
+    --muted-foreground: #a19d99;
+    --accent: #3d362b;
     --accent-foreground: #f8f6f3;
     --destructive: #ef4444;
     --destructive-foreground: #f8f6f3;
-    --border: #2a2f42;
-    --input: #1f2433;
-    --ring: #2dd4bf;
-    --chart-1: #2dd4bf;
-    --chart-2: #8b5cf6;
-    --chart-3: #22c55e;
-    --chart-4: #f97316;
-    --chart-5: #ec4899;
-    --sidebar: #0e1320;
+    --border: #33302a;
+    --input: #33302a;
+    --ring: #d4af37;
+    --chart-1: #d4af37;
+    --chart-2: #8a7024;
+    --chart-3: #5c4b18;
+    --chart-4: #e6c55c;
+    --chart-5: #a3a3a3;
+    --sidebar: #121110;
     --sidebar-foreground: #f8f6f3;
-    --sidebar-primary: #2dd4bf;
-    --sidebar-primary-foreground: #0f172a;
-    --sidebar-accent: #252a3a;
+    --sidebar-primary: #d4af37;
+    --sidebar-primary-foreground: #000000;
+    --sidebar-accent: #2a2620;
     --sidebar-accent-foreground: #f8f6f3;
-    --sidebar-border: #2a2f42;
-    --sidebar-ring: #2dd4bf;
+    --sidebar-border: #33302a;
+    --sidebar-ring: #d4af37;
   }
 }
 
 .dark .focus-modern:focus {
-  outline: 2px solid oklch(0.75 0.12 180);
+  outline: 2px solid oklch(0.74 0.16 75);
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px oklch(0.75 0.12 180 / 20%);
+  box-shadow: 0 0 0 4px oklch(0.74 0.16 75 / 20%);
 }
 
 .dark .divider-modern {
-  background: linear-gradient(90deg, transparent 0%, oklch(0.25 0.02 240) 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    oklch(0.2 0.03 75) 50%,
+    transparent 100%
+  );
   height: 1px;
 }
 
 .dark .product-card-modern {
-  background: oklch(0.12 0.03 240);
-  border: 1px solid oklch(0.25 0.02 240);
+  background: oklch(0.1 0.02 80);
+  border: 1px solid oklch(0.2 0.03 75);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dark .product-card-modern:hover {
-  background: oklch(0.16 0.02 240);
-  border-color: oklch(0.75 0.12 180 / 30%);
-  box-shadow: 
-    0 10px 40px oklch(0.06 0.02 240 / 60%),
-    0 0 0 1px oklch(0.75 0.12 180 / 10%),
-    inset 0 1px 0 oklch(0.75 0.12 180 / 10%);
+  background: oklch(0.12 0.03 80);
+  border-color: oklch(0.74 0.16 75 / 30%);
+  box-shadow: 0 10px 40px oklch(0 0 0 / 60%),
+    0 0 0 1px oklch(0.74 0.16 75 / 10%), inset 0 1px 0 oklch(0.74 0.16 75 / 10%);
   transform: translateY(-4px);
 }
 
 .dark .nav-modern {
-  background: oklch(0.09 0.02 240 / 95%);
+  background: oklch(0.05 0.01 80 / 95%);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid oklch(0.25 0.02 240);
+  border-bottom: 1px solid oklch(0.2 0.03 75);
 }
 
 .dark .category-btn-modern {
-  background: oklch(0.16 0.02 240);
-  color: oklch(0.96 0.01 60);
-  border: 1px solid oklch(0.25 0.02 240);
+  background: oklch(0.18 0.04 75);
+  color: oklch(0.95 0.02 85);
+  border: 1px solid oklch(0.2 0.03 75);
   transition: all 0.3s ease;
 }
 
 .dark .category-btn-modern:hover,
 .dark .category-btn-modern.active {
-  background: oklch(0.75 0.12 180);
-  border-color: oklch(0.75 0.12 180);
-  color: oklch(0.06 0.02 240);
-  box-shadow: 0 4px 12px oklch(0.75 0.12 180 / 30%);
+  background: oklch(0.74 0.16 75);
+  border-color: oklch(0.74 0.16 75);
+  color: oklch(0.05 0.01 80);
+  box-shadow: 0 4px 12px oklch(0.74 0.16 75 / 30%);
 }
 
 /* Video Section Animations */

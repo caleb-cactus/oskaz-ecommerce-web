@@ -38,7 +38,6 @@ const Navbar = () => {
   const { state, setIsOpen } = useCart();
   const { user } = useUser();
 
-
   useEffect(() => {
     const handleScroll = () => {
       const totalHeight =
@@ -61,7 +60,7 @@ const Navbar = () => {
         >
           {/* Scroll Progress Overlay */}
           <div
-            className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-transparent via-purple-300/70 to-transparent pointer-events-none"
+            className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-transparent via-primary/70 to-transparent pointer-events-none"
             style={{
               width: `${scrollProgress}%`,
               opacity: scrollProgress > 0 ? (isDarkMode ? 0.35 : 1) : 0,
@@ -180,7 +179,7 @@ const Navbar = () => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8 relative hover:bg-muted transition-all duration-300 hover:scale-110 text-blue-600 dark:text-blue-400"
+                  className="h-8 w-8 relative hover:bg-muted transition-all duration-300 hover:scale-110 text-muted-foreground hover:text-primary"
                 >
                   <Package className="h-5 w-5" />
                 </Button>
@@ -209,12 +208,15 @@ const Navbar = () => {
             </div>
 
             {/* MOBILE MENU */}
-            <Sheet open={isMenuOpen} onOpenChange={(open) => {
-              setIsMenuOpen(open);
-              if (open) {
-                setIsOpen(false); // Close cart when mobile menu opens
-              }
-            }}>
+            <Sheet
+              open={isMenuOpen}
+              onOpenChange={(open) => {
+                setIsMenuOpen(open);
+                if (open) {
+                  setIsOpen(false); // Close cart when mobile menu opens
+                }
+              }}
+            >
               <SheetTrigger asChild>
                 <Button
                   variant="ghost"
@@ -222,7 +224,7 @@ const Navbar = () => {
                   className="lg:hidden h-8 w-8 hover:bg-muted transition-all duration-500 hover:scale-110"
                   onClick={() => {
                     setIsMenuOpen(false); // Close sidebar
-                    setIsOpen(true);      // Open CartDropdown
+                    setIsOpen(true); // Open CartDropdown
                   }}
                 >
                   <Menu className="h-4 w-4" />
@@ -278,7 +280,7 @@ const Navbar = () => {
                   {/* Orders Mobile */}
                   <Link
                     href="/user-orders"
-                    className="text-blue-600 dark:text-blue-400 flex items-center gap-2 py-2 px-3 text-base font-medium hover:text-blue-700 dark:hover:text-blue-300 rounded-lg"
+                    className="text-muted-foreground hover:text-primary flex items-center gap-2 py-2 px-3 text-base font-medium transition-colors rounded-lg"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <Package className="h-5 w-5" /> My Orders
@@ -312,13 +314,12 @@ const Navbar = () => {
                   <div className="flex items-center justify-between pt-4 border-t border-border">
                     <SignedIn>
                       <div className="flex items-center p-5">
-                      <UserButton afterSignOutUrl="/" />
+                        <UserButton afterSignOutUrl="/" />
                         {user?.firstName && (
                           <span className="text-sm text-muted-foreground mx-2">
                             Hello, {user.firstName}
                           </span>
                         )}
-                        
                       </div>
                     </SignedIn>
                     <SignedOut>
@@ -344,7 +345,7 @@ const Navbar = () => {
                         className="h-8 w-8 relative hover:bg-muted transition-all duration-300 hover:scale-110"
                         onClick={() => {
                           setIsMenuOpen(false); // Close sidebar
-                          setIsOpen(true);      // Open CartDropdown
+                          setIsOpen(true); // Open CartDropdown
                         }}
                       >
                         <ShoppingBag className="h-4 w-4" />
