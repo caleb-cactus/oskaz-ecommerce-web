@@ -9,6 +9,7 @@ import {
   X,
   Package,
 } from "lucide-react";
+import Image from "next/image";
 import { ThemeDropdown } from "./utilities/theme-dropdown";
 import { LanguageDropdown } from "./utilities/language-dropdown";
 import { Button } from "@/components/ui/button";
@@ -70,14 +71,14 @@ const Navbar = () => {
           {/* LEFT: LOGO */}
           <div className="flex-shrink-0 relative z-10">
             <Link href="/" className="flex items-center group">
-              <div className="text-3xl font-semibold text-foreground tracking-wide flex items-center transition-all duration-500 ease-out group-hover:scale-110 group-hover:text-primary">
-                <span className="text-5xl font-black mr-1 leading-none transform transition-all duration-700 ease-out group-hover:rotate-12 group-hover:scale-125">
-                  ኦ
-                </span>
-                <span className="font-bold tracking-wider transition-all duration-500 ease-out group-hover:tracking-widest">
-                  SKAZ
-                </span>
-                <span className="text-sm ml-1">®</span>
+              <div className="relative h-12 w-32 transition-transform duration-300 group-hover:scale-105">
+                <Image
+                  src="/logo1-transpareent.png"
+                  alt="Oskaz Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
             </Link>
           </div>

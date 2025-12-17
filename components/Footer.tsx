@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -142,10 +143,13 @@ const Footer = () => {
             {/* Company Info */}
             <div className="lg:col-span-2">
               <Link href="/" className="inline-flex items-center mb-4">
-                <div className="text-2xl font-semibold text-foreground tracking-wide flex items-center">
-                  <span className="text-4xl font-black mr-1 leading-none">ኦ</span>
-                  <span className="font-bold tracking-wider">SKAZ</span>
-                  <span className="text-sm font-normal ml-1">®</span>
+                <div className="relative h-12 w-32">
+                  <Image
+                    src="/logo1-transpareent.png"
+                    alt="Oskaz Logo"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
               </Link>
               <p className="text-muted-foreground mb-6 max-w-sm">
