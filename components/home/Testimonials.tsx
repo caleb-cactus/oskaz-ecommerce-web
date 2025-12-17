@@ -112,10 +112,10 @@ const Testimonials = () => {
         >
           <Card
             className={cn(
-              "p-8 md:p-12 border shadow-xl",
+              "p-8 md:p-12 border shadow-2xl relative overflow-hidden group",
               isDarkMode
-                ? "bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20"
-                : "bg-gradient-to-r from-primary/5 to-secondary/5 border-primary/10"
+                ? "bg-gradient-to-br from-card/80 via-primary/5 to-card/80 border-primary/20 backdrop-blur-sm"
+                : "bg-gradient-to-br from-white/80 via-primary/5 to-white/80 border-primary/20 backdrop-blur-sm"
             )}
           >
             <CardContent className="p-0">
@@ -130,7 +130,9 @@ const Testimonials = () => {
                     their operations and achieve unprecedented efficiency.&quot;
                   </blockquote>
                   <div>
-                    <h4 className="font-semibold text-lg">Mr. Hussen Yesuf</h4>
+                    <h4 className="font-heading font-bold text-lg text-primary">
+                      Mr. Hussen Yesuf
+                    </h4>
                     <p className="text-sm text-muted-foreground">
                       CEO & Founder, Oskaz Import
                     </p>

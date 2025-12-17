@@ -152,14 +152,14 @@ const Hero2 = () => {
         >
           <h1
             className={cn(
-              "text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-2xl mx-auto text-center transition-all duration-700",
+              "text-4xl md:text-6xl font-heading font-bold tracking-tight leading-tight max-w-3xl mx-auto text-center transition-all duration-700",
               "translate-y-0 opacity-100",
               isHeaderHovered
                 ? "text-white"
                 : "text-neutral-900 dark:text-white"
             )}
           >
-            <span className="bg-gradient-to-r from-primary to-yellow-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary via-yellow-400 to-yellow-600 bg-clip-text text-transparent animate-gradient-x">
               Intelligent Technology
             </span>{" "}
             for Modern Business
@@ -307,10 +307,10 @@ const Hero2 = () => {
 
         <div
           className={cn(
-            "grid grid-cols-1 sm:grid-cols-3 gap-4 mt-2 transition-[opacity,transform] duration-600",
+            "grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6 transition-[opacity,transform] duration-600 w-full max-w-4xl px-4",
             isHeaderHovered
-              ? "opacity-0 translate-y-2"
-              : "opacity-100 -translate-y-3"
+              ? "opacity-0 translate-y-4"
+              : "opacity-100 -translate-y-0"
           )}
           style={{
             transitionTimingFunction: "cubic-bezier(0.25, 0.8, 0.25, 1)",
@@ -319,28 +319,31 @@ const Hero2 = () => {
           }}
           aria-hidden={isHeaderHovered}
         >
-          <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-4 shadow-sm">
-            <h3 className="text-sm font-semibold text-neutral-900 dark:text-white">
+          <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 group">
+            <h3 className="text-lg font-heading font-semibold text-neutral-900 dark:text-white group-hover:text-primary transition-colors">
               AI Automation
             </h3>
-            <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
-              Streamline workflows and reduce manual tasks.
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
+              Streamline complex workflows and reduce manual tasks with our
+              cutting-edge AI engines.
             </p>
           </div>
-          <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-4 shadow-sm">
-            <h3 className="text-sm font-semibold text-neutral-900 dark:text-white">
+          <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 group">
+            <h3 className="text-lg font-heading font-semibold text-neutral-900 dark:text-white group-hover:text-primary transition-colors">
               IoT Connectivity
             </h3>
-            <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
-              Connect devices and gain real-time insights.
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
+              Seamlessly connect devices and gain real-time actionable insights
+              from anywhere.
             </p>
           </div>
-          <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-4 shadow-sm">
-            <h3 className="text-sm font-semibold text-neutral-900 dark:text-white">
+          <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 group">
+            <h3 className="text-lg font-heading font-semibold text-neutral-900 dark:text-white group-hover:text-primary transition-colors">
               Secure by Design
             </h3>
-            <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
-              Enterprise-grade security and compliance built-in.
+            <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
+              Enterprise-grade security and compliance built directly into the
+              core of our platform.
             </p>
           </div>
         </div>

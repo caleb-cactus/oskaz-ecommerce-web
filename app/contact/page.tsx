@@ -255,11 +255,11 @@ export default function ContactPage() {
               <Card
                 key={index}
                 className={cn(
-                  "text-center transition-all duration-300 hover:shadow-lg hover:scale-105",
+                  "text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 backdrop-blur-md group cursor-pointer",
                   isInView && "animate-fade-in-up",
                   isDarkMode
-                    ? "bg-card border-border"
-                    : "bg-white border-gray-200"
+                    ? "bg-card/40 border-border/50 hover:bg-card/60 hover:border-primary/40"
+                    : "bg-white/60 border-gray-200/60 hover:bg-white/90 hover:border-primary/20"
                 )}
                 style={{
                   animationDelay: isInView ? `${index * 100}ms` : "0ms",
@@ -304,10 +304,10 @@ export default function ContactPage() {
             >
               <Card
                 className={cn(
-                  "border shadow-xl",
+                  "border shadow-2xl backdrop-blur-md",
                   isDarkMode
-                    ? "bg-card border-border"
-                    : "bg-white border-gray-200"
+                    ? "bg-card/40 border-border/50"
+                    : "bg-white/70 border-gray-200/60"
                 )}
               >
                 <CardHeader>
@@ -338,7 +338,7 @@ export default function ContactPage() {
                             value={formData.name}
                             onChange={handleInputChange}
                             placeholder="John Doe"
-                            className="mt-1"
+                            className="mt-1 transition-all duration-300 focus-visible:ring-primary/50 focus-visible:border-primary/50 bg-background/50 backdrop-blur-sm hover:bg-background/80"
                           />
                         </div>
                         <div>
