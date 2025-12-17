@@ -38,6 +38,11 @@ const Navbar = () => {
 
   const { state, setIsOpen } = useCart();
   const { user } = useUser();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
@@ -187,156 +192,166 @@ const Navbar = () => {
             </div>
 
             {/* MOBILE MENU */}
-            <Sheet
-              open={isMenuOpen}
-              onOpenChange={(open) => {
-                setIsMenuOpen(open);
-                if (open) {
-                  setIsOpen(false); // Close cart when mobile menu opens
-                }
-              }}
-            >
-              <SheetTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="lg:hidden h-8 w-8 hover:bg-muted transition-all duration-500 hover:scale-110"
-                  onClick={() => {
-                    setIsMenuOpen(false); // Close sidebar
-                    setIsOpen(true); // Open CartDropdown
-                  }}
-                >
-                  <Menu className="h-4 w-4" />
-                </Button>
-              </SheetTrigger>
-
-              <SheetContent
-                side="right"
-                className={`${isDarkMode ? "dark:bg-sidebar" : "bg-card"}`}
+            {!mounted ? (
+              <Button
+                variant="ghost"
+                size="icon"
+                className="lg:hidden h-8 w-8 hover:bg-muted transition-all duration-500 hover:scale-110"
               >
-                <div className="flex flex-col space-y-4 mt-8">
-                  <Link
-                    href="/"
-                    className="text-muted-foreground hover:text-foreground text-base font-medium transition-all duration-300 py-2 px-3 rounded-lg"
-                    onClick={() => setIsMenuOpen(false)}
+                <Menu className="h-4 w-4" />
+              </Button>
+            ) : (
+              <Sheet
+                open={isMenuOpen}
+                onOpenChange={(open) => {
+                  setIsMenuOpen(open);
+                  if (open) {
+                    setIsOpen(false); // Close cart when mobile menu opens
+                  }
+                }}
+              >
+                <SheetTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="lg:hidden h-8 w-8 hover:bg-muted transition-all duration-500 hover:scale-110"
+                    onClick={() => {
+                      setIsMenuOpen(false); // Close sidebar
+                      setIsOpen(true); // Open CartDropdown
+                    }}
                   >
-                    Home
-                  </Link>
+                    <Menu className="h-4 w-4" />
+                  </Button>
+                </SheetTrigger>
 
-                  {/* Products dropdown removed for mobile sidebar per design preference */}
-                  <Link
-                    href="/products"
-                    className="text-muted-foreground hover:text-foreground text-base font-medium py-2 px-3 rounded-lg"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Products
-                  </Link>
+                <SheetContent
+                  side="right"
+                  className={`${isDarkMode ? "dark:bg-sidebar" : "bg-card"}`}
+                >
+                  <div className="flex flex-col space-y-4 mt-8">
+                    <Link
+                      href="/"
+                      className="text-muted-foreground hover:text-foreground text-base font-medium transition-all duration-300 py-2 px-3 rounded-lg"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Home
+                    </Link>
 
-                  <Link
-                    href="/about"
-                    className="text-muted-foreground hover:text-foreground text-base font-medium py-2 px-3 rounded-lg"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    About
-                  </Link>
+                    {/* Products dropdown removed for mobile sidebar per design preference */}
+                    <Link
+                      href="/products"
+                      className="text-muted-foreground hover:text-foreground text-base font-medium py-2 px-3 rounded-lg"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Products
+                    </Link>
 
-                  <Link
-                    href="/blog"
-                    className="text-muted-foreground hover:text-foreground text-base font-medium py-2 px-3 rounded-lg"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Blog
-                  </Link>
+                    <Link
+                      href="/about"
+                      className="text-muted-foreground hover:text-foreground text-base font-medium py-2 px-3 rounded-lg"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      About
+                    </Link>
 
-                  <Link
-                    href="/contact"
-                    className="text-muted-foreground hover:text-foreground text-base font-medium py-2 px-3 rounded-lg"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Contact Us
-                  </Link>
+                    <Link
+                      href="/blog"
+                      className="text-muted-foreground hover:text-foreground text-base font-medium py-2 px-3 rounded-lg"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Blog
+                    </Link>
 
-                  {/* Orders Mobile */}
-                  <Link
-                    href="/user-orders"
-                    className="text-muted-foreground hover:text-primary flex items-center gap-2 py-2 px-3 text-base font-medium transition-colors rounded-lg"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <Package className="h-5 w-5" /> My Orders
-                  </Link>
+                    <Link
+                      href="/contact"
+                      className="text-muted-foreground hover:text-foreground text-base font-medium py-2 px-3 rounded-lg"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Contact Us
+                    </Link>
 
-                  {/* Mobile Search */}
-                  <div className="relative mt-4 p-4">
-                    <Input
-                      placeholder="Search Product"
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pr-10"
-                      tabIndex={-1}
-                      onFocus={() => setIsSearchFocused(true)}
-                      onBlur={() => setIsSearchFocused(false)}
-                    />
-                    {searchQuery && (
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="absolute right-10 top-1/2 -translate-y-1/2 h-6 w-6"
-                        onClick={() => setSearchQuery("")}
-                      >
-                        <X className="h-3 w-3" />
-                      </Button>
-                    )}
-                    <SearchIcon className="absolute right-5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  </div>
+                    {/* Orders Mobile */}
+                    <Link
+                      href="/user-orders"
+                      className="text-muted-foreground hover:text-primary flex items-center gap-2 py-2 px-3 text-base font-medium transition-colors rounded-lg"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <Package className="h-5 w-5" /> My Orders
+                    </Link>
 
-                  {/* Mobile utilities */}
-                  <div className="flex items-center justify-between pt-4 border-t border-border">
-                    <SignedIn>
+                    {/* Mobile Search */}
+                    <div className="relative mt-4 p-4">
+                      <Input
+                        placeholder="Search Product"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="pr-10"
+                        tabIndex={-1}
+                        onFocus={() => setIsSearchFocused(true)}
+                        onBlur={() => setIsSearchFocused(false)}
+                      />
+                      {searchQuery && (
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="absolute right-10 top-1/2 -translate-y-1/2 h-6 w-6"
+                          onClick={() => setSearchQuery("")}
+                        >
+                          <X className="h-3 w-3" />
+                        </Button>
+                      )}
+                      <SearchIcon className="absolute right-5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    </div>
+
+                    {/* Mobile utilities */}
+                    <div className="flex items-center justify-between pt-4 border-t border-border">
+                      <SignedIn>
+                        <div className="flex items-center p-5">
+                          <UserButton afterSignOutUrl="/" />
+                          {user?.firstName && (
+                            <span className="text-sm text-muted-foreground mx-2">
+                              Hello, {user.firstName}
+                            </span>
+                          )}
+                        </div>
+                      </SignedIn>
+                      <SignedOut>
+                        <div className="flex items-center p-3">
+                          <SignInButton mode="modal">
+                            <Button variant="ghost" size="sm">
+                              Login
+                            </Button>
+                          </SignInButton>
+                          <SignUpButton mode="modal">
+                            <Button size="sm">Sign Up</Button>
+                          </SignUpButton>
+                        </div>
+                      </SignedOut>
                       <div className="flex items-center p-5">
-                        <UserButton afterSignOutUrl="/" />
-                        {user?.firstName && (
-                          <span className="text-sm text-muted-foreground mx-2">
-                            Hello, {user.firstName}
-                          </span>
-                        )}
-                      </div>
-                    </SignedIn>
-                    <SignedOut>
-                      <div className="flex items-center p-3">
-                        <SignInButton mode="modal">
-                          <Button variant="ghost" size="sm">
-                            Login
-                          </Button>
-                        </SignInButton>
-                        <SignUpButton mode="modal">
-                          <Button size="sm">Sign Up</Button>
-                        </SignUpButton>
-                      </div>
-                    </SignedOut>
-                    <div className="flex items-center p-5">
-                      {/* Theme toggle - same design as desktop */}
-                      <ThemeDropdown className="h-8 w-8" />
+                        {/* Theme toggle - same design as desktop */}
+                        <ThemeDropdown className="h-8 w-8" />
 
-                      {/* Cart Button */}
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 relative hover:bg-muted transition-all duration-300 hover:scale-110"
-                        onClick={() => {
-                          setIsMenuOpen(false); // Close sidebar
-                          setIsOpen(true); // Open CartDropdown
-                        }}
-                      >
-                        <ShoppingBag className="h-4 w-4" />
-                        <span className="absolute -top-1 -right-1 h-4 w-4 bg-destructive rounded-full text-xs text-destructive-foreground flex items-center justify-center">
-                          {state.totalItems > 9 ? "9+" : state.totalItems}
-                        </span>
-                      </Button>
+                        {/* Cart Button */}
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8 relative hover:bg-muted transition-all duration-300 hover:scale-110"
+                          onClick={() => {
+                            setIsMenuOpen(false); // Close sidebar
+                            setIsOpen(true); // Open CartDropdown
+                          }}
+                        >
+                          <ShoppingBag className="h-4 w-4" />
+                          <span className="absolute -top-1 -right-1 h-4 w-4 bg-destructive rounded-full text-xs text-destructive-foreground flex items-center justify-center">
+                            {state.totalItems > 9 ? "9+" : state.totalItems}
+                          </span>
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </SheetContent>
-            </Sheet>
+                </SheetContent>
+              </Sheet>
+            )}
           </div>
         </nav>
       </div>
