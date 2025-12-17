@@ -4,10 +4,22 @@ import React, { useState, useEffect } from "react";
 // import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Grid, List, ShoppingBag, SlidersHorizontal } from "lucide-react";
+import {
+  Search,
+  Grid,
+  List,
+  ShoppingBag,
+  SlidersHorizontal,
+} from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface ProductsHeaderProps {
   searchQuery: string;
@@ -49,14 +61,15 @@ const ProductsHeader: React.FC<ProductsHeaderProps> = ({
       <div className="container mx-auto px-4 py-4 lg:py-6">
         {/* Main Header Row */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-6">
-          
           {/* Left: Title and Product Count */}
           <div className="flex items-center justify-between lg:justify-start gap-4 flex-1">
             <div className="flex items-center gap-3 min-w-0">
               <div
                 className={cn(
                   "p-2 rounded-xl flex items-center justify-center flex-shrink-0",
-                  isDarkMode ? "bg-slate-800 text-blue-400" : "bg-blue-50 text-blue-600"
+                  isDarkMode
+                    ? "bg-primary/20 text-primary"
+                    : "bg-primary/10 text-primary"
                 )}
               >
                 <ShoppingBag className="h-8 w-8" />
@@ -86,7 +99,6 @@ const ProductsHeader: React.FC<ProductsHeaderProps> = ({
 
           {/* Right: Search, Sort, Filters (mobile), View Toggle (desktop) */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 lg:gap-4 flex-1 lg:justify-end">
-            
             {/* Search Bar */}
             <div className="relative flex-1 min-w-0">
               <div className="relative">
@@ -114,7 +126,7 @@ const ProductsHeader: React.FC<ProductsHeaderProps> = ({
                   </Button>
                 )}
               </div>
-              
+
               {/* Search Hint */}
               <div className="flex items-center gap-1 mt-1 text-xs text-muted-foreground px-1">
                 {/* <Sparkles className="h-3 w-3 flex-shrink-0" /> */}
@@ -131,8 +143,12 @@ const ProductsHeader: React.FC<ProductsHeaderProps> = ({
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="featured">Featured</SelectItem>
-                    <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                    <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                    <SelectItem value="price-asc">
+                      Price: Low to High
+                    </SelectItem>
+                    <SelectItem value="price-desc">
+                      Price: High to Low
+                    </SelectItem>
                     <SelectItem value="newest">Newest Arrivals</SelectItem>
                     <SelectItem value="rating">Average Rating</SelectItem>
                   </SelectContent>
@@ -143,7 +159,9 @@ const ProductsHeader: React.FC<ProductsHeaderProps> = ({
                   variant="outline"
                   className={cn(
                     "sm:hidden h-10 rounded-xl px-4 flex-1",
-                    isDarkMode ? "border-slate-700 bg-slate-800/60" : "border-gray-200 bg-white/70"
+                    isDarkMode
+                      ? "border-slate-700 bg-slate-800/60"
+                      : "border-gray-200 bg-white/70"
                   )}
                   onClick={onToggleFilters}
                 >
@@ -164,8 +182,12 @@ const ProductsHeader: React.FC<ProductsHeaderProps> = ({
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="featured">Featured</SelectItem>
-                    <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                    <SelectItem value="price-desc">Price: High to Low</SelectItem>
+                    <SelectItem value="price-asc">
+                      Price: Low to High
+                    </SelectItem>
+                    <SelectItem value="price-desc">
+                      Price: High to Low
+                    </SelectItem>
                     <SelectItem value="newest">Newest Arrivals</SelectItem>
                     <SelectItem value="rating">Average Rating</SelectItem>
                   </SelectContent>
@@ -176,11 +198,18 @@ const ProductsHeader: React.FC<ProductsHeaderProps> = ({
                   variant="outline"
                   className={cn(
                     "lg:hidden h-10 rounded-xl px-4",
-                    isDarkMode ? "border-slate-700 bg-slate-800/60" : "border-gray-200 bg-white/70"
+                    isDarkMode
+                      ? "border-slate-700 bg-slate-800/60"
+                      : "border-gray-200 bg-white/70"
                   )}
                   onClick={onToggleFilters}
                 >
-                  <span className={cn("flex items-center gap-2 font-medium", filtersOpen ? "text-primary" : "")}>
+                  <span
+                    className={cn(
+                      "flex items-center gap-2 font-medium",
+                      filtersOpen ? "text-primary" : ""
+                    )}
+                  >
                     <SlidersHorizontal className="h-5 w-5" />
                     Filters
                   </span>
@@ -202,7 +231,9 @@ const ProductsHeader: React.FC<ProductsHeaderProps> = ({
               <div
                 className={cn(
                   "flex items-center p-1 rounded-lg border shadow-sm w-full sm:w-auto",
-                  isDarkMode ? "border-slate-700 bg-slate-800/50" : "border-gray-200 bg-white"
+                  isDarkMode
+                    ? "border-slate-700 bg-slate-800/50"
+                    : "border-gray-200 bg-white"
                 )}
               >
                 <Button
@@ -217,7 +248,9 @@ const ProductsHeader: React.FC<ProductsHeaderProps> = ({
                   )}
                 >
                   <Grid className="h-3.5 w-3.5" />
-                  <span className="text-xs font-medium hidden xs:inline">Grid</span>
+                  <span className="text-xs font-medium hidden xs:inline">
+                    Grid
+                  </span>
                 </Button>
                 <Button
                   variant={viewMode === "list" ? "default" : "ghost"}
@@ -231,7 +264,9 @@ const ProductsHeader: React.FC<ProductsHeaderProps> = ({
                   )}
                 >
                   <List className="h-3.5 w-3.5" />
-                  <span className="text-xs font-medium hidden xs:inline">List</span>
+                  <span className="text-xs font-medium hidden xs:inline">
+                    List
+                  </span>
                 </Button>
               </div>
             </div>
