@@ -117,8 +117,7 @@ export default function OrderPage() {
       <div className="min-h-screen pt-48 container mx-auto px-4">
         <Card
           className={cn(
-            "max-w-md mx-auto text-center p-16 border shadow hover:shadow-lg transition",
-            isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+            "max-w-md mx-auto text-center p-16 border shadow hover:shadow-lg transition bg-white border-gray-200 dark:bg-card dark:border-border"
           )}
         >
           <div className="mx-auto w-20 h-20 rounded-full bg-muted flex items-center justify-center mb-4">
@@ -142,8 +141,7 @@ export default function OrderPage() {
       <div className="min-h-screen pt-48 container mx-auto px-4">
         <Card
           className={cn(
-            "max-w-md mx-auto text-center p-16 border shadow hover:shadow-lg transition",
-            isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+            "max-w-md mx-auto text-center p-16 border shadow hover:shadow-lg transition bg-white border-gray-200 dark:bg-card dark:border-border"
           )}
         >
           <div className="mx-auto w-20 h-20 rounded-full bg-muted flex items-center justify-center mb-4">
@@ -178,14 +176,12 @@ export default function OrderPage() {
           {/* Customer Info Card */}
           <Card
             className={cn(
-              "border shadow hover:shadow-lg transition",
-              isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+              "border shadow hover:shadow-lg transition bg-white border-gray-200 dark:bg-card dark:border-border"
             )}
           >
             <CardHeader
               className={cn(
-                "rounded-t-lg py-4",
-                isDarkMode ? "bg-white/10" : "bg-gray-50"
+                "rounded-t-lg py-4 bg-gray-50 dark:bg-white/10"
               )}
             >
               <CardTitle className="flex items-center gap-2 text-xl">
@@ -220,14 +216,12 @@ export default function OrderPage() {
           {/* Delivery Info Card */}
           <Card
             className={cn(
-              "border shadow hover:shadow-lg transition",
-              isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+              "border shadow hover:shadow-lg transition bg-white border-gray-200 dark:bg-card dark:border-border"
             )}
           >
             <CardHeader
               className={cn(
-                "rounded-t-lg py-4",
-                isDarkMode ? "bg-white/10" : "bg-gray-50"
+                "rounded-t-lg py-4 bg-gray-50 dark:bg-white/10"
               )}
             >
               <CardTitle className="flex items-center gap-2 text-xl">
@@ -273,14 +267,12 @@ export default function OrderPage() {
           {/* Security & Payment */}
           <Card
             className={cn(
-              "border shadow hover:shadow-lg transition",
-              isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+              "border shadow hover:shadow-lg transition bg-white border-gray-200 dark:bg-card dark:border-border"
             )}
           >
             <CardHeader
               className={cn(
-                "rounded-t-lg py-4",
-                isDarkMode ? "bg-white/10" : "bg-gray-50"
+                "rounded-t-lg py-4 bg-gray-50 dark:bg-white/10"
               )}
             >
               <CardTitle className="flex items-center gap-2 text-xl">
@@ -318,14 +310,12 @@ export default function OrderPage() {
         <div className="hidden xl:block">
           <Card
             className={cn(
-              "border shadow hover:shadow-lg transition sticky top-24",
-              isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+              "border shadow hover:shadow-lg transition sticky top-24 bg-white border-gray-200 dark:bg-card dark:border-border"
             )}
           >
             <CardHeader
               className={cn(
-                "rounded-t-lg py-4",
-                isDarkMode ? "bg-white/10" : "bg-gray-50"
+                "rounded-t-lg py-4 bg-gray-50 dark:bg-white/10"
               )}
             >
               <CardTitle className="flex items-center gap-2 text-xl">
