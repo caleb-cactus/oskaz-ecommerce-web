@@ -57,28 +57,28 @@ const Footer = () => {
 
   const footerLinks = {
     products: [
-      { name: "Kiosk Systems", href: "/products/kiosk" },
-      { name: "Power Solutions", href: "/products/power" },
-      { name: "Digital Displays", href: "/products/display" },
-      { name: "Custom Solutions", href: "/products/custom" }
+      { name: "Smart Kiosks", href: "/products?category=Smart Kiosk" },
+      { name: "Digital Signage", href: "/products?category=Digital Signage" },
+      { name: "Smart Boards", href: "/products?category=Smart Boards" },
+      { name: "Power Solutions (UPS)", href: "/products?category=UPS" }
     ],
     company: [
       { name: "About Us", href: "/about" },
-      { name: "Our Team", href: "/team" },
-      { name: "Careers", href: "/careers" },
-      { name: "Press", href: "/press" }
+      { name: "Our Team", href: "/about#team" },
+      { name: "Our Story", href: "/about#story" },
+      { name: "Blog", href: "/blog" }
     ],
     support: [
-      { name: "Help Center", href: "/help" },
-      { name: "Documentation", href: "/docs" },
       { name: "Contact Us", href: "/contact" },
-      { name: "Warranty", href: "/warranty" }
+      { name: "My Orders", href: "/user-orders" },
+      { name: "Track Order", href: "/user-orders" },
+      { name: "FAQs", href: "/contact" }
     ],
     legal: [
-      { name: "Privacy Policy", href: "/privacy" },
-      { name: "Terms of Service", href: "/terms" },
-      { name: "Cookie Policy", href: "/cookies" },
-      { name: "Refund Policy", href: "/refund" }
+      { name: "Privacy Policy", href: "#" },
+      { name: "Terms of Service", href: "#" },
+      { name: "Cookie Policy", href: "#" },
+      { name: "Refund Policy", href: "#" }
     ]
   };
 
@@ -108,8 +108,8 @@ const Footer = () => {
       )}>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge variant="outline" className="px-3 py-1 text-xs font-medium rounded-full mb-4">
-              <Mail className="w-3 h-3 mr-1 text-primary" />
+            <Badge variant="outline" className="px-3 py-1 text-xs font-medium rounded-full mb-4 border-brand-blue/30 bg-brand-blue/5">
+              <Mail className="w-3 h-3 mr-1 text-brand-blue" />
               Newsletter
             </Badge>
             <h2 className="text-2xl md:text-3xl font-bold mb-4">
@@ -125,9 +125,9 @@ const Footer = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="flex-1"
+                className="flex-1 focus-visible:ring-brand-blue/50"
               />
-              <Button type="submit" className="group rounded-full">
+              <Button type="submit" size="default" className="group rounded-full bg-brand-blue hover:bg-brand-blue/90 text-white shadow-lg shadow-brand-blue/20">
                 Subscribe
                 <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
@@ -145,7 +145,7 @@ const Footer = () => {
               <Link href="/" className="inline-flex items-center mb-4">
                 <div className="relative h-12 w-32">
                   <Image
-                    src="/logo1-transpareent.png"
+                    src="/logo.png"
                     alt="Oskaz Logo"
                     fill
                     className="object-contain"
@@ -162,7 +162,7 @@ const Footer = () => {
                   <div key={index} className="flex items-center text-sm text-muted-foreground">
                     {info.icon}
                     {"href" in info && info.href ? (
-                      <a href={info.href} className="ml-2 hover:text-primary" aria-label={info.text}>
+                      <a href={info.href} className="ml-2 hover:text-brand-blue transition-colors" aria-label={info.text}>
                         {info.text}
                       </a>
                     ) : (
@@ -180,7 +180,7 @@ const Footer = () => {
                     variant="ghost"
                     size="icon"
                     asChild
-                    className="hover:bg-primary/10 hover:text-primary"
+                    className="hover:bg-brand-blue/10 hover:text-brand-blue transition-colors duration-300"
                   >
                     <a href={social.href} aria-label={social.label} target="_blank" rel="noopener noreferrer">
                       {social.icon}
