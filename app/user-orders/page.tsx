@@ -96,12 +96,22 @@ export default function OrdersPage() {
     fetchOrders();
   };
 
-  const formatDate = (dateString: string) =>
-    new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+  const formatDate = (dateString: string) => {
+    try {
+      const date = new Date(dateString);
+      // Check if date is valid
+      if (isNaN(date.getTime())) {
+        return "Invalid Date";
+      }
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    } catch {
+      return "Invalid Date";
+    }
+  };
 
   const getStatusColor = (status: string) => {
     switch (status?.toLowerCase()) {
@@ -124,7 +134,7 @@ export default function OrdersPage() {
     return (
       <div
         className={cn(
-          "min-h-screen pt-24",
+          "min-h-[100dvh] pt-24",
           isDarkMode ? "bg-background" : "bg-gray-50"
         )}
       >
@@ -159,7 +169,7 @@ export default function OrdersPage() {
   return (
     <div
       className={cn(
-        "min-h-screen pt-24",
+        "min-h-[100dvh] pt-24",
         isDarkMode ? "bg-background" : "bg-gray-50"
       )}
     >
