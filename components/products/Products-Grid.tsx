@@ -171,7 +171,12 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
         return filtered.sort((a, b) => {
           const dateA = a.modified ? new Date(a.modified).getTime() : 0;
           const dateB = b.modified ? new Date(b.modified).getTime() : 0;
-          return dateB - dateA;
+          
+          // Handle invalid dates (NaN) safely
+          const validA = isNaN(dateA) ? 0 : dateA;
+          const validB = isNaN(dateB) ? 0 : dateB;
+
+          return validB - validA;
         });
       default:
         return filtered;
