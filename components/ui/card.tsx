@@ -8,7 +8,9 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
     suppressHydrationWarning
       data-slot="card"
       className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm transition-all duration-300",
+        // Dark Mode: Gold Hover Effect
+        "dark:hover:border-primary/40 dark:hover:shadow-lg dark:hover:shadow-primary/10 dark:hover:-translate-y-1 dark:hover:bg-gradient-to-br dark:hover:from-card dark:hover:to-primary/5",
         className
       )}
       {...props}
