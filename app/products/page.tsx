@@ -14,7 +14,7 @@ export default function ProductsPage() {
 
 function ProductsPageSkeleton() {
   return (
-    <div className="min-h-screen bg-background pt-24 px-4">
+    <div className="min-h-[100dvh] bg-background pt-24 px-4">
       <Skeleton className="h-12 w-full mb-6" />
       <Skeleton className="h-96 w-full" />
     </div>
