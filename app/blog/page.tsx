@@ -9,7 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-background pt-18">
+    <div className="min-h-[100dvh] bg-background pt-18">
       <BlogHeader />
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
