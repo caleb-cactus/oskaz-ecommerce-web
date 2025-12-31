@@ -114,7 +114,7 @@ export default function OrderPage() {
 
   if (!isSignedIn)
     return (
-      <div className="min-h-screen pt-48 container mx-auto px-4">
+      <div className="min-h-[100dvh] pt-48 container mx-auto px-4">
         <Card
           className={cn(
             "max-w-md mx-auto text-center p-16 border shadow hover:shadow-lg transition bg-white border-gray-200 dark:bg-card dark:border-border"
@@ -138,7 +138,7 @@ export default function OrderPage() {
 
   if (state.items.length === 0)
     return (
-      <div className="min-h-screen pt-48 container mx-auto px-4">
+      <div className="min-h-[100dvh] pt-48 container mx-auto px-4">
         <Card
           className={cn(
             "max-w-md mx-auto text-center p-16 border shadow hover:shadow-lg transition bg-white border-gray-200 dark:bg-card dark:border-border"
@@ -162,7 +162,7 @@ export default function OrderPage() {
     );
 
   return (
-    <div className="min-h-screen pt-48 container mx-auto px-4 space-y-12">
+    <div className="min-h-[100dvh] pt-48 container mx-auto px-4 space-y-12">
       <div className="flex flex-col items-center justify-center mb-8">
         <ShoppingCartIcon className="h-12 w-12 mb-4" />
         <h1 className="text-4xl font-bold text-center">Checkout</h1>
