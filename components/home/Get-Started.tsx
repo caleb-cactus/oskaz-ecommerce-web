@@ -1,7 +1,7 @@
 // components/get-started.tsx
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -25,10 +25,10 @@ import {
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 const GetStarted = () => {
   const [mounted, setMounted] = useState(false);
-  const [isInView, setIsInView] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -40,31 +40,9 @@ const GetStarted = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { resolvedTheme } = useTheme();
   const isDarkMode = resolvedTheme === "dark";
-  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const current = sectionRef.current;
-
-    if (current) {
-      observer.observe(current);
-    }
-
-    return () => {
-      if (current) {
-        observer.unobserve(current);
-      }
-    };
   }, []);
 
   const handleInputChange = (
@@ -122,7 +100,6 @@ const GetStarted = () => {
 
   return (
     <section
-      ref={sectionRef}
       className={cn(
         "relative py-20 md:py-32 overflow-hidden transition-colors duration-500",
         isDarkMode
@@ -152,12 +129,7 @@ const GetStarted = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div
-          className={cn(
-            "text-center max-w-3xl mx-auto mb-16",
-            isInView && "animate-fade-in"
-          )}
-        >
+        <ScrollReveal variant="fadeUp" className="text-center max-w-3xl mx-auto mb-16">
           <Badge
             variant="outline"
             className="px-3 py-1 text-xs font-medium rounded-full mb-4"
@@ -173,16 +145,11 @@ const GetStarted = () => {
             in touch with our team and let&apos;s discuss how we can help you
             achieve your goals.
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Form */}
-          <div
-            className={cn(
-              "order-2 lg:order-1",
-              isInView && "animate-fade-in-up"
-            )}
-          >
+          <ScrollReveal variant="slideLeft" className="order-2 lg:order-1">
             <Card
               className={cn(
                 "p-8 border shadow-xl",
@@ -310,15 +277,10 @@ const GetStarted = () => {
                 )}
               </CardContent>
             </Card>
-          </div>
+          </ScrollReveal>
 
           {/* Contact Information */}
-          <div
-            className={cn(
-              "order-1 lg:order-2 space-y-8",
-              isInView && "animate-fade-in"
-            )}
-          >
+          <ScrollReveal variant="slideRight" className="order-1 lg:order-2 space-y-8">
             <div>
               <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
               <p className="text-muted-foreground mb-8">
@@ -414,7 +376,7 @@ const GetStarted = () => {
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>
