@@ -33,6 +33,7 @@ import {
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { GoldenBubbles } from "@/components/ui/GoldenBubbles";
 
 export default function ContactPage() {
   const [mounted, setMounted] = useState(false);
@@ -174,6 +175,7 @@ export default function ContactPage() {
       >
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
+          <GoldenBubbles />
           <div
             className={cn(
               "absolute top-1/4 -left-40 h-80 w-80 rounded-full opacity-20 blur-3xl",
@@ -213,7 +215,7 @@ export default function ContactPage() {
       <section className="py-16 px-4">
         <div className="container mx-auto">
           <ScrollReveal variant="fadeUp" className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-primary">
               Get in Touch
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -620,7 +622,7 @@ export default function ContactPage() {
       <section className="py-16 px-4">
         <div className="container mx-auto">
           <ScrollReveal variant="scaleUp" className="text-center max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6 text-primary">
               Still have questions?
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
