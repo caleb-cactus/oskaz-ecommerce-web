@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+import { GoldenBubbles } from "@/components/ui/GoldenBubbles";
 
 // Helper Component for Count Up Animation
 const CountUp = ({ end, suffix = "", duration = 2000 }: { end: number, suffix?: string, duration?: number }) => {
@@ -313,6 +314,7 @@ export default function AboutPage() {
     >
       {/* Background Elements with Subtle Gradients */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <GoldenBubbles />
         <div
           className={cn(
             "absolute -top-40 -right-40 h-80 w-80 rounded-full opacity-20 blur-3xl",
@@ -445,7 +447,7 @@ export default function AboutPage() {
                 inViewSections.story && "animate-fade-in"
               )}
             >
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-primary">
                 Our Story
               </h2>
               <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
@@ -627,7 +629,7 @@ export default function AboutPage() {
               inViewSections.values && "animate-fade-in"
             )}
           >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-primary">
               Our Values
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -689,7 +691,7 @@ export default function AboutPage() {
               inViewSections.team && "animate-fade-in"
             )}
           >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-primary">
               Meet Our Experts
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -755,7 +757,7 @@ export default function AboutPage() {
               inViewSections.testimonials && "animate-fade-in"
             )}
           >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-primary">
               Client Testimonials
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
