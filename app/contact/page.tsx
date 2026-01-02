@@ -476,9 +476,6 @@ export default function ContactPage() {
                           <>
                             <span className="mr-1">Copied!</span>
                           </>
-                          <>
-                            <span className="mr-1">Copied!</span>
-                          </>
                         ) : (
                           <>
                             <Copy className="w-3 h-3 mr-1" />
