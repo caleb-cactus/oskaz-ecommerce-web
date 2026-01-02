@@ -254,10 +254,10 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
                 <Card
                   key={product.name}
                   className={cn(
-                    "group overflow-hidden border transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer h-[620px] flex flex-col",
+                    "group overflow-hidden border transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 cursor-pointer h-[640px] flex flex-col rounded-2xl",
                     isDarkMode
-                      ? "bg-card/50 border-border hover:bg-card/80 hover:border-primary/30"
-                      : "bg-white/70 border-gray-200/70 hover:bg-white hover:border-primary/20"
+                      ? "bg-card/40 border-border/50 backdrop-blur-md hover:bg-card/60 hover:border-primary/40"
+                      : "bg-white/60 border-gray-200/60 backdrop-blur-md hover:bg-white/90 hover:border-primary/20"
                   )}
                   onClick={() => handleProductClick(product)}
                 >
@@ -361,8 +361,12 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
                         </div>
                         <Button
                           size="sm"
-                          className="w-full rounded-full cursor-pointer"
-                          variant={product.stock > 0 ? "default" : "outline"}
+                          className={cn(
+                            "w-full rounded-full cursor-pointer transition-all duration-300",
+                            isDarkMode
+                              ? "bg-secondary hover:bg-secondary/80 text-secondary-foreground"
+                              : "bg-neutral-900 hover:bg-neutral-800 text-white"
+                          )}
                           disabled={product.stock <= 0}
                           onClick={(e) => {
                             e.stopPropagation();
@@ -371,12 +375,11 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
                         >
                           <ShoppingCart className="mr-2 h-4 w-4" />
                           {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
-                          <ArrowRight className="ml-2 h-3 w-3 transition-transform group-hover:translate-x-1" />
                         </Button>
+
                         <Button
                           size="sm"
-                          className="w-full rounded-full mt-2 cursor-pointer"
-                          variant="secondary"
+                          className="w-full rounded-full mt-3 cursor-pointer relative overflow-hidden bg-gradient-to-r from-primary to-yellow-600 hover:from-primary/90 hover:to-yellow-700 text-white border-0 shadow-lg shadow-primary/20"
                           onClick={(e) => {
                             e.stopPropagation();
                             handleBuyNow(product);

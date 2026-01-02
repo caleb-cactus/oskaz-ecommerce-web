@@ -233,10 +233,10 @@ export default function ContactPage() {
               <Card
                 key={index}
                 className={cn(
-                  "text-center transition-all duration-300 hover:shadow-lg hover:scale-105",
+                  "text-center transition-all duration-300 hover:shadow-2xl hover:scale-105 backdrop-blur-md cursor-pointer",
                   isDarkMode
-                    ? "bg-card border-border"
-                    : "bg-white border-gray-200"
+                    ? "bg-card/40 border-border/50 hover:bg-card/60 hover:border-primary/40"
+                    : "bg-white/60 border-gray-200/60 hover:bg-white/90 hover:border-primary/20"
                 )}
               >
                 <CardContent className="p-6">
@@ -273,10 +273,10 @@ export default function ContactPage() {
             <ScrollReveal variant="slideLeft" className="order-2 lg:order-1">
               <Card
                 className={cn(
-                  "border shadow-xl",
+                  "border shadow-2xl backdrop-blur-md",
                   isDarkMode
-                    ? "bg-card border-border"
-                    : "bg-white border-gray-200"
+                    ? "bg-card/40 border-border/50"
+                    : "bg-white/70 border-gray-200/60"
                 )}
               >
                 <CardHeader>
@@ -307,7 +307,7 @@ export default function ContactPage() {
                             value={formData.name}
                             onChange={handleInputChange}
                             placeholder="John Doe"
-                            className="mt-1"
+                            className="mt-1 transition-all duration-300 focus-visible:ring-primary/50 focus-visible:border-primary/50 bg-background/50 backdrop-blur-sm hover:bg-background/80"
                           />
                         </div>
                         <div>
@@ -473,6 +473,9 @@ export default function ContactPage() {
                         className="flex items-center"
                       >
                         {copiedAddress ? (
+                          <>
+                            <span className="mr-1">Copied!</span>
+                          </>
                           <>
                             <span className="mr-1">Copied!</span>
                           </>

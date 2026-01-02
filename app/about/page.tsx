@@ -629,7 +629,7 @@ export default function AboutPage() {
               inViewSections.values && "animate-fade-in"
             )}
           >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-primary">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-6 text-primary">
               Our Values
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -643,11 +643,11 @@ export default function AboutPage() {
               <Card
                 key={index}
                 className={cn(
-                  "transition-all duration-500 hover:shadow-xl hover:-translate-y-2 group",
+                  "transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 group backdrop-blur-md rounded-2xl",
                   inViewSections.values && "animate-fade-in-up",
                   isDarkMode
-                    ? "bg-card border-border"
-                    : "bg-white border-gray-200"
+                    ? "bg-card/40 border-border/50 hover:bg-card/60 hover:border-primary/30"
+                    : "bg-white/60 border-gray-200/60 hover:bg-white/90 hover:border-primary/20"
                 )}
                 style={{
                   animationDelay: inViewSections.values
@@ -691,7 +691,7 @@ export default function AboutPage() {
               inViewSections.team && "animate-fade-in"
             )}
           >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-primary">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-6 text-primary">
               Meet Our Experts
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -706,8 +706,11 @@ export default function AboutPage() {
               <div
                 key={index}
                 className={cn(
-                  "text-center group transition-all duration-500 hover:scale-105",
-                  inViewSections.team && "animate-fade-in-up"
+                  "text-center group transition-all duration-500 hover:-translate-y-2 p-6 rounded-3xl",
+                  inViewSections.team && "animate-fade-in-up",
+                  isDarkMode
+                    ? "bg-card/30 border border-transparent hover:border-primary/20 hover:bg-card/50"
+                    : "bg-white/30 border border-transparent hover:border-primary/10 hover:bg-white/60"
                 )}
                 style={{
                   animationDelay: inViewSections.team

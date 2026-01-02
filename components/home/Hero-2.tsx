@@ -166,14 +166,14 @@ const Hero2 = () => {
         >
           <h1
             className={cn(
-              "text-4xl md:text-5xl font-bold tracking-tight leading-tight max-w-2xl mx-auto text-center transition-all duration-700",
+              "text-4xl md:text-6xl font-heading font-bold tracking-tight leading-tight max-w-3xl mx-auto text-center transition-all duration-700",
               "translate-y-0 opacity-100",
               isHeaderHovered
                 ? "text-white"
                 : "text-neutral-900 dark:text-white"
             )}
           >
-            <span className="bg-gradient-to-r from-primary to-yellow-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary via-yellow-400 to-yellow-600 bg-clip-text text-transparent animate-gradient-x">
               Intelligent Technology
             </span>{" "}
             for Modern Business
@@ -323,8 +323,8 @@ const Hero2 = () => {
           className={cn(
             "flex overflow-x-auto snap-x snap-mandatory sm:grid sm:grid-cols-3 gap-4 mt-4 pb-4 sm:pb-0 w-full px-4 sm:px-0 scrollbar-hide transition-[opacity,transform] duration-600",
             isHeaderHovered
-              ? "opacity-0 translate-y-2"
-              : "opacity-100 -translate-y-3"
+              ? "opacity-0 translate-y-4"
+              : "opacity-100 -translate-y-0"
           )}
           style={{
             transitionTimingFunction: "cubic-bezier(0.25, 0.8, 0.25, 1)",

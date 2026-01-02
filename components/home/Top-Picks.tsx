@@ -316,7 +316,7 @@ const TopPicks = () => {
                 </div>
 
                 {/* Product Name */}
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+                <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight">
                   {product.name}
                 </h2>
 
@@ -377,10 +377,10 @@ const TopPicks = () => {
               >
                 <Card
                   className={cn(
-                    "overflow-hidden border shadow-2xl",
+                    "overflow-hidden border shadow-2xl rounded-2xl",
                     isDarkMode
-                      ? "bg-card/50 border-border"
-                      : "bg-white/70 border-gray-200/70"
+                      ? "bg-card/40 border-border/50 backdrop-blur-md"
+                      : "bg-white/60 border-gray-200/60 backdrop-blur-md"
                   )}
                 >
                   <CardContent className="p-0">

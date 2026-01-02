@@ -33,6 +33,9 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Oskaz - E-Commerce Platform",
   description: "Oskaz - Modern e-commerce platform",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export const viewport = {
