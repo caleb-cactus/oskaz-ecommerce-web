@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Menu,
@@ -26,6 +26,7 @@ import {
   UserButton,
   useUser,
 } from "@clerk/nextjs";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,6 +36,8 @@ const Navbar = () => {
   const { state, setIsOpen } = useCart();
   const { user } = useUser();
   const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
 
   useEffect(() => {
     setMounted(true);
@@ -179,40 +182,11 @@ const Navbar = () => {
             </div>
 
             {/* MOBILE MENU */}
-<<<<<<< HEAD
-            <Sheet
-              open={isMenuOpen}
-              onOpenChange={(open) => {
-                setIsMenuOpen(open);
-                if (open) {
-                  setIsOpen(false); // Close cart when mobile menu opens
-                }
-              }}
-            >
-              <SheetTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="lg:hidden h-8 w-8 hover:bg-muted transition-all duration-500 hover:scale-110"
-                  onClick={() => {
-                    setIsMenuOpen(false); // Close sidebar
-                    setIsOpen(true); // Open CartDropdown
-                  }}
-                >
-                  <Menu className="h-4 w-4" />
-                </Button>
-              </SheetTrigger>
-
-              <SheetContent
-                side="right"
-                className="bg-card dark:bg-sidebar"
-=======
             {!mounted ? (
               <Button
                 variant="ghost"
                 size="icon"
                 className="lg:hidden h-8 w-8 hover:bg-muted transition-all duration-500 hover:scale-110"
->>>>>>> upstream/main
               >
                 <Menu className="h-4 w-4" />
               </Button>
@@ -231,10 +205,6 @@ const Navbar = () => {
                     variant="ghost"
                     size="icon"
                     className="lg:hidden h-8 w-8 hover:bg-muted transition-all duration-500 hover:scale-110"
-                    onClick={() => {
-                      setIsMenuOpen(false); // Close sidebar
-                      setIsOpen(true); // Open CartDropdown
-                    }}
                   >
                     <Menu className="h-4 w-4" />
                   </Button>
@@ -242,7 +212,7 @@ const Navbar = () => {
 
                 <SheetContent
                   side="right"
-                  className={`${isDarkMode ? "dark:bg-sidebar" : "bg-card"}`}
+                  className="bg-card dark:bg-sidebar"
                 >
                   <div className="flex flex-col space-y-4 mt-8">
                     <Link
