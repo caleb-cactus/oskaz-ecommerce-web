@@ -1,42 +1,20 @@
 // components/testimonials.tsx
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Building, GraduationCap, Heart, Building2 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 const Testimonials = () => {
   const [mounted, setMounted] = useState(false);
-  const [isInView, setIsInView] = useState(false);
   const { resolvedTheme } = useTheme();
   const isDarkMode = resolvedTheme === "dark";
-  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const current = sectionRef.current;
-
-    if (current) {
-      observer.observe(current);
-    }
-
-    return () => {
-      if (current) {
-        observer.unobserve(current);
-      }
-    };
   }, []);
 
   if (!mounted) return null;
@@ -68,11 +46,8 @@ const Testimonials = () => {
     },
   ];
 
-  // rating visuals removed from this section per design; helper not used
-
   return (
     <section
-      ref={sectionRef}
       className={cn(
         "relative py-20 md:py-5 overflow-hidden transition-colors duration-500",
         isDarkMode
@@ -104,12 +79,7 @@ const Testimonials = () => {
         {/* Testimonials section removed per request */}
 
         {/* CEO Message */}
-        <div
-          className={cn(
-            "max-w-4xl mx-auto mb-20",
-            isInView && "animate-fade-in"
-          )}
-        >
+        <ScrollReveal variant="fadeUp" className="max-w-4xl mx-auto mb-20">
           <Card
             className={cn(
               "p-8 md:p-12 border shadow-2xl relative overflow-hidden group",
@@ -141,14 +111,20 @@ const Testimonials = () => {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </ScrollReveal>
 
         {/* Trusted By Section */}
-        <div className={cn("text-center", isInView && "animate-fade-in-up")}>
-          <h2 className="text-2xl md:text-3xl font-bold mb-12">
-            Trusted by Leading Organizations
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="text-center">
+          <ScrollReveal variant="fadeUp">
+            <h2 className="text-2xl md:text-3xl font-bold mb-12">
+              Trusted by Leading Organizations
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal
+            variant="scaleUp"
+            staggerChildren={0.15}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+          >
             {industries.map((industry, index) => (
               <Card
                 key={index}
@@ -172,7 +148,7 @@ const Testimonials = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

@@ -52,8 +52,22 @@ const Hero2 = () => {
       { rootMargin: "200px" }
     );
     observer.observe(el);
+
+    // Scroll-based reveal for touch devices (trigger when 40% visible)
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        const isMobile = window.matchMedia("(hover: none)").matches;
+        if (isMobile && entries[0].isIntersecting) {
+          setIsHeaderHovered(true);
+        }
+      },
+      { threshold: 0.4 }
+    );
+    revealObserver.observe(el);
+
     return () => {
       observer.disconnect();
+      revealObserver.disconnect();
     };
   }, []);
 
@@ -61,8 +75,8 @@ const Hero2 = () => {
     <section
       ref={sectionRef}
       className={cn(
-        "relative h-auto md:h-[70vh] flex items-start md:items-center justify-center overflow-visible md:overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl mx-4 sm:mx-6 md:mx-10 my-6 md:my-10 transition-colors",
-        !isHeaderHovered && "bg-white dark:bg-black"
+        "relative h-[65vh] md:h-[70vh] flex items-start md:items-center justify-center overflow-visible md:overflow-hidden rounded-xl sm:rounded-2xl md:rounded-3xl mx-4 sm:mx-6 md:mx-10 my-6 md:my-10 transition-colors",
+        !isHeaderHovered && "bg-white dark:bg-card/40 border border-transparent dark:border-white/5"
       )}
       style={{
         // Unify circle center for video and all overlays
@@ -71,8 +85,8 @@ const Hero2 = () => {
           : "circle(0% at 50% 50%)",
       }}
     >
-      {/* Video Background with Opening Animation (hidden on mobile) */}
-      <div className="absolute inset-0 z-0 overflow-hidden rounded-[2rem] md:rounded-[3rem] hidden md:block">
+      {/* Video Background with Opening Animation */}
+      <div className="absolute inset-0 z-0 overflow-hidden rounded-[2rem] md:rounded-[3rem] block">
         <video
           autoPlay
           loop
@@ -307,7 +321,7 @@ const Hero2 = () => {
 
         <div
           className={cn(
-            "grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6 transition-[opacity,transform] duration-600 w-full max-w-4xl px-4",
+            "flex overflow-x-auto snap-x snap-mandatory sm:grid sm:grid-cols-3 gap-4 mt-4 pb-4 sm:pb-0 w-full px-4 sm:px-0 scrollbar-hide transition-[opacity,transform] duration-600",
             isHeaderHovered
               ? "opacity-0 translate-y-4"
               : "opacity-100 -translate-y-0"
@@ -319,31 +333,28 @@ const Hero2 = () => {
           }}
           aria-hidden={isHeaderHovered}
         >
-          <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 group">
-            <h3 className="text-lg font-heading font-semibold text-neutral-900 dark:text-white group-hover:text-primary transition-colors">
+          <div className="min-w-[70vw] sm:min-w-0 snap-center rounded-xl border border-primary/20 bg-primary/5 dark:bg-primary/10 p-4 shadow-sm backdrop-blur-sm">
+            <h3 className="text-sm font-bold text-primary">
               AI Automation
             </h3>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
-              Streamline complex workflows and reduce manual tasks with our
-              cutting-edge AI engines.
+            <p className="text-xs text-muted-foreground mt-1">
+              Streamline workflows and reduce manual tasks.
             </p>
           </div>
-          <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 group">
-            <h3 className="text-lg font-heading font-semibold text-neutral-900 dark:text-white group-hover:text-primary transition-colors">
+          <div className="min-w-[70vw] sm:min-w-0 snap-center rounded-xl border border-primary/20 bg-primary/5 dark:bg-primary/10 p-4 shadow-sm backdrop-blur-sm">
+            <h3 className="text-sm font-bold text-primary">
               IoT Connectivity
             </h3>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
-              Seamlessly connect devices and gain real-time actionable insights
-              from anywhere.
+            <p className="text-xs text-muted-foreground mt-1">
+              Connect devices and gain real-time insights.
             </p>
           </div>
-          <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 group">
-            <h3 className="text-lg font-heading font-semibold text-neutral-900 dark:text-white group-hover:text-primary transition-colors">
+          <div className="min-w-[70vw] sm:min-w-0 snap-center rounded-xl border border-primary/20 bg-primary/5 dark:bg-primary/10 p-4 shadow-sm backdrop-blur-sm">
+            <h3 className="text-sm font-bold text-primary">
               Secure by Design
             </h3>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
-              Enterprise-grade security and compliance built directly into the
-              core of our platform.
+            <p className="text-xs text-muted-foreground mt-1">
+              Enterprise-grade security and compliance built-in.
             </p>
           </div>
         </div>

@@ -13,6 +13,7 @@ import { DropdownOverlayProvider } from "@/context/DropdownOverlayContext";
 import { ToastProvider } from "@/components/ui/toast";
 import MarketingBar from "@/components/MarketingBar";
 import GithubPopup from "@/components/utilities/GithubPopup";
+import ScrollToTop from "@/components/utilities/ScrollToTop";
 //import FlashlightEffect from "@/components/FlashlightEffect";
 
 const outfit = Outfit({
@@ -35,6 +36,17 @@ export const metadata: Metadata = {
   icons: {
     icon: "/logo.png",
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 };
 
 export default function RootLayout({
@@ -85,6 +97,7 @@ export default function RootLayout({
                   </DropdownOverlayProvider>
                 </CartProvider>
                 <Footer />
+                <ScrollToTop />
                 <MarketingBar />
               </LanguageProvider>
             </ToastProvider>

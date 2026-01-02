@@ -1,7 +1,7 @@
 // app/contact/page.tsx
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -32,10 +32,11 @@ import {
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { GoldenBubbles } from "@/components/ui/GoldenBubbles";
 
 export default function ContactPage() {
   const [mounted, setMounted] = useState(false);
-  const [isInView, setIsInView] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -50,30 +51,9 @@ export default function ContactPage() {
   const [copiedLink, setCopiedLink] = useState(false);
   const { resolvedTheme } = useTheme();
   const isDarkMode = resolvedTheme === "dark";
-  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const current = sectionRef.current;
-    if (current) {
-      observer.observe(current);
-    }
-
-    return () => {
-      if (current) {
-        observer.unobserve(current);
-      }
-    };
   }, []);
 
   const handleInputChange = (
@@ -183,7 +163,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-background pt-14">
+    <div className="min-h-[100dvh] bg-background pt-14">
       {/* Hero Section */}
       <section
         className={cn(
@@ -195,6 +175,7 @@ export default function ContactPage() {
       >
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
+          <GoldenBubbles />
           <div
             className={cn(
               "absolute top-1/4 -left-40 h-80 w-80 rounded-full opacity-20 blur-3xl",
@@ -210,12 +191,7 @@ export default function ContactPage() {
         </div>
 
         <div className="container mx-auto relative z-10">
-          <div
-            className={cn(
-              "text-center max-w-4xl mx-auto",
-              isInView && "animate-fade-in"
-            )}
-          >
+          <ScrollReveal variant="fadeUp" className="text-center max-w-4xl mx-auto">
             <Badge
               variant="outline"
               className="px-3 py-1 text-xs font-medium rounded-full mb-4"
@@ -231,39 +207,37 @@ export default function ContactPage() {
               help. Reach out to our team and we&#39;ll get back to you as soon
               as possible.
             </p>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Contact Methods Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto">
-          <div
-            className={cn("text-center mb-12", isInView && "animate-fade-in")}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+          <ScrollReveal variant="fadeUp" className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-primary">
               Get in Touch
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Choose the most convenient way to reach us. We&#39;re always ready
               to help you find the perfect solution.
             </p>
-          </div>
+          </ScrollReveal>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <ScrollReveal
+            variant="scaleUp"
+            staggerChildren={0.15}
+            className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          >
             {contactMethods.map((method, index) => (
               <Card
                 key={index}
                 className={cn(
-                  "text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 backdrop-blur-md group cursor-pointer",
-                  isInView && "animate-fade-in-up",
+                  "text-center transition-all duration-300 hover:shadow-2xl hover:scale-105 backdrop-blur-md cursor-pointer",
                   isDarkMode
                     ? "bg-card/40 border-border/50 hover:bg-card/60 hover:border-primary/40"
                     : "bg-white/60 border-gray-200/60 hover:bg-white/90 hover:border-primary/20"
                 )}
-                style={{
-                  animationDelay: isInView ? `${index * 100}ms` : "0ms",
-                }}
               >
                 <CardContent className="p-6">
                   <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4 text-primary">
@@ -282,7 +256,7 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
             ))}
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -296,12 +270,7 @@ export default function ContactPage() {
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Contact Form */}
-            <div
-              className={cn(
-                "order-2 lg:order-1",
-                isInView && "animate-fade-in"
-              )}
-            >
+            <ScrollReveal variant="slideLeft" className="order-2 lg:order-1">
               <Card
                 className={cn(
                   "border shadow-2xl backdrop-blur-md",
@@ -442,15 +411,10 @@ export default function ContactPage() {
                   )}
                 </CardContent>
               </Card>
-            </div>
+            </ScrollReveal>
 
             {/* Office Information */}
-            <div
-              className={cn(
-                "order-1 lg:order-2 space-y-8",
-                isInView && "animate-fade-in"
-              )}
-            >
+            <ScrollReveal variant="slideRight" className="order-1 lg:order-2 space-y-8">
               {/* Office Location with Map */}
               <Card
                 className={cn(
@@ -649,7 +613,7 @@ export default function ContactPage() {
                   ))}
                 </CardContent>
               </Card>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -657,13 +621,8 @@ export default function ContactPage() {
       {/* Quick Contact Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto">
-          <div
-            className={cn(
-              "text-center max-w-4xl mx-auto",
-              isInView && "animate-fade-in"
-            )}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+          <ScrollReveal variant="scaleUp" className="text-center max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6 text-primary">
               Still have questions?
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
@@ -686,7 +645,7 @@ export default function ContactPage() {
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>

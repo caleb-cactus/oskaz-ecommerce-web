@@ -1,7 +1,7 @@
 // components/top-picks.tsx
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 type Product = {
   name: string;
@@ -39,36 +40,13 @@ type Product = {
 
 const TopPicks = () => {
   const [mounted, setMounted] = useState(false);
-  const [isInView, setIsInView] = useState(false);
   const [products] = useState<Product[]>([]);
   const [loading] = useState(false);
   const { resolvedTheme } = useTheme();
   const isDarkMode = resolvedTheme === "dark";
-  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const current = sectionRef.current;
-
-    if (current) {
-      observer.observe(current);
-    }
-
-    return () => {
-      if (current) {
-        observer.unobserve(current);
-      }
-    };
   }, []);
 
   // Helper function to format price
@@ -148,7 +126,6 @@ const TopPicks = () => {
   if (loading) {
     return (
       <section
-        ref={sectionRef}
         className={cn(
           "relative py-20 md:py-28 overflow-hidden transition-colors duration-500",
           isDarkMode
@@ -221,7 +198,6 @@ const TopPicks = () => {
   if (products.length === 0) {
     return (
       <section
-        ref={sectionRef}
         className={cn(
           "relative py-20 md:py-28 overflow-hidden transition-colors duration-500",
           isDarkMode
@@ -230,7 +206,7 @@ const TopPicks = () => {
         )}
       >
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center max-w-3xl mx-auto">
+          <ScrollReveal variant="fadeUp" className="text-center max-w-3xl mx-auto">
             <Badge
               variant="outline"
               className="px-3 py-1 text-xs font-medium rounded-full mb-4"
@@ -245,7 +221,7 @@ const TopPicks = () => {
               We&apos;re currently updating our selection of TV Wall products.
               Please check back soon for our latest offerings.
             </p>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
     );
@@ -258,7 +234,6 @@ const TopPicks = () => {
 
   return (
     <section
-      ref={sectionRef}
       className={cn(
         "relative py-20 md:py-28 overflow-hidden transition-colors duration-500",
         isDarkMode
@@ -288,12 +263,7 @@ const TopPicks = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div
-          className={cn(
-            "text-center max-w-3xl mx-auto mb-16",
-            isInView && "animate-fade-in"
-          )}
-        >
+        <ScrollReveal variant="fadeUp" className="text-center max-w-3xl mx-auto mb-16">
           <Badge
             variant="outline"
             className="px-3 py-1 text-xs font-medium rounded-full mb-4"
@@ -308,7 +278,7 @@ const TopPicks = () => {
             Handpicked selection of our most popular and innovative products,
             chosen by our experts for exceptional performance and value.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Products Grid */}
         <div className="space-y-16">
@@ -321,11 +291,11 @@ const TopPicks = () => {
               )}
             >
               {/* Left Content */}
-              <div
+              <ScrollReveal
+                variant={index % 2 === 0 ? "slideLeft" : "slideRight"}
                 className={cn(
                   "space-y-6",
-                  index % 2 === 1 ? "lg:col-start-2" : "",
-                  isInView && "animate-fade-in"
+                  index % 2 === 1 ? "lg:col-start-2" : ""
                 )}
               >
                 {/* Badge */}
@@ -385,19 +355,6 @@ const TopPicks = () => {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  {/* <Button 
-                    size="lg" 
-                    className="group rounded-full px-6"
-                    disabled={product.stock <= 0}
-                    onClick={() => {
-                      // Add to cart logic
-                      console.log(`Added ${product.name} to cart`);
-                    }}
-                  >
-                    <ShoppingCart className="mr-2 h-4 w-4" />
-                    Add to Cart
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button> */}
                   <Button
                     // variant="outline"
                     size="lg"
@@ -411,15 +368,12 @@ const TopPicks = () => {
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </div>
-              </div>
+              </ScrollReveal>
 
               {/* Right Image */}
-              <div
-                className={cn(
-                  "relative",
-                  index % 2 === 1 ? "lg:col-start-1" : "",
-                  isInView && "animate-scale-in"
-                )}
+              <ScrollReveal
+                variant={index % 2 === 0 ? "slideRight" : "slideLeft"}
+                className={cn("relative", index % 2 === 1 ? "lg:col-start-1" : "")}
               >
                 <Card
                   className={cn(
@@ -496,20 +450,13 @@ const TopPicks = () => {
                     </div>
                   </CardContent>
                 </Card>
-              </div>
+              </ScrollReveal>
             </div>
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <div
-          className={cn("text-center mt-16", isInView && "animate-fade-in")}
-          style={{
-            animationDelay: isInView ? "800ms" : "0ms",
-            opacity: isInView ? 1 : 0,
-            transform: isInView ? "translateY(0)" : "translateY(20px)",
-          }}
-        >
+        <ScrollReveal variant="scaleUp" className="text-center mt-16">
           <div
             className={cn(
               "inline-block p-8 rounded-2xl border",
@@ -528,7 +475,7 @@ const TopPicks = () => {
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

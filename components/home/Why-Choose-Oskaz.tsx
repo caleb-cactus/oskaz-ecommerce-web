@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -15,38 +15,15 @@ import {
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 const WhyChooseOskaz = () => {
   const [mounted, setMounted] = useState(false);
-  const [isInView, setIsInView] = useState(false);
   const { resolvedTheme } = useTheme();
   const isDarkMode = resolvedTheme === "dark";
-  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
-    setIsInView(true);
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold: 0 }
-    );
-
-    const current = sectionRef.current;
-
-    if (current) {
-      observer.observe(current);
-    }
-
-    return () => {
-      if (current) {
-        observer.unobserve(current);
-      }
-    };
   }, []);
 
   if (!mounted) return null;
@@ -120,7 +97,6 @@ const WhyChooseOskaz = () => {
 
   return (
     <section
-      ref={sectionRef}
       className={cn(
         "relative py-20 md:py-32 overflow-hidden transition-colors duration-500",
         isDarkMode
@@ -150,12 +126,7 @@ const WhyChooseOskaz = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div
-          className={cn(
-            "text-center max-w-3xl mx-auto mb-16",
-            isInView && "animate-fade-in"
-          )}
-        >
+        <ScrollReveal variant="fadeUp" className="text-center max-w-3xl mx-auto mb-16">
           <Badge
             variant="outline"
             className="px-3 py-1 text-xs font-medium rounded-full mb-4"
@@ -176,25 +147,24 @@ const WhyChooseOskaz = () => {
             specifically designed for your industry, workflow, and growth
             objectives.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <ScrollReveal
+          variant="scaleUp"
+          staggerChildren={0.2}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+        >
           {features.map((feature, index) => (
             <Card
               key={index}
               className={cn(
                 "p-6 border transition-all duration-500 hover:shadow-lg hover:scale-105",
-                isInView && "animate-fade-in-up",
                 isDarkMode
                   ? "bg-card/50 border-border hover:bg-card/80 hover:border-primary/30"
                   : "bg-white/70 border-gray-200/70 hover:bg-white hover:border-primary/20"
               )}
-              style={{
-                animationDelay: isInView ? `${index * 150}ms` : "0ms",
-              }}
             >
-              {" "}
               <CardContent className="p-0">
                 <div className="flex flex-col items-center text-center space-y-4">
                   <div className="text-4xl mb-2">{feature.emoji}</div>
@@ -207,16 +177,11 @@ const WhyChooseOskaz = () => {
               </CardContent>
             </Card>
           ))}
-        </div>
+        </ScrollReveal>
 
         {/* Benefits Section */}
-        <div
-          className={cn(
-            "grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16",
-            isInView && "animate-fade-in"
-          )}
-        >
-          <div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          <ScrollReveal variant="slideRight">
             <h3 className="text-2xl font-bold mb-6">
               Why Our Clients Choose Us
             </h3>
@@ -225,11 +190,6 @@ const WhyChooseOskaz = () => {
                 <div
                   key={index}
                   className="flex items-center space-x-3 transition-all duration-500"
-                  //   style={{
-                  //     transitionDelay: isInView ? `${index * 100}ms` : '0ms',
-                  //     opacity: isInView ? 1 : 0,
-                  //     transform: isInView ? 'translateX(0)' : 'translateX(-20px)'
-                  //   }}
                 >
                   {benefit.icon}
                   <span className="text-lg">{benefit.text}</span>
@@ -242,9 +202,9 @@ const WhyChooseOskaz = () => {
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </div>
-          </div>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 gap-6">
+          <ScrollReveal variant="slideLeft" staggerChildren={0.15} className="grid grid-cols-1 gap-6">
             {testimonials.map((testimonial, index) => (
               <Card
                 key={index}
@@ -254,11 +214,6 @@ const WhyChooseOskaz = () => {
                     ? "bg-card/50 border-border"
                     : "bg-white/70 border-gray-200/70"
                 )}
-                // style={{
-                //   transitionDelay: isInView ? `${(index + 3) * 150}ms` : '0ms',
-                //   opacity: isInView ? 1 : 0,
-                //   transform: isInView ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)'
-                // }}
               >
                 <CardContent className="p-0">
                   <div className="flex items-start space-x-4">
@@ -290,7 +245,7 @@ const WhyChooseOskaz = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

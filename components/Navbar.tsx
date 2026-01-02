@@ -15,7 +15,6 @@ import { LanguageDropdown } from "./utilities/language-dropdown";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { useTheme } from "next-themes";
 import ProductsDropdown from "./Products-Dropdown";
 import CartDropdown from "./cart/Cart-Dropdown";
 import { useCart } from "@/context/CartContext";
@@ -27,18 +26,18 @@ import {
   UserButton,
   useUser,
 } from "@clerk/nextjs";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
-  const { resolvedTheme } = useTheme();
-  const isDarkMode = resolvedTheme === "dark";
-
   const { state, setIsOpen } = useCart();
   const { user } = useUser();
   const [mounted, setMounted] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
 
   useEffect(() => {
     setMounted(true);
@@ -48,10 +47,7 @@ const Navbar = () => {
     <>
       <div className="fixed top-0 left-0 right-0 z-[1000] px-4 py-3">
         <nav
-          suppressHydrationWarning
-          className={`h-16 w-full max-w-screen-2xl mx-auto flex items-center justify-between px-6 shadow-sm backdrop-blur-md transition-all duration-500 rounded-2xl relative overflow-hidden ${
-            isDarkMode ? "dark:bg-card" : "bg-card"
-          }`}
+          className="h-16 w-full max-w-screen-2xl mx-auto flex items-center justify-between px-6 shadow-sm backdrop-blur-md transition-all duration-500 rounded-2xl relative overflow-hidden bg-card"
         >
           {/* LEFT: LOGO */}
           <div className="flex-shrink-0 relative z-10">
@@ -68,32 +64,28 @@ const Navbar = () => {
             </Link>
           </div>
           {/* CENTER: MAIN MENU */}
-          <div className="hidden lg:flex items-center justify-center gap-10 relative z-10">
-            <Link
-              href="/"
-              className="px-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-105"
-            >
-              Home
-            </Link>
-            <ProductsDropdown />
-            <Link
-              href="/about"
-              className="px-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-105"
-            >
-              About
-            </Link>
-            <Link
-              href="/blog"
-              className="px-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-105"
-            >
-              Blog
-            </Link>
-            <Link
-              href="/contact"
-              className="px-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-105"
-            >
-              Contact Us
-            </Link>
+          <div className="hidden lg:flex items-center justify-center gap-8 relative z-10">
+            {[
+              { label: "Home", href: "/" },
+              { label: "Products", component: <ProductsDropdown /> },
+              { label: "About", href: "/about" },
+              { label: "Blog", href: "/blog" },
+              { label: "Contact Us", href: "/contact" },
+            ].map((item, idx) => (
+              <React.Fragment key={idx}>
+                {item.component ? (
+                  item.component
+                ) : (
+                  <Link
+                    href={item.href!}
+                    className="relative px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors group"
+                  >
+                    {item.label}
+                    <span className="absolute inset-x-0 bottom-0 h-0.5 bg-brand-blue scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  </Link>
+                )}
+              </React.Fragment>
+            ))}
           </div>
           {/* RIGHT: SEARCH BAR & UTILITIES */}
           <div className="flex items-center space-x-4 relative z-10">
@@ -109,9 +101,7 @@ const Navbar = () => {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onFocus={() => setIsSearchFocused(true)}
                   onBlur={() => setIsSearchFocused(false)}
-                  className={`h-11 pr-10 rounded-full border-none shadow-sm ${
-                    isDarkMode ? "bg-muted/60" : "bg-muted"
-                  } focus-visible:ring-primary/40 focus-visible:ring-2 transition-all`}
+                  className="h-11 pr-10 rounded-full border-none shadow-sm bg-muted dark:bg-muted/60 focus-visible:ring-primary/40 focus-visible:ring-2 transition-all"
                 />
                 {searchQuery && (
                   <Button
@@ -146,12 +136,12 @@ const Navbar = () => {
               <SignedOut>
                 <div className="flex items-center space-x-2">
                   <SignInButton mode="modal">
-                    <Button variant="ghost" size="sm" className="text-sm">
+                    <Button variant="ghost" size="sm" className="text-sm hover:text-brand-blue">
                       Login
                     </Button>
                   </SignInButton>
                   <SignUpButton mode="modal">
-                    <Button size="sm" className="text-sm">
+                    <Button size="sm" variant="secondary" className="text-sm shadow-md shadow-brand-blue/20">
                       Sign Up
                     </Button>
                   </SignUpButton>
@@ -215,10 +205,6 @@ const Navbar = () => {
                     variant="ghost"
                     size="icon"
                     className="lg:hidden h-8 w-8 hover:bg-muted transition-all duration-500 hover:scale-110"
-                    onClick={() => {
-                      setIsMenuOpen(false); // Close sidebar
-                      setIsOpen(true); // Open CartDropdown
-                    }}
                   >
                     <Menu className="h-4 w-4" />
                   </Button>
@@ -226,7 +212,7 @@ const Navbar = () => {
 
                 <SheetContent
                   side="right"
-                  className={`${isDarkMode ? "dark:bg-sidebar" : "bg-card"}`}
+                  className="bg-card dark:bg-sidebar"
                 >
                   <div className="flex flex-col space-y-4 mt-8">
                     <Link

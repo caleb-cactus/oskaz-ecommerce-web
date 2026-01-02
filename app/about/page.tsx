@@ -22,6 +22,57 @@ import {
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+import { GoldenBubbles } from "@/components/ui/GoldenBubbles";
+
+// Helper Component for Count Up Animation
+const CountUp = ({ end, suffix = "", duration = 2000 }: { end: number, suffix?: string, duration?: number }) => {
+  const [count, setCount] = useState(0);
+  const nodeRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    let animationFrameId: number;
+    let startTimestamp: number | null = null;
+    let isCancelled = false;
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !isCancelled) {
+          const step = (timestamp: number) => {
+            if (isCancelled) return;
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            setCount(Math.floor(progress * end));
+            if (progress < 1) {
+              animationFrameId = window.requestAnimationFrame(step);
+            } else {
+              setCount(end);
+            }
+          };
+          animationFrameId = window.requestAnimationFrame(step);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (nodeRef.current) {
+      observer.observe(nodeRef.current);
+    }
+
+    return () => {
+      isCancelled = true;
+      if (animationFrameId) window.cancelAnimationFrame(animationFrameId);
+      observer.disconnect();
+    };
+  }, [end, duration]);
+
+  return (
+    <span ref={nodeRef} className="tabular-nums">
+      {count}
+      {suffix}
+    </span>
+  );
+};
 
 export default function AboutPage() {
   const [mounted, setMounted] = useState(false);
@@ -156,10 +207,10 @@ export default function AboutPage() {
   ];
 
   const stats = [
-    { icon: Globe, label: "Organizations Served", value: "100+" },
-    { icon: Users, label: "Satisfied Clients", value: "500+" },
-    { icon: Award, label: "Years Experience", value: "17" },
-    { icon: TrendingUp, label: "Success Rate", value: "95%" },
+    { icon: Globe, label: "Organizations Served", value: 100, suffix: "+" },
+    { icon: Users, label: "Satisfied Clients", value: 500, suffix: "+" },
+    { icon: Award, label: "Years Experience", value: 17, suffix: "" },
+    { icon: TrendingUp, label: "Success Rate", value: 95, suffix: "%" },
   ];
 
   const values = [
@@ -255,7 +306,7 @@ export default function AboutPage() {
   return (
     <div
       className={cn(
-        "min-h-screen transition-colors duration-500",
+        "min-h-[100dvh] transition-colors duration-500",
         isDarkMode
           ? "bg-background"
           : "bg-gradient-to-br from-background to-secondary/10"
@@ -263,6 +314,7 @@ export default function AboutPage() {
     >
       {/* Background Elements with Subtle Gradients */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <GoldenBubbles />
         <div
           className={cn(
             "absolute -top-40 -right-40 h-80 w-80 rounded-full opacity-20 blur-3xl",
@@ -279,11 +331,11 @@ export default function AboutPage() {
       </div>
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative pt-32 pb-20 px-4 md:px-8">
+      <section ref={heroRef} className="relative pt-24 pb-8 px-4 md:px-8">
         <div className="max-w-6xl mx-auto text-center">
           <div
             className={cn(
-              "space-y-8",
+              "space-y-6",
               inViewSections.hero && "animate-fade-in"
             )}
           >
@@ -338,7 +390,7 @@ export default function AboutPage() {
       <section
         ref={statsRef}
         className={cn(
-          "relative py-20 px-4 md:px-8",
+          "relative py-12 px-4 md:px-8",
           isDarkMode
             ? "bg-muted/30"
             : "bg-gradient-to-br from-background to-secondary/5"
@@ -350,19 +402,20 @@ export default function AboutPage() {
               <div
                 key={index}
                 className={cn(
-                  "text-center",
+                  "text-center p-6 rounded-2xl transition-all duration-300 hover:bg-card/50",
                   inViewSections.stats && "animate-fade-in-up"
                 )}
                 style={{
                   animationDelay: inViewSections.stats
                     ? `${index * 100}ms`
                     : "0ms",
+                  willChange: "opacity, transform",
                 }}
               >
                 <div
                   className={cn(
-                    "w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center transition-all duration-500 hover:scale-110 bg-primary/10",
-                    isDarkMode ? "bg-primary/20" : "bg-primary/10"
+                    "w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center transition-all duration-500 hover:scale-110 shadow-lg",
+                    isDarkMode ? "bg-primary/20 shadow-primary/10" : "bg-primary/10 shadow-primary/5"
                   )}
                 >
                   <stat.icon
@@ -372,10 +425,10 @@ export default function AboutPage() {
                     )}
                   />
                 </div>
-                <h3 className="text-3xl md:text-4xl font-bold mb-2">
-                  {stat.value}
+                <h3 className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-yellow-600 bg-clip-text text-transparent">
+                  <CountUp end={stat.value} suffix={stat.suffix} />
                 </h3>
-                <p className="text-muted-foreground font-medium">
+                <p className="text-muted-foreground font-medium text-lg">
                   {stat.label}
                 </p>
               </div>
@@ -385,7 +438,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story Section */}
-      <section ref={storyRef} className="relative py-20 px-4 md:px-8">
+      <section id="story" ref={storyRef} className="relative py-20 px-4 md:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div
@@ -394,7 +447,7 @@ export default function AboutPage() {
                 inViewSections.story && "animate-fade-in"
               )}
             >
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-primary">
                 Our Story
               </h2>
               <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
@@ -576,7 +629,7 @@ export default function AboutPage() {
               inViewSections.values && "animate-fade-in"
             )}
           >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-6">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-6 text-primary">
               Our Values
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -630,7 +683,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section ref={teamRef} className="relative py-20 px-4 md:px-8">
+      <section id="team" ref={teamRef} className="relative py-20 px-4 md:px-8">
         <div className="max-w-6xl mx-auto">
           <div
             className={cn(
@@ -638,7 +691,7 @@ export default function AboutPage() {
               inViewSections.team && "animate-fade-in"
             )}
           >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-6">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-6 text-primary">
               Meet Our Experts
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -707,7 +760,7 @@ export default function AboutPage() {
               inViewSections.testimonials && "animate-fade-in"
             )}
           >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-primary">
               Client Testimonials
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -716,12 +769,12 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 pb-8 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
             {testimonials.map((testimonial, index) => (
               <Card
                 key={index}
                 className={cn(
-                  "transition-all duration-500 hover:shadow-xl hover:-translate-y-1 group",
+                  "transition-all duration-500 hover:shadow-xl hover:-translate-y-1 group min-w-[85vw] md:min-w-0 snap-center h-full",
                   inViewSections.testimonials && "animate-fade-in-up",
                   isDarkMode
                     ? "bg-card border-border"
@@ -795,12 +848,12 @@ export default function AboutPage() {
             <h3 className="text-3xl font-bold mb-8 text-center">
               Official Certificates & Recognition
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-3 lg:grid-cols-5 gap-6 pb-8 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
               {certificates.map((certificate, index) => (
                 <div
                   key={certificate.id}
                   className={cn(
-                    "group cursor-pointer transition-all duration-500 hover:scale-105",
+                    "group cursor-pointer transition-all duration-500 hover:scale-105 min-w-[85vw] md:min-w-0 snap-center",
                     inViewSections.certificates && "animate-fade-in-up"
                   )}
                   style={{
@@ -825,7 +878,7 @@ export default function AboutPage() {
                           src={`/${certificate.image}`}
                           alt={certificate.title}
                           fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          sizes="(max-width: 768px) 85vw, (max-width: 1024px) 33vw, 20vw"
                           className="object-contain transition-transform duration-500 group-hover:scale-110"
                         />
                         {/* Fallback if image doesn't load */}

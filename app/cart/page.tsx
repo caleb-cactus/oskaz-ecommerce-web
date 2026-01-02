@@ -46,12 +46,10 @@ export default function CartPage() {
         
         <div className="flex items-center gap-3 mb-2">
           <div className={cn(
-            "p-3 rounded-2xl",
-            isDarkMode ? "bg-primary/10" : "bg-blue-50"
+            "p-3 rounded-2xl bg-blue-50 dark:bg-primary/10"
           )}>
             <ShoppingBag className={cn(
-              "h-6 w-6",
-              isDarkMode ? "text-primary" : "text-blue-600"
+              "h-6 w-6 text-blue-600 dark:text-primary"
             )} />
           </div>
           <div>
@@ -85,17 +83,14 @@ export default function CartPage() {
       
       {state.items.length === 0 ? (
         <Card className={cn(
-          "text-center py-20 border-2 shadow-xl hover:shadow-2xl transition-all duration-500",
-          isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+          "text-center py-20 border-2 shadow-xl hover:shadow-2xl transition-all duration-500 bg-white border-gray-200 dark:bg-card dark:border-border"
         )}>
           <CardContent className="space-y-6">
             <div className={cn(
-              "mx-auto w-24 h-24 rounded-2xl flex items-center justify-center mb-4 transition-all duration-500 hover:scale-110",
-              isDarkMode ? "bg-primary/10" : "bg-blue-50"
+              "mx-auto w-24 h-24 rounded-2xl flex items-center justify-center mb-4 transition-all duration-500 hover:scale-110 bg-blue-50 dark:bg-primary/10"
             )}>
               <ShoppingBag className={cn(
-                "h-12 w-12 transition-all duration-500",
-                isDarkMode ? "text-primary" : "text-blue-600"
+                "h-12 w-12 transition-all duration-500 text-blue-600 dark:text-primary"
               )} />
             </div>
             <div className="space-y-3">
@@ -128,15 +123,13 @@ export default function CartPage() {
           <div className="lg:col-span-2 space-y-6">
             {/* Cart Header Card */}
             <Card className={cn(
-              "border-2 shadow-lg hover:shadow-xl transition-all duration-500 backdrop-blur-sm",
-              isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+              "border-2 shadow-lg hover:shadow-xl transition-all duration-500 backdrop-blur-sm bg-white border-gray-200 dark:bg-card dark:border-border"
             )}>
               <CardHeader className="flex flex-row items-center justify-between pb-4 border-b">
                 <div className="flex items-center gap-3">
                   <CardTitle className="text-2xl font-bold">Your Selection</CardTitle>
                   <div className={cn(
-                    "px-3 py-1 rounded-full text-sm font-medium",
-                    isDarkMode ? "bg-primary/20 text-primary" : "bg-blue-100 text-blue-700"
+                    "px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-700 dark:bg-primary/20 dark:text-primary"
                   )}>
                     {state.totalItems} {state.totalItems === 1 ? 'item' : 'items'}
                   </div>
@@ -171,8 +164,7 @@ export default function CartPage() {
 
             {/* Additional Info Card */}
             <Card className={cn(
-              "border-2 shadow-lg backdrop-blur-sm",
-              isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+              "border-2 shadow-lg backdrop-blur-sm bg-white border-gray-200 dark:bg-card dark:border-border"
             )}>
               <CardContent className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">

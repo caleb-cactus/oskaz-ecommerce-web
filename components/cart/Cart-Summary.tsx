@@ -24,8 +24,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({ onCheckout }) => {
   return (
     <Card
       className={cn(
-        "sticky top-24",
-        isDarkMode ? "bg-card border-border" : "bg-white border-gray-200"
+        "sticky top-24 bg-white border-gray-200 dark:bg-card dark:border-border"
       )}
     >
       <CardHeader className="pb-3">

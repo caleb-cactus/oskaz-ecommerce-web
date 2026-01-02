@@ -22,7 +22,7 @@ export function ProductsPageContent() {
   const [categories, setCategories] = useState<Record<string, boolean>>({});
   // const [priceRange, setPriceRange] = useState<[number, number]>([0, 1000000]);
   const [features, setFeatures] = useState({
-    inStock: true,
+    inStock: false,
     onSale: false,
     newArrivals: false,
     bestSellers: false,

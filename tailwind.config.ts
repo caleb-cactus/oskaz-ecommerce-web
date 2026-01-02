@@ -1,4 +1,3 @@
-// tailwind.config.js
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -42,6 +41,7 @@ const config: Config = {
         'slide-in-bottom': 'slideInFromBottom 0.8s ease-out',
         'slide-in-left': 'slideInFromLeft 0.8s ease-out',
         'slide-in-right': 'slideInFromRight 0.8s ease-out',
+        'pulse-glow': 'pulse-glow 3s infinite',
       },
       keyframes: {
         fadeIn: {
@@ -68,6 +68,10 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'translateX(30px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
+        'pulse-glow': {
+          '0%, 100%': { boxShadow: '0 0 10px rgba(0, 80, 184, 0.2)' },
+          '50%': { boxShadow: '0 0 20px rgba(0, 80, 184, 0.4)' },
+        },
       },
       colors: {
         background: "oklch(var(--background))",
@@ -83,6 +87,10 @@ const config: Config = {
         primary: {
           DEFAULT: "oklch(var(--primary))",
           foreground: "oklch(var(--primary-foreground))",
+        },
+        'brand-blue': {
+          DEFAULT: "oklch(var(--brand-blue))",
+          foreground: "oklch(var(--brand-blue-foreground))",
         },
         secondary: {
           DEFAULT: "oklch(var(--secondary))",
@@ -119,6 +127,10 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-hero-light': 'linear-gradient(135deg, oklch(1 0 0) 0%, oklch(0.98 0.01 260) 30%, rgba(0, 80, 184, 0.1) 65%, oklch(0.74 0.16 75) 100%)',
+        'gradient-hero-dark': 'linear-gradient(135deg, oklch(0.12 0.04 265) 0%, oklch(0.08 0.03 260) 40%, rgba(26, 111, 217, 0.15) 75%, oklch(0.74 0.16 75) 100%)',
+        'gradient-gold-blue': 'linear-gradient(90deg, oklch(0.74 0.16 75), oklch(0.45 0.18 265))',
+        'gradient-accent': 'linear-gradient(120deg, oklch(0.74 0.16 75) 0%, oklch(0.45 0.18 300) 50%, oklch(0.6 0.15 40) 100%)',
       },
       boxShadow: {
         '3xl': '0 35px 60px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)',
