@@ -57,6 +57,7 @@ export default function ProductDetailPage() {
     };
 
     if (params.id) {
+      window.scrollTo(0, 0);
       fetchProduct();
     }
   }, [params.id]);
