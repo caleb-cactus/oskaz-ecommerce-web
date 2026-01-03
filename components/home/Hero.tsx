@@ -130,7 +130,8 @@ const Hero = () => {
           <div
             key={index}
             className={cn(
-              "absolute rounded-full opacity-30 blur-3xl animate-pulse",
+              "absolute rounded-full opacity-80 blur-[100px] animate-pulse", 
+              isDarkMode ? "mix-blend-screen" : "mix-blend-multiply opacity-60", // Adjustment for light mode visibility
               orb.colorClass
             )}
             style={{

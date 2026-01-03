@@ -40,6 +40,7 @@ export type Product = {
     parent_item_group: string;
     is_group: number;
   };
+  brand?: string;
   related_items?: Product[];
 };
 
@@ -91,6 +92,11 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
 
     fetchProducts();
   }, []);
+
+  // Scroll to top when page changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
 
   const handleProductClick = (product: Product) => {
     if (onProductClick) {
@@ -285,6 +291,14 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
                           </div>
                         </div>
                       )}
+                      {/* Brand Tag */}
+                      {product.brand && (
+                         <div className="absolute top-2 left-2 z-10">
+                            <Badge className="bg-primary text-primary-foreground hover:bg-primary/90 border-none shadow-sm font-medium tracking-wide pointer-events-none">
+                              {product.brand}
+                            </Badge>
+                         </div>
+                      )}
                       <div className="absolute top-2 right-2">
                         <Badge
                           variant="secondary"
@@ -440,6 +454,14 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({
                             {getStockStatus(product.stock).status}
                           </Badge>
                         </div>
+                         {/* Brand Tag List View */}
+                         {product.brand && (
+                           <div className="absolute bottom-2 left-2 z-10">
+                              <Badge className="bg-primary text-primary-foreground hover:bg-primary/90 border-none shadow-sm font-medium tracking-wide pointer-events-none text-[10px] h-5 px-2">
+                                {product.brand}
+                              </Badge>
+                           </div>
+                        )}
                       </div>
 
                       {/* Info */}

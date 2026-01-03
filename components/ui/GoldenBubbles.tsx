@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
+import { useTheme } from "next-themes";
+
 interface GoldenBubblesProps {
   count?: number;
   className?: string;
@@ -28,6 +30,8 @@ export function GoldenBubbles({
 }: GoldenBubblesProps) {
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
   const [active, setActive] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === "dark";
 
   useEffect(() => {
     setActive(true);
@@ -63,9 +67,15 @@ export function GoldenBubbles({
             height: bubble.size,
             left: `${bubble.left}%`,
             bottom: -bubble.size * 2,
-            background: `radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.2), rgba(197, 160, 53, 0.05))`,
-            boxShadow: `0 0 20px rgba(197, 160, 53, 0.1)`,
-            border: "1px solid rgba(255, 215, 0, 0.1)",
+            background: isDarkMode 
+              ? `radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.2), rgba(197, 160, 53, 0.05))` 
+              : `radial-gradient(circle at 30% 30%, rgba(14, 165, 233, 0.4), rgba(2, 132, 199, 0.1))`, // Brighter, more visible blue
+            boxShadow: isDarkMode
+              ? `0 0 20px rgba(197, 160, 53, 0.1)`
+              : `0 0 20px rgba(14, 165, 233, 0.2)`, // Stronger glow
+            border: isDarkMode
+              ? "1px solid rgba(255, 215, 0, 0.1)"
+              : "1px solid rgba(14, 165, 233, 0.3)", // More defined border
           }}
           animate={{
             y: ["0vh", "-120vh"],
