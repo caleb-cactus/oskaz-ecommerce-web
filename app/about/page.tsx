@@ -309,7 +309,7 @@ export default function AboutPage() {
         "min-h-[100dvh] transition-colors duration-500",
         isDarkMode
           ? "bg-background"
-          : "bg-gradient-to-br from-background to-secondary/10"
+          : "bg-slate-50" // Darker white for light mode contrast
       )}
     >
       {/* Background Elements with Subtle Gradients */}
@@ -351,8 +351,14 @@ export default function AboutPage() {
 
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
               About{" "}
-              <span className="text-primary">
-                <span className="text-5xl md:text-7xl">ኦ</span>skaz®
+              <span className="inline-block relative h-16 w-48 align-middle -mt-2 ml-2">
+                 <Image
+                  src="/logo.png"
+                  alt="Oskaz Logo"
+                  fill
+                  className="object-contain object-left"
+                  priority
+                />
               </span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
@@ -402,8 +408,7 @@ export default function AboutPage() {
               <div
                 key={index}
                 className={cn(
-                  "text-center p-6 rounded-2xl transition-all duration-300 hover:bg-card/50",
-                  inViewSections.stats && "animate-fade-in-up"
+
                 )}
                 style={{
                   animationDelay: inViewSections.stats
@@ -647,7 +652,7 @@ export default function AboutPage() {
                   inViewSections.values && "animate-fade-in-up",
                   isDarkMode
                     ? "bg-card/40 border-border/50 hover:bg-card/60 hover:border-primary/30"
-                    : "bg-white/60 border-gray-200/60 hover:bg-white/90 hover:border-primary/20"
+                    : "bg-white border-transparent shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-2" // Enhanced shadow for light mode
                 )}
                 style={{
                   animationDelay: inViewSections.values
